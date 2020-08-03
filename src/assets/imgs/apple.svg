@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="28px" viewBox="0 0 24 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>形状</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <filter x="-7.5%" y="-25.0%" width="115.0%" height="150.0%" filterUnits="objectBoundingBox" id="filter-1">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+    </defs>
+    <g id="登录" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="登录1" transform="translate(-406.000000, -519.000000)" fill="#333333" fill-rule="nonzero">
+            <g id="分组-4-copy" transform="translate(361.000000, 507.000000)">
+                <g id="分组-7" filter="url(#filter-1)">
+                    <g id="分组-10" transform="translate(49.000000, 5.000000)">
+                        <path d="M13.364007,19.6274263 C13.3867669,18.0647697 14.1885773,16.6248878 15.4847755,15.8189748 C14.649668,14.6180747 13.3222698,13.8856298 11.8916961,13.8363501 C10.3612011,13.6804231 8.904912,14.75449 8.12828066,14.75449 C7.35164932,14.75449 6.15423728,13.8607409 4.88514915,13.8833895 C3.19816333,13.9253711 1.65580818,14.877384 0.820694181,16.392159 C-0.908807305,19.4532062 0.378832277,23.9829288 2.06785785,26.4673075 C2.89339757,27.6868482 3.87662463,29.0475072 5.16932371,28.9987256 C6.41395765,28.9473306 6.88448998,28.1781489 8.38884428,28.1781489 C9.89319857,28.1781489 10.3148225,28.9987256 11.6319758,28.9717215 C12.9702102,28.9447173 13.8193609,27.7338876 14.6398411,26.5160891 C15.225555,25.641933 15.6838301,24.6836626 16,23.671946 C14.4177906,22.9891974 13.3811767,21.3986753 13.364007,19.6274263 Z M10.8907609,12.1934545 C11.6316125,11.3132746 11.9997693,10.1629096 11.9127773,9 C10.7979309,9.10919323 9.76435215,9.65005418 9.0195937,10.5139727 C8.27693761,11.3539111 7.8999445,12.4715591 7.97649603,13.6063795 C9.10727452,13.6259491 10.1832037,13.103984 10.8907609,12.1925834 L10.8907609,12.1934545 Z" id="形状"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

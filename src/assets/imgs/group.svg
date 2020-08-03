@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="17px" height="18px" viewBox="0 0 17 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>分组 6</title>
+    <desc>Created with Sketch.</desc>
+    <g id="登录" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="切图" transform="translate(-121.000000, -204.000000)" fill="#FFFFFF" fill-rule="nonzero">
+            <g id="分组-6" transform="translate(121.000000, 204.000000)">
+                <path d="M0.555415394,18 C0.219423355,17.9131765 -1.77635684e-15,17.5952647 -1.77635684e-15,17.1037059 L-1.77635684e-15,0.873529418 C-1.77635684e-15,0.418235291 0.185412735,0.111176473 0.479165772,0 L8.86278419,9.04447058 L0.555415394,18 Z" id="路径"></path>
+                <polygon id="路径" points="1.70958233 17.6558823 11.8011374 12.2148529 9.34304709 9.56329411 1.70930805 17.6558823"></polygon>
+                <polygon id="路径" points="11.87053 5.80394118 1.91995448 0.436235291 9.35785818 8.51135295 11.8708043 5.80288235"></polygon>
+                <path d="M12.5458055,6.16791176 L16.4438616,8.27020589 C17.181947,8.66726471 17.188804,9.3099706 16.4438616,9.71152942 L12.4470649,11.8665 L9.84141243,9.03626471 L12.5455312,6.16764705 L12.5458055,6.16791176 Z" id="路径"></path>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>复制 copy</title>
+    <desc>Created with Sketch.</desc>
+    <g id="登录" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="切图" transform="translate(-131.000000, -1078.000000)" stroke="#3674D7" stroke-width="0.8">
+            <g id="复制" transform="translate(131.000000, 1078.000000)">
+                <rect id="矩形" x="0.4" y="3.06666667" width="12.5333333" height="12.5333333" rx="2"></rect>
+                <path d="M12.6962034,0.4 L3.06666667,9.99617035 C3.06666667,10.1768474 3.06666667,10.2600875 3.06666667,10.6666667 C3.06666667,11.9185121 4.0814879,12.9333333 5.33333333,12.9333333 L13.3333333,12.9333333 C14.5851788,12.9333333 15.6,11.9185121 15.6,10.6666667 L15.6,2.66666667 C15.6,1.41482123 14.5851788,0.4 13.3333333,0.4 C12.9443049,0.4 12.858173,0.4 12.6962033,0.4 Z" id="矩形-copy-2" transform="translate(9.333333, 6.666667) scale(-1, -1) rotate(90.000000) translate(-9.333333, -6.666667) "></path>
+            </g>
+        </g>
+    </g>
+</svg>

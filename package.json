@@ -1,0 +1,67 @@
+{
+  "name": "cloudhashweb",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "svg": "vsvg -s ./src/assets/imgs -t ./src/icons"
+  },
+  "dependencies": {
+    "animate.css": "^3.7.2",
+    "axios": "^0.19.0",
+    "clipboard": "^2.0.6",
+    "core-js": "^2.6.5",
+    "iview": "^3.4.2",
+    "jquery": "^3.4.1",
+    "less": "^3.9.0",
+    "less-loader": "^4.1.0",
+    "qrcode": "^1.4.4",
+    "view-design": "^4.2.0",
+    "vue": "^2.6.10",
+    "vue-i18n": "^7.6.0",
+    "vue-material": "^1.0.0-beta-13",
+    "vue-qr": "^2.2.1",
+    "vue-router": "^3.0.3",
+    "vuex": "^3.0.1"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.8.0",
+    "@vue/cli-plugin-eslint": "^3.8.0",
+    "@vue/cli-service": "^3.8.0",
+    "babel-eslint": "^10.0.1",
+    "babel-plugin-import": "^1.13.0",
+    "eslint": "^5.16.0",
+    "eslint-plugin-vue": "^5.0.0",
+    "node-sass": "^4.14.1",
+    "sass-loader": "^8.0.2",
+    "stylus": "^0.54.7",
+    "stylus-loader": "^3.0.2",
+    "vue-svgicon": "^3.2.6",
+    "vue-template-compiler": "^2.6.10"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "rules": {},
+    "parserOptions": {
+      "parser": "babel-eslint"
+    }
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ]
+}
