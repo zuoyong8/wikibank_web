@@ -1,12 +1,15 @@
 <template>
-  <div class=''>
+  <div class='code-widget'>
     <input type="text" v-model="vertifyCode" :placeholder="vertifyText" class="vertify-code-input" @change="changeQrcode" />
     <a 
       href="javascript:;"
       class="send-code"
       :class="isCalc ? 'disabled':'' "
       @click="sendVertifyCode"
-    >{{countText}}</a>
+    ><span v-if="status === 1">{{$t('customError.sendVertifyCode')}}</span>
+      <span v-else-if="status === 2">{{countText}}</span>
+      <span v-else-if="status === 3">{{$t('customError.againSend')}}</span>
+    </a>
   </div>
 </template>
 
@@ -18,8 +21,9 @@ export default {
   components: {},
   data() {
     return {
+      status: 1,
       isCalc: false,
-      countText: "发送验证码",
+      countText: "",
       count: 0,
       vertifyCode: this.value,
     };
@@ -58,24 +62,25 @@ export default {
 
       if (this.type === "1") {
         if (!vert) {
-          return this.$Message.error("请输入手机号！");
+          return this.$Message.error(this.$t('customError.telTips'));
         }
         if (!/^1[\d]{10}$/.test(vert)) {
-          return this.$Message.error("请输入正确的手机号");
+          return this.$Message.error(this.$t('customError.telRuleTips'));
         }
       } else if (this.type === "2") {
-        if (!vert) return this.$Message.error("请输入邮箱！");
+        if (!vert) return this.$Message.error(this.$t('personCenter.enterEmail'));
         if(this.isVertifyExsit) {
           const params = {
             email: vert
           }
-          const res = await axios.isExistEmail(params);
+          const res = await axios.checkEmail(params);
           if(res.code === 0) {
             const { success }  = res.data;
             if(success) {
-              this.$Message.success("邮箱校验成功！");
+              // this.$Message.success(this.$t('customError.authSuccess'));
             } else {
-              return this.$Message.error('校验邮箱失败！');
+              this.status = 3;
+              return this.$Message.error(this.$t('customError.authFail'));
             }
           } else {
             return this.$Message.error(res.msg);
@@ -100,7 +105,7 @@ export default {
 
       const emailParams = {
         email: vert,
-        type: 2
+        type: this.isVertifyExsit ? 1 : 2
       };
 
       const params = this.type === "1" ? telParams : emailParams;
@@ -113,10 +118,11 @@ export default {
       if (res.code === 0) {
         const { success } = res.data;
         if (success) {
-          this.$Message.info("发送成功！");
+          this.$Message.success(this.$t('customError.sendSuccess'));
           let timer = setInterval(() => {
+            this.status = 2;
             if (this.count <= 0) {
-              this.countText = "重新发送";
+              this.status = 3;
               this.isCalc = false;
               clearInterval(timer);
               return;
@@ -126,7 +132,7 @@ export default {
           }, 1000);
         } else {
           this.isCalc = false;
-          this.$Message.error("发送失败！");
+          this.$Message.error(this.$t('customError.sendFail'));
         }
       } else {
         this.isCalc = false;
@@ -138,10 +144,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.code-widget {
+  display: flex;
+}
 .vertify-code-input,
 .tel-input {
   outline: none;
-  width: 306px;
+  flex: 1;
   border: 1px solid #dfe2e7;
   border-radius: 2px;
   font-size: 14px;
@@ -150,20 +159,22 @@ export default {
   &:focus {
     border: 1px solid #3674d7;
   }
+  &::placeholder {
+    color: #ccc;
+  }
 }
 .tel-input {
   width: 324px;
 }
 .send-code {
-  width: 100px;
   display: inline-block;
-  padding: 7px 10px;
+  padding: 7px 9px;
   text-align: center;
   color: #3674d7;
   font-size: 14px;
   border: 1px solid #3674d7;
   border-radius: 2px;
-  margin-left: 22px;
+  margin-left: 24px;
   &:hover {
     text-decoration: none !important;
     color: #3674d7;

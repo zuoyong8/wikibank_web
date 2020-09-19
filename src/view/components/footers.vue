@@ -1,6 +1,6 @@
 <template>
     <div class="footer">
-       版权所有 © 2012 – 2020 WikiPay. 保留所有权利.WikiPay® 是我们公司的注册商标
+       {{$t('login.copyright')}}
       </div>
 </template>
 

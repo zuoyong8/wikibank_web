@@ -1,0 +1,1890 @@
+[
+    {
+      "countryCode": "004",
+      "twoCharCode": "AF",
+      "code": "0093",
+      "name": "Afghanistan",
+      "flag": "https://img.wikifx.com/flag/72d78b7e3ea74697/AF.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/72d78b7e3ea74697.png_wiki-template-global"
+    },
+    {
+      "countryCode": "008",
+      "twoCharCode": "AL",
+      "code": "00355",
+      "name": "Albania",
+      "flag": "https://img.wikifx.com/flag/304dc3ef15e69b9f/AL.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/304dc3ef15e69b9f.png_wiki-template-global"
+    },
+    {
+      "countryCode": "010",
+      "twoCharCode": "AQ",
+      "code": "00672",
+      "name": "Antarctica",
+      "flag": "https://img.wikifx.com/flag/81ba573eb9029a9a/AQ.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/81ba573eb9029a9a.png_wiki-template-global"
+    },
+    {
+      "countryCode": "012",
+      "twoCharCode": "DZ",
+      "code": "00213",
+      "name": "Algeria",
+      "flag": "https://img.wikifx.com/flag/5daea5f9e813128f/DZ.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/5daea5f9e813128f.png_wiki-template-global"
+    },
+    {
+      "countryCode": "016",
+      "twoCharCode": "AS",
+      "code": "001684",
+      "name": "American Samoa",
+      "flag": "https://img.wikifx.com/flag/484301fa800100e1/AS.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/484301fa800100e1.png_wiki-template-global"
+    },
+    {
+      "countryCode": "020",
+      "twoCharCode": "AD",
+      "code": "00376",
+      "name": "Andorra",
+      "flag": "https://img.wikifx.com/flag/166d73366e798681/AD.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/166d73366e798681.png_wiki-template-global"
+    },
+    {
+      "countryCode": "024",
+      "twoCharCode": "AO",
+      "code": "00244",
+      "name": "Angola",
+      "flag": "https://img.wikifx.com/flag/613d8b9f4f7f3980/AO.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/613d8b9f4f7f3980.png_wiki-template-global"
+    },
+    {
+      "countryCode": "028",
+      "twoCharCode": "AG",
+      "code": "001268",
+      "name": "Antigua and Barbuda",
+      "flag": "https://img.wikifx.com/flag/b7ccf80851beb06d/AG.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/b7ccf80851beb06d.png_wiki-template-global"
+    },
+    {
+      "countryCode": "031",
+      "twoCharCode": "AZ",
+      "code": "00994",
+      "name": "Azerbaijan",
+      "flag": "https://img.wikifx.com/flag/eb981c7f0aabcaeb/AZ.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/eb981c7f0aabcaeb.png_wiki-template-global"
+    },
+    {
+      "countryCode": "032",
+      "twoCharCode": "AR",
+      "code": "0054",
+      "name": "Argentina",
+      "flag": "https://img.wikifx.com/flag/98a0d06efa6933a9/AR.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/98a0d06efa6933a9.png_wiki-template-global"
+    },
+    {
+      "countryCode": "036",
+      "twoCharCode": "AU",
+      "code": "0061",
+      "name": "Australia",
+      "flag": "https://img.wikifx.com/flag/045fe4098d24356d/AU.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/045fe4098d24356d.png_wiki-template-global"
+    },
+    {
+      "countryCode": "040",
+      "twoCharCode": "AT",
+      "code": "0043",
+      "name": "Austria",
+      "flag": "https://img.wikifx.com/flag/740aa25870ced6b9/AT.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/740aa25870ced6b9.png_wiki-template-global"
+    },
+    {
+      "countryCode": "044",
+      "twoCharCode": "BS",
+      "code": "001242",
+      "name": "Bahamas",
+      "flag": "https://img.wikifx.com/flag/a3416b1055b8ffb9/BS.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/a3416b1055b8ffb9.png_wiki-template-global"
+    },
+    {
+      "countryCode": "048",
+      "twoCharCode": "BH",
+      "code": "00973",
+      "name": "Bahrain",
+      "flag": "https://img.wikifx.com/flag/aeff33338948c1e0/BH.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/aeff33338948c1e0.png_wiki-template-global"
+    },
+    {
+      "countryCode": "050",
+      "twoCharCode": "BD",
+      "code": "00880",
+      "name": "Bengal",
+      "flag": "https://img.wikifx.com/flag/be4714701a8bc235/BD.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/be4714701a8bc235.png_wiki-template-global"
+    },
+    {
+      "countryCode": "051",
+      "twoCharCode": "AM",
+      "code": "00374",
+      "name": "Armenia",
+      "flag": "https://img.wikifx.com/flag/56b8212e569dbf2e/AM.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/56b8212e569dbf2e.png_wiki-template-global"
+    },
+    {
+      "countryCode": "052",
+      "twoCharCode": "BB",
+      "code": "001246",
+      "name": "Barbados",
+      "flag": "https://img.wikifx.com/flag/db16a7eee539e93e/BB.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/db16a7eee539e93e.png_wiki-template-global"
+    },
+    {
+      "countryCode": "056",
+      "twoCharCode": "BE",
+      "code": "0032",
+      "name": "Belgium",
+      "flag": "https://img.wikifx.com/flag/c679f9af82eb9a3b/BE.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/c679f9af82eb9a3b.png_wiki-template-global"
+    },
+    {
+      "countryCode": "060",
+      "twoCharCode": "BM",
+      "code": "001441",
+      "name": "Bermuda",
+      "flag": "https://img.wikifx.com/flag/1630360a9b336146/BM.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/1630360a9b336146.png_wiki-template-global"
+    },
+    {
+      "countryCode": "064",
+      "twoCharCode": "BT",
+      "code": "00975",
+      "name": "Bhutan",
+      "flag": "https://img.wikifx.com/flag/8bb6fba9845a8137/BT.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/8bb6fba9845a8137.png_wiki-template-global"
+    },
+    {
+      "countryCode": "068",
+      "twoCharCode": "BO",
+      "code": "00591",
+      "name": "Bolivia",
+      "flag": "https://img.wikifx.com/flag/c2a49bbac1b3426a/BO.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/c2a49bbac1b3426a.png_wiki-template-global"
+    },
+    {
+      "countryCode": "070",
+      "twoCharCode": "BA",
+      "code": "00387",
+      "name": "Bosnia",
+      "flag": "https://img.wikifx.com/flag/62601df84b7923b9/BA.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/62601df84b7923b9.png_wiki-template-global"
+    },
+    {
+      "countryCode": "072",
+      "twoCharCode": "BW",
+      "code": "00267",
+      "name": "Botswana",
+      "flag": "https://img.wikifx.com/flag/681575bca3e4eff6/BW.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/681575bca3e4eff6.png_wiki-template-global"
+    },
+    {
+      "countryCode": "076",
+      "twoCharCode": "BR",
+      "code": "0055",
+      "name": "Brazil",
+      "flag": "https://img.wikifx.com/flag/3137cbadd21ce901/BR.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/3137cbadd21ce901.png_wiki-template-global"
+    },
+    {
+      "countryCode": "084",
+      "twoCharCode": "BZ",
+      "code": "00501",
+      "name": "Belize",
+      "flag": "https://img.wikifx.com/flag/ca3b21f17c5f3557/BZ.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/ca3b21f17c5f3557.png_wiki-template-global"
+    },
+    {
+      "countryCode": "086",
+      "twoCharCode": "IO",
+      "code": "00246",
+      "name": "Indian Ocean Territory",
+      "flag": "https://img.wikifx.com/flag/c43ab22bff0bd9d8/IO.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/c43ab22bff0bd9d8.png_wiki-template-global"
+    },
+    {
+      "countryCode": "090",
+      "twoCharCode": "SB",
+      "code": "00677",
+      "name": "Solomon Islands",
+      "flag": "https://img.wikifx.com/flag/ea28e90733617ec8/SB.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/ea28e90733617ec8.png_wiki-template-global"
+    },
+    {
+      "countryCode": "092",
+      "twoCharCode": "VG",
+      "code": "001284",
+      "name": "The Virgin Islands",
+      "flag": "https://img.wikifx.com/flag/797aad52f98db63d/VG.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/797aad52f98db63d.png_wiki-template-global"
+    },
+    {
+      "countryCode": "096",
+      "twoCharCode": "BN",
+      "code": "00673",
+      "name": "Brunei",
+      "flag": "https://img.wikifx.com/flag/490e37c1258738a1/BN.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/490e37c1258738a1.png_wiki-template-global"
+    },
+    {
+      "countryCode": "100",
+      "twoCharCode": "BG",
+      "code": "00359",
+      "name": "Bulgaria",
+      "flag": "https://img.wikifx.com/flag/fe86af962cd15a16/BG.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/fe86af962cd15a16.png_wiki-template-global"
+    },
+    {
+      "countryCode": "104",
+      "twoCharCode": "MM",
+      "code": "0095",
+      "name": "Myanmar",
+      "flag": "https://img.wikifx.com/flag/87c942f9dd521605/MM.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/87c942f9dd521605.png_wiki-template-global"
+    },
+    {
+      "countryCode": "108",
+      "twoCharCode": "BI",
+      "code": "00257",
+      "name": "Burundi",
+      "flag": "https://img.wikifx.com/flag/997b9b290bd7c57a/BI.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/997b9b290bd7c57a.png_wiki-template-global"
+    },
+    {
+      "countryCode": "112",
+      "twoCharCode": "BY",
+      "code": "00375",
+      "name": "Belarus",
+      "flag": "https://img.wikifx.com/flag/a51a924ab68d9812/BY.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/a51a924ab68d9812.png_wiki-template-global"
+    },
+    {
+      "countryCode": "116",
+      "twoCharCode": "KH",
+      "code": "00855",
+      "name": "Cambodia",
+      "flag": "https://img.wikifx.com/flag/6334c4db5a83bbbc/KH.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/6334c4db5a83bbbc.png_wiki-template-global"
+    },
+    {
+      "countryCode": "120",
+      "twoCharCode": "CM",
+      "code": "00237",
+      "name": "Cameroon",
+      "flag": "https://img.wikifx.com/flag/2d4e8210a2a573b9/CM.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/2d4e8210a2a573b9.png_wiki-template-global"
+    },
+    {
+      "countryCode": "124",
+      "twoCharCode": "CA",
+      "code": "001",
+      "name": "Canada",
+      "flag": "https://img.wikifx.com/flag/b4b32b9e9479f387/CA.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/b4b32b9e9479f387.png_wiki-template-global"
+    },
+    {
+      "countryCode": "132",
+      "twoCharCode": "CV",
+      "code": "00238",
+      "name": "Cape Verde",
+      "flag": "https://img.wikifx.com/flag/4bc49ebacde4ffe0/CV.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/4bc49ebacde4ffe0.png_wiki-template-global"
+    },
+    {
+      "countryCode": "136",
+      "twoCharCode": "KY",
+      "code": "001345",
+      "name": "Cayman Islands",
+      "flag": "https://img.wikifx.com/flag/1a83f61d19760277/KY.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/1a83f61d19760277.png_wiki-template-global"
+    },
+    {
+      "countryCode": "140",
+      "twoCharCode": "CF",
+      "code": "00236",
+      "name": "Central Africa",
+      "flag": "https://img.wikifx.com/flag/c5e62129e654698c/CF.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/c5e62129e654698c.png_wiki-template-global"
+    },
+    {
+      "countryCode": "144",
+      "twoCharCode": "LK",
+      "code": "0094",
+      "name": "Sri Lanka",
+      "flag": "https://img.wikifx.com/flag/a0d9037002e9ef65/LK.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/a0d9037002e9ef65.png_wiki-template-global"
+    },
+    {
+      "countryCode": "148",
+      "twoCharCode": "TD",
+      "code": "00235",
+      "name": "Chad",
+      "flag": "https://img.wikifx.com/flag/555aee7519548ff7/TD.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/555aee7519548ff7.png_wiki-template-global"
+    },
+    {
+      "countryCode": "152",
+      "twoCharCode": "CL",
+      "code": "0056",
+      "name": "Chile",
+      "flag": "https://img.wikifx.com/flag/7246f122016869b3/CL.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/7246f122016869b3.png_wiki-template-global"
+    },
+    {
+      "countryCode": "156",
+      "twoCharCode": "CN",
+      "code": "0086",
+      "name": "China",
+      "flag": "https://img.wikifx.com/flag/7d8833382673bab2/CN.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/7d8833382673bab2.png_wiki-template-global"
+    },
+    {
+      "countryCode": "158",
+      "twoCharCode": "TW",
+      "code": "00886",
+      "name": "Taiwan",
+      "flag": "https://img.wikifx.com/flag/6be3087ca199f440/TW.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/6be3087ca199f440.png_wiki-template-global"
+    },
+    {
+      "countryCode": "162",
+      "twoCharCode": "CX",
+      "code": "0061",
+      "name": "Christmas Island",
+      "flag": "https://img.wikifx.com/flag/a5a93dedb10c85f5/CX.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/a5a93dedb10c85f5.png_wiki-template-global"
+    },
+    {
+      "countryCode": "166",
+      "twoCharCode": "CC",
+      "code": "0061",
+      "name": "Cocos Islands",
+      "flag": "https://img.wikifx.com/flag/650dfd85c4f59fa1/CC.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/650dfd85c4f59fa1.png_wiki-template-global"
+    },
+    {
+      "countryCode": "170",
+      "twoCharCode": "CO",
+      "code": "0057",
+      "name": "Colombia",
+      "flag": "https://img.wikifx.com/flag/e2f2cc22822e30be/CO.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/e2f2cc22822e30be.png_wiki-template-global"
+    },
+    {
+      "countryCode": "174",
+      "twoCharCode": "KM",
+      "code": "00269",
+      "name": "Comoros",
+      "flag": "https://img.wikifx.com/flag/b31ec27223fee2c6/KM.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/b31ec27223fee2c6.png_wiki-template-global"
+    },
+    {
+      "countryCode": "175",
+      "twoCharCode": "YT",
+      "code": "00262",
+      "name": "Mayotte",
+      "flag": "https://img.wikifx.com/flag/46b6232662fff871/YT.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/46b6232662fff871.png_wiki-template-global"
+    },
+    {
+      "countryCode": "178",
+      "twoCharCode": "CG",
+      "code": "00242",
+      "name": "Republic of Congo",
+      "flag": "https://img.wikifx.com/flag/6cac8bee468e86d1/CG.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/6cac8bee468e86d1.png_wiki-template-global"
+    },
+    {
+      "countryCode": "180",
+      "twoCharCode": "CD",
+      "code": "00243",
+      "name": "Congo (Gold)",
+      "flag": "https://img.wikifx.com/flag/af571e8d0d59fdad/CD.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/af571e8d0d59fdad.png_wiki-template-global"
+    },
+    {
+      "countryCode": "184",
+      "twoCharCode": "CK",
+      "code": "00682",
+      "name": "Island",
+      "flag": "https://img.wikifx.com/flag/2e8ac3e3fe7bc32b/CK.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/2e8ac3e3fe7bc32b.png_wiki-template-global"
+    },
+    {
+      "countryCode": "188",
+      "twoCharCode": "CR",
+      "code": "00506",
+      "name": "Costa Rica",
+      "flag": "https://img.wikifx.com/flag/26ca22c2011aaa97/CR.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/26ca22c2011aaa97.png_wiki-template-global"
+    },
+    {
+      "countryCode": "191",
+      "twoCharCode": "HR",
+      "code": "00385",
+      "name": "Croatia",
+      "flag": "https://img.wikifx.com/flag/a5f85d025963f99f/HR.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/a5f85d025963f99f.png_wiki-template-global"
+    },
+    {
+      "countryCode": "192",
+      "twoCharCode": "CU",
+      "code": "0053",
+      "name": "Cuba",
+      "flag": "https://img.wikifx.com/flag/34a373cb63a0a919/CU.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/34a373cb63a0a919.png_wiki-template-global"
+    },
+    {
+      "countryCode": "196",
+      "twoCharCode": "CY",
+      "code": "00357",
+      "name": "Cyprus",
+      "flag": "https://img.wikifx.com/flag/8c64158622b74280/CY.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/8c64158622b74280.png_wiki-template-global"
+    },
+    {
+      "countryCode": "203",
+      "twoCharCode": "CZ",
+      "code": "00420",
+      "name": "Czech Republic",
+      "flag": "https://img.wikifx.com/flag/4963ceb76aaaa2ca/CZ.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/4963ceb76aaaa2ca.png_wiki-template-global"
+    },
+    {
+      "countryCode": "204",
+      "twoCharCode": "BJ",
+      "code": "00229",
+      "name": "Benin",
+      "flag": "https://img.wikifx.com/flag/f5be05e1e9caded4/BJ.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/f5be05e1e9caded4.png_wiki-template-global"
+    },
+    {
+      "countryCode": "208",
+      "twoCharCode": "DK",
+      "code": "0045",
+      "name": "Denmark",
+      "flag": "https://img.wikifx.com/flag/5579d4e518c6d4ab/DK.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/5579d4e518c6d4ab.png_wiki-template-global"
+    },
+    {
+      "countryCode": "212",
+      "twoCharCode": "DM",
+      "code": "001767",
+      "name": "Dominic",
+      "flag": "https://img.wikifx.com/flag/252b442ac6ecf474/DM.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/252b442ac6ecf474.png_wiki-template-global"
+    },
+    {
+      "countryCode": "214",
+      "twoCharCode": "DO",
+      "code": "001849",
+      "name": "Dominica",
+      "flag": "https://img.wikifx.com/flag/6925b610710d93e2/DO.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/6925b610710d93e2.png_wiki-template-global"
+    },
+    {
+      "countryCode": "218",
+      "twoCharCode": "EC",
+      "code": "00593",
+      "name": "Ecuador",
+      "flag": "https://img.wikifx.com/flag/867d70225deda786/EC.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/867d70225deda786.png_wiki-template-global"
+    },
+    {
+      "countryCode": "222",
+      "twoCharCode": "SV",
+      "code": "00503",
+      "name": "Salvador",
+      "flag": "https://img.wikifx.com/flag/c0e98f678feaaa5a/SV.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/c0e98f678feaaa5a.png_wiki-template-global"
+    },
+    {
+      "countryCode": "226",
+      "twoCharCode": "GQ",
+      "code": "00240",
+      "name": "Equatorial Guinea",
+      "flag": "https://img.wikifx.com/flag/a4794422c7068158/GQ.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/a4794422c7068158.png_wiki-template-global"
+    },
+    {
+      "countryCode": "231",
+      "twoCharCode": "ET",
+      "code": "00251",
+      "name": "Ethiopia",
+      "flag": "https://img.wikifx.com/flag/8b78679b4675941f/ET.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/8b78679b4675941f.png_wiki-template-global"
+    },
+    {
+      "countryCode": "232",
+      "twoCharCode": "ER",
+      "code": "00291",
+      "name": "Eritrea",
+      "flag": "https://img.wikifx.com/flag/4883ca6deaada839/ER.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/4883ca6deaada839.png_wiki-template-global"
+    },
+    {
+      "countryCode": "233",
+      "twoCharCode": "EE",
+      "code": "00372",
+      "name": "Estonia",
+      "flag": "https://img.wikifx.com/flag/d1d8fc1014dd54bc/EE.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/d1d8fc1014dd54bc.png_wiki-template-global"
+    },
+    {
+      "countryCode": "234",
+      "twoCharCode": "FO",
+      "code": "00298",
+      "name": "Faroe Islands",
+      "flag": "https://img.wikifx.com/flag/6542bbcf6e14417a/FO.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/6542bbcf6e14417a.png_wiki-template-global"
+    },
+    {
+      "countryCode": "238",
+      "twoCharCode": "FK",
+      "code": "00500",
+      "name": "Malvinas Islands (Fokland)",
+      "flag": "https://img.wikifx.com/flag/afd95af91e280d1e/FK.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/afd95af91e280d1e.png_wiki-template-global"
+    },
+    {
+      "countryCode": "242",
+      "twoCharCode": "FJ",
+      "code": "00679",
+      "name": "Fiji Islands",
+      "flag": "https://img.wikifx.com/flag/2fd26c429ccd6a13/FJ.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/2fd26c429ccd6a13.png_wiki-template-global"
+    },
+    {
+      "countryCode": "246",
+      "twoCharCode": "FI",
+      "code": "00358",
+      "name": "Finland",
+      "flag": "https://img.wikifx.com/flag/ca953a9a63b44596/FI.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/ca953a9a63b44596.png_wiki-template-global"
+    },
+    {
+      "countryCode": "250",
+      "twoCharCode": "FR",
+      "code": "0033",
+      "name": "France",
+      "flag": "https://img.wikifx.com/flag/432747c2bcd97b82/FR.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/432747c2bcd97b82.png_wiki-template-global"
+    },
+    {
+      "countryCode": "254",
+      "twoCharCode": "GF",
+      "code": "00594",
+      "name": "French Guiana",
+      "flag": "https://img.wikifx.com/flag/7660314f711a68fc/GF.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/7660314f711a68fc.png_wiki-template-global"
+    },
+    {
+      "countryCode": "258",
+      "twoCharCode": "PF",
+      "code": "00689",
+      "name": "French Polynesia",
+      "flag": "https://img.wikifx.com/flag/b5d026e4a6011eb9/PF.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/b5d026e4a6011eb9.png_wiki-template-global"
+    },
+    {
+      "countryCode": "262",
+      "twoCharCode": "DJ",
+      "code": "00253",
+      "name": "Djibouti",
+      "flag": "https://img.wikifx.com/flag/603825cc6999e48c/DJ.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/603825cc6999e48c.png_wiki-template-global"
+    },
+    {
+      "countryCode": "266",
+      "twoCharCode": "GA",
+      "code": "00241",
+      "name": "Gabon",
+      "flag": "https://img.wikifx.com/flag/498985e538753ea8/GA.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/498985e538753ea8.png_wiki-template-global"
+    },
+    {
+      "countryCode": "268",
+      "twoCharCode": "GE",
+      "code": "00995",
+      "name": "Georgia",
+      "flag": "https://img.wikifx.com/flag/28adf4199f224c2a/GE.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/28adf4199f224c2a.png_wiki-template-global"
+    },
+    {
+      "countryCode": "270",
+      "twoCharCode": "GM",
+      "code": "00220",
+      "name": "Gambia",
+      "flag": "https://img.wikifx.com/flag/41ab8d6ba545a1ae/GM.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/41ab8d6ba545a1ae.png_wiki-template-global"
+    },
+    {
+      "countryCode": "275",
+      "twoCharCode": "PS",
+      "code": "0092",
+      "name": "Palestine",
+      "flag": "https://img.wikifx.com/flag/b455ac79dd5ff47c/PS.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/b455ac79dd5ff47c.png_wiki-template-global"
+    },
+    {
+      "countryCode": "276",
+      "twoCharCode": "DE",
+      "code": "0049",
+      "name": "Germany",
+      "flag": "https://img.wikifx.com/flag/2ed6fcde5bf696a6/DE.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/2ed6fcde5bf696a6.png_wiki-template-global"
+    },
+    {
+      "countryCode": "288",
+      "twoCharCode": "GH",
+      "code": "00233",
+      "name": "Ghana",
+      "flag": "https://img.wikifx.com/flag/8e786062f1b23476/GH.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/8e786062f1b23476.png_wiki-template-global"
+    },
+    {
+      "countryCode": "292",
+      "twoCharCode": "GI",
+      "code": "00350",
+      "name": "Gibraltar",
+      "flag": "https://img.wikifx.com/flag/efabc7a908c3768c/GI.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/efabc7a908c3768c.png_wiki-template-global"
+    },
+    {
+      "countryCode": "296",
+      "twoCharCode": "KI",
+      "code": "00686",
+      "name": "Kiribati",
+      "flag": "https://img.wikifx.com/flag/b732b054dda58605/KI.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/b732b054dda58605.png_wiki-template-global"
+    },
+    {
+      "countryCode": "300",
+      "twoCharCode": "GR",
+      "code": "0030",
+      "name": "Greece",
+      "flag": "https://img.wikifx.com/flag/2e0de5875d55189e/GR.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/2e0de5875d55189e.png_wiki-template-global"
+    },
+    {
+      "countryCode": "304",
+      "twoCharCode": "GL",
+      "code": "00299",
+      "name": "Greenland",
+      "flag": "https://img.wikifx.com/flag/37c6f0d638fe7988/GL.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/37c6f0d638fe7988.png_wiki-template-global"
+    },
+    {
+      "countryCode": "308",
+      "twoCharCode": "GD",
+      "code": "001473",
+      "name": "Grenada",
+      "flag": "https://img.wikifx.com/flag/5e46821195a55359/GD.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/5e46821195a55359.png_wiki-template-global"
+    },
+    {
+      "countryCode": "312",
+      "twoCharCode": "GP",
+      "code": "00590",
+      "name": "Guadeloupe",
+      "flag": "https://img.wikifx.com/flag/d788dcf41f399818/GP.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/d788dcf41f399818.png_wiki-template-global"
+    },
+    {
+      "countryCode": "316",
+      "twoCharCode": "GU",
+      "code": "001671",
+      "name": "Guam",
+      "flag": "https://img.wikifx.com/flag/cc61a56dc5b23717/GU.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/cc61a56dc5b23717.png_wiki-template-global"
+    },
+    {
+      "countryCode": "320",
+      "twoCharCode": "GT",
+      "code": "00502",
+      "name": "Guatemala",
+      "flag": "https://img.wikifx.com/flag/a175104eed40f0d3/GT.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/a175104eed40f0d3.png_wiki-template-global"
+    },
+    {
+      "countryCode": "324",
+      "twoCharCode": "GN",
+      "code": "00224",
+      "name": "Guinea",
+      "flag": "https://img.wikifx.com/flag/ecd826aac8906599/GN.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/ecd826aac8906599.png_wiki-template-global"
+    },
+    {
+      "countryCode": "328",
+      "twoCharCode": "GY",
+      "code": "00592",
+      "name": "Guyana",
+      "flag": "https://img.wikifx.com/flag/806ca426cd651517/GY.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/806ca426cd651517.png_wiki-template-global"
+    },
+    {
+      "countryCode": "332",
+      "twoCharCode": "HT",
+      "code": "00509",
+      "name": "Haiti",
+      "flag": "https://img.wikifx.com/flag/a8247d656ef6b480/HT.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/a8247d656ef6b480.png_wiki-template-global"
+    },
+    {
+      "countryCode": "336",
+      "twoCharCode": "VA",
+      "code": "00379",
+      "name": "Vatican",
+      "flag": "https://img.wikifx.com/flag/3467b1bcf46522b8/VA.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/3467b1bcf46522b8.png_wiki-template-global"
+    },
+    {
+      "countryCode": "340",
+      "twoCharCode": "HN",
+      "code": "00504",
+      "name": "Honduras",
+      "flag": "https://img.wikifx.com/flag/028a717ff89985bc/HN.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/028a717ff89985bc.png_wiki-template-global"
+    },
+    {
+      "countryCode": "344",
+      "twoCharCode": "HK",
+      "code": "00852",
+      "name": "Hong Kong",
+      "flag": "https://img.wikifx.com/flag/ccc558d92f93bcf8/HK.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/ccc558d92f93bcf8.png_wiki-template-global"
+    },
+    {
+      "countryCode": "348",
+      "twoCharCode": "HU",
+      "code": "0036",
+      "name": "Hungary",
+      "flag": "https://img.wikifx.com/flag/13b88c2fe23dcbec/HU.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/13b88c2fe23dcbec.png_wiki-template-global"
+    },
+    {
+      "countryCode": "352",
+      "twoCharCode": "IS",
+      "code": "00354",
+      "name": "Iceland",
+      "flag": "https://img.wikifx.com/flag/12effc1bae4d3766/IS.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/12effc1bae4d3766.png_wiki-template-global"
+    },
+    {
+      "countryCode": "356",
+      "twoCharCode": "IN",
+      "code": "0091",
+      "name": "India",
+      "flag": "https://img.wikifx.com/flag/d7ed3e7b4fdbf486/IN.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/d7ed3e7b4fdbf486.png_wiki-template-global"
+    },
+    {
+      "countryCode": "360",
+      "twoCharCode": "ID",
+      "code": "0062",
+      "name": "Indonesia",
+      "flag": "https://img.wikifx.com/flag/73e04ce3ec720dd1/ID.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/73e04ce3ec720dd1.png_wiki-template-global"
+    },
+    {
+      "countryCode": "364",
+      "twoCharCode": "IR",
+      "code": "0098",
+      "name": "Iran",
+      "flag": "https://img.wikifx.com/flag/f26bbd58a8cbbad2/IR.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/f26bbd58a8cbbad2.png_wiki-template-global"
+    },
+    {
+      "countryCode": "368",
+      "twoCharCode": "IQ",
+      "code": "00964",
+      "name": "Iraq",
+      "flag": "https://img.wikifx.com/flag/8bc1672591fd8833/IQ.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/8bc1672591fd8833.png_wiki-template-global"
+    },
+    {
+      "countryCode": "372",
+      "twoCharCode": "IE",
+      "code": "00353",
+      "name": "Ireland",
+      "flag": "https://img.wikifx.com/flag/0d23f34c4255d924/IE.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/0d23f34c4255d924.png_wiki-template-global"
+    },
+    {
+      "countryCode": "376",
+      "twoCharCode": "IL",
+      "code": "00972",
+      "name": "Israel",
+      "flag": "https://img.wikifx.com/flag/f0dad76870d7ede6/IL.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/f0dad76870d7ede6.png_wiki-template-global"
+    },
+    {
+      "countryCode": "380",
+      "twoCharCode": "IT",
+      "code": "0039",
+      "name": "Italy",
+      "flag": "https://img.wikifx.com/flag/cb6de321930cf345/IT.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/cb6de321930cf345.png_wiki-template-global"
+    },
+    {
+      "countryCode": "384",
+      "twoCharCode": "CI",
+      "code": "00225",
+      "name": "Cote d'Ivoire",
+      "flag": "https://img.wikifx.com/flag/75d6d6ace27ef929/CI.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/75d6d6ace27ef929.png_wiki-template-global"
+    },
+    {
+      "countryCode": "388",
+      "twoCharCode": "JM",
+      "code": "001876",
+      "name": "Jamaica",
+      "flag": "https://img.wikifx.com/flag/c98f911ffbc794f5/JM.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/c98f911ffbc794f5.png_wiki-template-global"
+    },
+    {
+      "countryCode": "392",
+      "twoCharCode": "JP",
+      "code": "0081",
+      "name": "Japan",
+      "flag": "https://img.wikifx.com/flag/afb23edb45c6c8cf/JP.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/afb23edb45c6c8cf.png_wiki-template-global"
+    },
+    {
+      "countryCode": "398",
+      "twoCharCode": "KZ",
+      "code": "007",
+      "name": "Kazakhstan",
+      "flag": "https://img.wikifx.com/flag/b4564ec96bc6605c/KZ.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/b4564ec96bc6605c.png_wiki-template-global"
+    },
+    {
+      "countryCode": "400",
+      "twoCharCode": "JO",
+      "code": "00962",
+      "name": "Jordan",
+      "flag": "https://img.wikifx.com/flag/d1105dd93c39e6e1/JO.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/d1105dd93c39e6e1.png_wiki-template-global"
+    },
+    {
+      "countryCode": "404",
+      "twoCharCode": "KE",
+      "code": "00254",
+      "name": "Kenya",
+      "flag": "https://img.wikifx.com/flag/8816e5ef78463929/KE.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/8816e5ef78463929.png_wiki-template-global"
+    },
+    {
+      "countryCode": "408",
+      "twoCharCode": "KP",
+      "code": "00850",
+      "name": "Korea",
+      "flag": "https://img.wikifx.com/flag/b1640de6534fea0e/KP.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/b1640de6534fea0e.png_wiki-template-global"
+    },
+    {
+      "countryCode": "410",
+      "twoCharCode": "KR",
+      "code": "0082",
+      "name": "Korea",
+      "flag": "https://img.wikifx.com/flag/66dbd0d47a2b876c/KR.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/66dbd0d47a2b876c.png_wiki-template-global"
+    },
+    {
+      "countryCode": "414",
+      "twoCharCode": "KW",
+      "code": "00965",
+      "name": "Kuwait",
+      "flag": "https://img.wikifx.com/flag/bc72de7092be76ff/KW.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/bc72de7092be76ff.png_wiki-template-global"
+    },
+    {
+      "countryCode": "417",
+      "twoCharCode": "KG",
+      "code": "00996",
+      "name": "Kyrgyzstan",
+      "flag": "https://img.wikifx.com/flag/adb8bbfd8b47390d/KG.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/adb8bbfd8b47390d.png_wiki-template-global"
+    },
+    {
+      "countryCode": "418",
+      "twoCharCode": "LA",
+      "code": "00856",
+      "name": "Laos",
+      "flag": "https://img.wikifx.com/flag/a0e5a93eef072429/LA.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/a0e5a93eef072429.png_wiki-template-global"
+    },
+    {
+      "countryCode": "422",
+      "twoCharCode": "LB",
+      "code": "00961",
+      "name": "Lebanon",
+      "flag": "https://img.wikifx.com/flag/425b15fc20c64da4/LB.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/425b15fc20c64da4.png_wiki-template-global"
+    },
+    {
+      "countryCode": "426",
+      "twoCharCode": "LS",
+      "code": "00266",
+      "name": "Lesotho",
+      "flag": "https://img.wikifx.com/flag/c8d32d5af0f36e54/LS.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/c8d32d5af0f36e54.png_wiki-template-global"
+    },
+    {
+      "countryCode": "428",
+      "twoCharCode": "LV",
+      "code": "00371",
+      "name": "Latvia",
+      "flag": "https://img.wikifx.com/flag/cb21f0abbf9f878c/LV.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/cb21f0abbf9f878c.png_wiki-template-global"
+    },
+    {
+      "countryCode": "430",
+      "twoCharCode": "LR",
+      "code": "00231",
+      "name": "Liberia",
+      "flag": "https://img.wikifx.com/flag/affbd575ca6fb361/LR.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/affbd575ca6fb361.png_wiki-template-global"
+    },
+    {
+      "countryCode": "434",
+      "twoCharCode": "LY",
+      "code": "00218",
+      "name": "Libya",
+      "flag": "https://img.wikifx.com/flag/334cab079503451a/LY.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/334cab079503451a.png_wiki-template-global"
+    },
+    {
+      "countryCode": "438",
+      "twoCharCode": "LI",
+      "code": "00423",
+      "name": "Liechtenstein",
+      "flag": "https://img.wikifx.com/flag/a99dc4820b992895/LI.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/a99dc4820b992895.png_wiki-template-global"
+    },
+    {
+      "countryCode": "440",
+      "twoCharCode": "LT",
+      "code": "00370",
+      "name": "Lithuania",
+      "flag": "https://img.wikifx.com/flag/89d77eb9dfb70746/LT.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/89d77eb9dfb70746.png_wiki-template-global"
+    },
+    {
+      "countryCode": "442",
+      "twoCharCode": "LU",
+      "code": "00352",
+      "name": "Luxembourg",
+      "flag": "https://img.wikifx.com/flag/f3d2ad926a6d590a/LU.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/f3d2ad926a6d590a.png_wiki-template-global"
+    },
+    {
+      "countryCode": "446",
+      "twoCharCode": "MO",
+      "code": "00853",
+      "name": "Macao",
+      "flag": "https://img.wikifx.com/flag/ce4185888ecf61fb/MO.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/ce4185888ecf61fb.png_wiki-template-global"
+    },
+    {
+      "countryCode": "450",
+      "twoCharCode": "MG",
+      "code": "00261",
+      "name": "Madagascar",
+      "flag": "https://img.wikifx.com/flag/4d913f87fe07cad2/MG.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/4d913f87fe07cad2.png_wiki-template-global"
+    },
+    {
+      "countryCode": "454",
+      "twoCharCode": "MW",
+      "code": "00265",
+      "name": "Malawi",
+      "flag": "https://img.wikifx.com/flag/90492c8259307985/MW.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/90492c8259307985.png_wiki-template-global"
+    },
+    {
+      "countryCode": "458",
+      "twoCharCode": "MY",
+      "code": "0060",
+      "name": "Malaysia",
+      "flag": "https://img.wikifx.com/flag/dded20f8b8d376dd/MY.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/dded20f8b8d376dd.png_wiki-template-global"
+    },
+    {
+      "countryCode": "462",
+      "twoCharCode": "MV",
+      "code": "00960",
+      "name": "Maldives",
+      "flag": "https://img.wikifx.com/flag/e5c080038b043ead/MV.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/e5c080038b043ead.png_wiki-template-global"
+    },
+    {
+      "countryCode": "466",
+      "twoCharCode": "ML",
+      "code": "00223",
+      "name": "Mali",
+      "flag": "https://img.wikifx.com/flag/1e9dde8bd3dc247a/ML.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/1e9dde8bd3dc247a.png_wiki-template-global"
+    },
+    {
+      "countryCode": "470",
+      "twoCharCode": "MT",
+      "code": "00356",
+      "name": "Malta",
+      "flag": "https://img.wikifx.com/flag/491037714d09263a/MT.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/491037714d09263a.png_wiki-template-global"
+    },
+    {
+      "countryCode": "474",
+      "twoCharCode": "MQ",
+      "code": "00596",
+      "name": "Martinique",
+      "flag": "https://img.wikifx.com/flag/7765890f2a706c77/MQ.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/7765890f2a706c77.png_wiki-template-global"
+    },
+    {
+      "countryCode": "478",
+      "twoCharCode": "MR",
+      "code": "00222",
+      "name": "Mauritania",
+      "flag": "https://img.wikifx.com/flag/d51659f96279c470/MR.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/d51659f96279c470.png_wiki-template-global"
+    },
+    {
+      "countryCode": "480",
+      "twoCharCode": "MU",
+      "code": "00230",
+      "name": "Mauritius",
+      "flag": "https://img.wikifx.com/flag/cf2e803bdbc98334/MU.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/cf2e803bdbc98334.png_wiki-template-global"
+    },
+    {
+      "countryCode": "484",
+      "twoCharCode": "MX",
+      "code": "0052",
+      "name": "Mexico",
+      "flag": "https://img.wikifx.com/flag/cb2cc6fd60358a45/MX.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/cb2cc6fd60358a45.png_wiki-template-global"
+    },
+    {
+      "countryCode": "492",
+      "twoCharCode": "MC",
+      "code": "00377",
+      "name": "Monaco",
+      "flag": "https://img.wikifx.com/flag/8b4cf53cca4095e4/MC.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/8b4cf53cca4095e4.png_wiki-template-global"
+    },
+    {
+      "countryCode": "496",
+      "twoCharCode": "MN",
+      "code": "00976",
+      "name": "Mongolia Mongolia",
+      "flag": "https://img.wikifx.com/flag/5ac17fe7bc39fdaa/MN.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/5ac17fe7bc39fdaa.png_wiki-template-global"
+    },
+    {
+      "countryCode": "498",
+      "twoCharCode": "MD",
+      "code": "00373",
+      "name": "Moldova",
+      "flag": "https://img.wikifx.com/flag/da5549d351765bd9/MD.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/da5549d351765bd9.png_wiki-template-global"
+    },
+    {
+      "countryCode": "499",
+      "twoCharCode": "ME",
+      "code": "00382",
+      "name": "Montenegro",
+      "flag": "https://img.wikifx.com/flag/86f0118c40ba2385/ME.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/86f0118c40ba2385.png_wiki-template-global"
+    },
+    {
+      "countryCode": "504",
+      "twoCharCode": "MA",
+      "code": "00212",
+      "name": "Morocco",
+      "flag": "https://img.wikifx.com/flag/5313bf5dab1e4352/MA.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/5313bf5dab1e4352.png_wiki-template-global"
+    },
+    {
+      "countryCode": "508",
+      "twoCharCode": "MZ",
+      "code": "00258",
+      "name": "Mozambique",
+      "flag": "https://img.wikifx.com/flag/b99757c3a878f2d2/MZ.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/b99757c3a878f2d2.png_wiki-template-global"
+    },
+    {
+      "countryCode": "512",
+      "twoCharCode": "OM",
+      "code": "00968",
+      "name": "Oman",
+      "flag": "https://img.wikifx.com/flag/82222b0f8f991f14/OM.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/82222b0f8f991f14.png_wiki-template-global"
+    },
+    {
+      "countryCode": "516",
+      "twoCharCode": "NA",
+      "code": "00264",
+      "name": "Namibia",
+      "flag": "https://img.wikifx.com/flag/cf4caa22ad92fab4/NA.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/cf4caa22ad92fab4.png_wiki-template-global"
+    },
+    {
+      "countryCode": "520",
+      "twoCharCode": "NR",
+      "code": "00674",
+      "name": "Nauru",
+      "flag": "https://img.wikifx.com/flag/1fe1366e93d2e29a/NR.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/1fe1366e93d2e29a.png_wiki-template-global"
+    },
+    {
+      "countryCode": "524",
+      "twoCharCode": "NP",
+      "code": "00977",
+      "name": "Nepal",
+      "flag": "https://img.wikifx.com/flag/028c861affc259b1/NP.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/028c861affc259b1.png_wiki-template-global"
+    },
+    {
+      "countryCode": "528",
+      "twoCharCode": "NL",
+      "code": "0031",
+      "name": "Netherlands",
+      "flag": "https://img.wikifx.com/flag/a2839412d79dbc5f/NL.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/a2839412d79dbc5f.png_wiki-template-global"
+    },
+    {
+      "countryCode": "533",
+      "twoCharCode": "AW",
+      "code": "00297",
+      "name": "Aruba",
+      "flag": "https://img.wikifx.com/flag/de8f485d2cc77947/AW.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/de8f485d2cc77947.png_wiki-template-global"
+    },
+    {
+      "countryCode": "540",
+      "twoCharCode": "NC",
+      "code": "00687",
+      "name": "New Caledonia",
+      "flag": "https://img.wikifx.com/flag/b500fd2d3fd701a5/NC.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/b500fd2d3fd701a5.png_wiki-template-global"
+    },
+    {
+      "countryCode": "548",
+      "twoCharCode": "VU",
+      "code": "00678",
+      "name": "Vanuatu",
+      "flag": "https://img.wikifx.com/flag/7571353d52a984d0/VU.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/7571353d52a984d0.png_wiki-template-global"
+    },
+    {
+      "countryCode": "554",
+      "twoCharCode": "NZ",
+      "code": "0064",
+      "name": "New Zealand",
+      "flag": "https://img.wikifx.com/flag/9a184ad1d448afe5/NZ.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/9a184ad1d448afe5.png_wiki-template-global"
+    },
+    {
+      "countryCode": "558",
+      "twoCharCode": "NI",
+      "code": "00505",
+      "name": "Nicaragua",
+      "flag": "https://img.wikifx.com/flag/e7ddec3a931ca45d/NI.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/e7ddec3a931ca45d.png_wiki-template-global"
+    },
+    {
+      "countryCode": "562",
+      "twoCharCode": "NE",
+      "code": "00227",
+      "name": "Niger",
+      "flag": "https://img.wikifx.com/flag/3993e0d50896e533/NE.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/3993e0d50896e533.png_wiki-template-global"
+    },
+    {
+      "countryCode": "566",
+      "twoCharCode": "NG",
+      "code": "00234",
+      "name": "Nigeria",
+      "flag": "https://img.wikifx.com/flag/ee723b715ee14837/NG.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/ee723b715ee14837.png_wiki-template-global"
+    },
+    {
+      "countryCode": "570",
+      "twoCharCode": "NU",
+      "code": "00683",
+      "name": "Niue",
+      "flag": "https://img.wikifx.com/flag/1efd9874f38be79b/NU.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/1efd9874f38be79b.png_wiki-template-global"
+    },
+    {
+      "countryCode": "574",
+      "twoCharCode": "NF",
+      "code": "00672",
+      "name": "Norfolk Island",
+      "flag": "https://img.wikifx.com/flag/e1411f6b6fffcd1c/NF.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/e1411f6b6fffcd1c.png_wiki-template-global"
+    },
+    {
+      "countryCode": "578",
+      "twoCharCode": "NO",
+      "code": "0047",
+      "name": "Norway",
+      "flag": "https://img.wikifx.com/flag/a00553e7a01d369c/NO.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/a00553e7a01d369c.png_wiki-template-global"
+    },
+    {
+      "countryCode": "580",
+      "twoCharCode": "MP",
+      "code": "001670",
+      "name": "Northern Mariana Islands",
+      "flag": "https://img.wikifx.com/flag/859bd1e56cf99af6/MP.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/859bd1e56cf99af6.png_wiki-template-global"
+    },
+    {
+      "countryCode": "583",
+      "twoCharCode": "FM",
+      "code": "00691",
+      "name": "Federated States of Micronesia",
+      "flag": "https://img.wikifx.com/flag/82a7bb18a97d720c/FM.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/82a7bb18a97d720c.png_wiki-template-global"
+    },
+    {
+      "countryCode": "584",
+      "twoCharCode": "MH",
+      "code": "00692",
+      "name": "Marshall Islands",
+      "flag": "https://img.wikifx.com/flag/064e874ecf4f5def/MH.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/064e874ecf4f5def.png_wiki-template-global"
+    },
+    {
+      "countryCode": "585",
+      "twoCharCode": "PW",
+      "code": "00680",
+      "name": "Palau",
+      "flag": "https://img.wikifx.com/flag/a817dfc458598a5d/PW.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/a817dfc458598a5d.png_wiki-template-global"
+    },
+    {
+      "countryCode": "586",
+      "twoCharCode": "PK",
+      "code": "0092",
+      "name": "Pakistan",
+      "flag": "https://img.wikifx.com/flag/c8bb93b8d287dce6/PK.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/c8bb93b8d287dce6.png_wiki-template-global"
+    },
+    {
+      "countryCode": "591",
+      "twoCharCode": "PA",
+      "code": "00507",
+      "name": "Panama",
+      "flag": "https://img.wikifx.com/flag/209115c5cef3f450/PA.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/209115c5cef3f450.png_wiki-template-global"
+    },
+    {
+      "countryCode": "598",
+      "twoCharCode": "PG",
+      "code": "00675",
+      "name": "Papua New Guinea",
+      "flag": "https://img.wikifx.com/flag/3598e4d63f4a0a87/PG.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/3598e4d63f4a0a87.png_wiki-template-global"
+    },
+    {
+      "countryCode": "600",
+      "twoCharCode": "PY",
+      "code": "00595",
+      "name": "Paraguay",
+      "flag": "https://img.wikifx.com/flag/e49b47abccd510e5/PY.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/e49b47abccd510e5.png_wiki-template-global"
+    },
+    {
+      "countryCode": "604",
+      "twoCharCode": "PE",
+      "code": "0051",
+      "name": "Peru",
+      "flag": "https://img.wikifx.com/flag/4396fa1c87870713/PE.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/4396fa1c87870713.png_wiki-template-global"
+    },
+    {
+      "countryCode": "608",
+      "twoCharCode": "PH",
+      "code": "0063",
+      "name": "Philippines",
+      "flag": "https://img.wikifx.com/flag/f095e4198da40884/PH.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/f095e4198da40884.png_wiki-template-global"
+    },
+    {
+      "countryCode": "612",
+      "twoCharCode": "PN",
+      "code": "00870",
+      "name": "Pitcairn Islands",
+      "flag": "https://img.wikifx.com/flag/4dc52f374d908e03/PN.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/4dc52f374d908e03.png_wiki-template-global"
+    },
+    {
+      "countryCode": "616",
+      "twoCharCode": "PL",
+      "code": "0048",
+      "name": "Poland",
+      "flag": "https://img.wikifx.com/flag/068dc4d5517bfae9/PL.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/068dc4d5517bfae9.png_wiki-template-global"
+    },
+    {
+      "countryCode": "620",
+      "twoCharCode": "PT",
+      "code": "00351",
+      "name": "Portugal",
+      "flag": "https://img.wikifx.com/flag/8fe4d3273d0237ec/PT.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/8fe4d3273d0237ec.png_wiki-template-global"
+    },
+    {
+      "countryCode": "624",
+      "twoCharCode": "GW",
+      "code": "00245",
+      "name": "Guinea-Bissau",
+      "flag": "https://img.wikifx.com/flag/520be36addbeb5d2/GW.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/520be36addbeb5d2.png_wiki-template-global"
+    },
+    {
+      "countryCode": "626",
+      "twoCharCode": "TL",
+      "code": "00670",
+      "name": "East Timor",
+      "flag": "https://img.wikifx.com/flag/ebdb14023f4f5388/TL.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/ebdb14023f4f5388.png_wiki-template-global"
+    },
+    {
+      "countryCode": "630",
+      "twoCharCode": "PR",
+      "code": "001787",
+      "name": "Puerto Rico",
+      "flag": "https://img.wikifx.com/flag/89c2ea3f123621d0/PR.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/89c2ea3f123621d0.png_wiki-template-global"
+    },
+    {
+      "countryCode": "630",
+      "twoCharCode": "PR",
+      "code": "001939",
+      "name": "Puerto Rico",
+      "flag": "https://img.wikifx.com/flag/89c2ea3f123621d0/PR.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/89c2ea3f123621d0.png_wiki-template-global"
+    },
+    {
+      "countryCode": "634",
+      "twoCharCode": "QA",
+      "code": "00974",
+      "name": "Qatar",
+      "flag": "https://img.wikifx.com/flag/a13802a6674d5327/QA.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/a13802a6674d5327.png_wiki-template-global"
+    },
+    {
+      "countryCode": "638",
+      "twoCharCode": "RE",
+      "code": "00262",
+      "name": "Reunion",
+      "flag": "https://img.wikifx.com/flag/b2cbd36462d3aa20/RE.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/b2cbd36462d3aa20.png_wiki-template-global"
+    },
+    {
+      "countryCode": "642",
+      "twoCharCode": "RO",
+      "code": "0040",
+      "name": "Romania",
+      "flag": "https://img.wikifx.com/flag/cabad73d1bf2de7b/RO.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/cabad73d1bf2de7b.png_wiki-template-global"
+    },
+    {
+      "countryCode": "643",
+      "twoCharCode": "RU",
+      "code": "007",
+      "name": "Russia",
+      "flag": "https://img.wikifx.com/flag/059650ee40cab30b/RU.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/059650ee40cab30b.png_wiki-template-global"
+    },
+    {
+      "countryCode": "646",
+      "twoCharCode": "RW",
+      "code": "00250",
+      "name": "Rwanda",
+      "flag": "https://img.wikifx.com/flag/36504b7a65191caf/RW.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/36504b7a65191caf.png_wiki-template-global"
+    },
+    {
+      "countryCode": "652",
+      "twoCharCode": "BL",
+      "code": "00590",
+      "name": "St. Barthelemy",
+      "flag": "https://img.wikifx.com/flag/5a2b25a96d66757f/BL.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/5a2b25a96d66757f.png_wiki-template-global"
+    },
+    {
+      "countryCode": "654",
+      "twoCharCode": "SH",
+      "code": "00290",
+      "name": "St. Helena",
+      "flag": "https://img.wikifx.com/flag/d56945d1e5b8f9a2/SH.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/d56945d1e5b8f9a2.png_wiki-template-global"
+    },
+    {
+      "countryCode": "659",
+      "twoCharCode": "KN",
+      "code": "001869",
+      "name": "Saint Kitts and Nevis",
+      "flag": "https://img.wikifx.com/flag/bd254260f584015a/KN.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/bd254260f584015a.png_wiki-template-global"
+    },
+    {
+      "countryCode": "660",
+      "twoCharCode": "AI",
+      "code": "001264",
+      "name": "Anguilla",
+      "flag": "https://img.wikifx.com/flag/1a3a55c9a37428c6/AI.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/1a3a55c9a37428c6.png_wiki-template-global"
+    },
+    {
+      "countryCode": "662",
+      "twoCharCode": "LC",
+      "code": "001758",
+      "name": "Saint Lucia",
+      "flag": "https://img.wikifx.com/flag/2fb04b36ab78f123/LC.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/2fb04b36ab78f123.png_wiki-template-global"
+    },
+    {
+      "countryCode": "666",
+      "twoCharCode": "PM",
+      "code": "00508",
+      "name": "Saint Pierre and Miquelon",
+      "flag": "https://img.wikifx.com/flag/013b04776f5b06bc/PM.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/013b04776f5b06bc.png_wiki-template-global"
+    },
+    {
+      "countryCode": "670",
+      "twoCharCode": "VC",
+      "code": "001784",
+      "name": "Saint Vincent and the Grenadines",
+      "flag": "https://img.wikifx.com/flag/d9b838be26989d10/VC.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/d9b838be26989d10.png_wiki-template-global"
+    },
+    {
+      "countryCode": "674",
+      "twoCharCode": "SM",
+      "code": "00378",
+      "name": "San Marino",
+      "flag": "https://img.wikifx.com/flag/e30646f5a3f3e2a7/SM.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/e30646f5a3f3e2a7.png_wiki-template-global"
+    },
+    {
+      "countryCode": "678",
+      "twoCharCode": "ST",
+      "code": "00239",
+      "name": "Sao Tome and Principe",
+      "flag": "https://img.wikifx.com/flag/1f07e31203035548/ST.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/1f07e31203035548.png_wiki-template-global"
+    },
+    {
+      "countryCode": "682",
+      "twoCharCode": "SA",
+      "code": "00966",
+      "name": "Saudi Arabia",
+      "flag": "https://img.wikifx.com/flag/5ff18f31dc30df59/SA.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/5ff18f31dc30df59.png_wiki-template-global"
+    },
+    {
+      "countryCode": "686",
+      "twoCharCode": "SN",
+      "code": "00221",
+      "name": "Senegal",
+      "flag": "https://img.wikifx.com/flag/ce75444ee14be2eb/SN.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/ce75444ee14be2eb.png_wiki-template-global"
+    },
+    {
+      "countryCode": "688",
+      "twoCharCode": "RS",
+      "code": "00381",
+      "name": "Serbia",
+      "flag": "https://img.wikifx.com/flag/eeb7c783e8bfaa73/RS.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/eeb7c783e8bfaa73.png_wiki-template-global"
+    },
+    {
+      "countryCode": "690",
+      "twoCharCode": "SC",
+      "code": "00248",
+      "name": "Seychelles",
+      "flag": "https://img.wikifx.com/flag/cc17d66c67781411/SC.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/cc17d66c67781411.png_wiki-template-global"
+    },
+    {
+      "countryCode": "694",
+      "twoCharCode": "SL",
+      "code": "00232",
+      "name": "Sierra Leone",
+      "flag": "https://img.wikifx.com/flag/3b654b3a79e7b898/SL.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/3b654b3a79e7b898.png_wiki-template-global"
+    },
+    {
+      "countryCode": "702",
+      "twoCharCode": "SG",
+      "code": "0065",
+      "name": "Singapore",
+      "flag": "https://img.wikifx.com/flag/a3b71275d25ab1b4/SG.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/a3b71275d25ab1b4.png_wiki-template-global"
+    },
+    {
+      "countryCode": "703",
+      "twoCharCode": "SK",
+      "code": "00421",
+      "name": "Slovakia",
+      "flag": "https://img.wikifx.com/flag/27110108a10a88e9/SK.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/27110108a10a88e9.png_wiki-template-global"
+    },
+    {
+      "countryCode": "704",
+      "twoCharCode": "VN",
+      "code": "0084",
+      "name": "Vietnam",
+      "flag": "https://img.wikifx.com/flag/5617a7f7260ccb29/VN.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/5617a7f7260ccb29.png_wiki-template-global"
+    },
+    {
+      "countryCode": "705",
+      "twoCharCode": "SI",
+      "code": "00386",
+      "name": "Slovenia",
+      "flag": "https://img.wikifx.com/flag/ab3ae0bdf522cd08/SI.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/ab3ae0bdf522cd08.png_wiki-template-global"
+    },
+    {
+      "countryCode": "706",
+      "twoCharCode": "SO",
+      "code": "00252",
+      "name": "Somalia",
+      "flag": "https://img.wikifx.com/flag/392de5f1d53acdd6/SO.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/392de5f1d53acdd6.png_wiki-template-global"
+    },
+    {
+      "countryCode": "710",
+      "twoCharCode": "ZA",
+      "code": "0027",
+      "name": "South Africa",
+      "flag": "https://img.wikifx.com/flag/10645c82f5e37cbe/ZA.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/10645c82f5e37cbe.png_wiki-template-global"
+    },
+    {
+      "countryCode": "716",
+      "twoCharCode": "ZW",
+      "code": "00263",
+      "name": "Zimbabwe",
+      "flag": "https://img.wikifx.com/flag/703e0ca872729699/ZW.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/703e0ca872729699.png_wiki-template-global"
+    },
+    {
+      "countryCode": "724",
+      "twoCharCode": "ES",
+      "code": "0034",
+      "name": "Spain",
+      "flag": "https://img.wikifx.com/flag/e772ab66f0aad2ef/ES.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/e772ab66f0aad2ef.png_wiki-template-global"
+    },
+    {
+      "countryCode": "728",
+      "twoCharCode": "SS",
+      "code": "00211",
+      "name": "South Sudan",
+      "flag": "https://img.wikifx.com/flag/abc83a52ab8982f5/SS.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/abc83a52ab8982f5.png_wiki-template-global"
+    },
+    {
+      "countryCode": "729",
+      "twoCharCode": "SD",
+      "code": "00249",
+      "name": "Sudan",
+      "flag": "https://img.wikifx.com/flag/c1d339c277c0669e/SD.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/c1d339c277c0669e.png_wiki-template-global"
+    },
+    {
+      "countryCode": "732",
+      "twoCharCode": "EH",
+      "code": "00212",
+      "name": "Western Sahara",
+      "flag": "https://img.wikifx.com/flag/906137902c9832d2/EH.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/906137902c9832d2.png_wiki-template-global"
+    },
+    {
+      "countryCode": "740",
+      "twoCharCode": "SR",
+      "code": "00597",
+      "name": "Suriname",
+      "flag": "https://img.wikifx.com/flag/27e13509d3644362/SR.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/27e13509d3644362.png_wiki-template-global"
+    },
+    {
+      "countryCode": "748",
+      "twoCharCode": "SZ",
+      "code": "00268",
+      "name": "Swaziland",
+      "flag": "https://img.wikifx.com/flag/ad2c8290efe57b63/SZ.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/ad2c8290efe57b63.png_wiki-template-global"
+    },
+    {
+      "countryCode": "752",
+      "twoCharCode": "SE",
+      "code": "0046",
+      "name": "Sweden",
+      "flag": "https://img.wikifx.com/flag/eab679aa2edfaff8/SE.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/eab679aa2edfaff8.png_wiki-template-global"
+    },
+    {
+      "countryCode": "756",
+      "twoCharCode": "CH",
+      "code": "0041",
+      "name": "Switzerland",
+      "flag": "https://img.wikifx.com/flag/c5d1032317d13a2e/CH.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/c5d1032317d13a2e.png_wiki-template-global"
+    },
+    {
+      "countryCode": "760",
+      "twoCharCode": "SY",
+      "code": "00963",
+      "name": "Syria",
+      "flag": "https://img.wikifx.com/flag/9889bbf873e7c2de/SY.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/9889bbf873e7c2de.png_wiki-template-global"
+    },
+    {
+      "countryCode": "762",
+      "twoCharCode": "TJ",
+      "code": "00992",
+      "name": "Tajikistan",
+      "flag": "https://img.wikifx.com/flag/2fe7c185a8274bac/TJ.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/2fe7c185a8274bac.png_wiki-template-global"
+    },
+    {
+      "countryCode": "764",
+      "twoCharCode": "TH",
+      "code": "0066",
+      "name": "Thailand",
+      "flag": "https://img.wikifx.com/flag/a7c2bd12dd2df53c/TH.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/a7c2bd12dd2df53c.png_wiki-template-global"
+    },
+    {
+      "countryCode": "768",
+      "twoCharCode": "TG",
+      "code": "00228",
+      "name": "Togo",
+      "flag": "https://img.wikifx.com/flag/ab3cef39a9a2298f/TG.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/ab3cef39a9a2298f.png_wiki-template-global"
+    },
+    {
+      "countryCode": "772",
+      "twoCharCode": "TK",
+      "code": "00690",
+      "name": "Tokelau",
+      "flag": "https://img.wikifx.com/flag/53ffd4c30bce0e07/TK.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/53ffd4c30bce0e07.png_wiki-template-global"
+    },
+    {
+      "countryCode": "776",
+      "twoCharCode": "TO",
+      "code": "00676",
+      "name": "Tonga",
+      "flag": "https://img.wikifx.com/flag/2bc3dc0953aab835/TO.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/2bc3dc0953aab835.png_wiki-template-global"
+    },
+    {
+      "countryCode": "780",
+      "twoCharCode": "TT",
+      "code": "001868",
+      "name": "Trinidad and Tobago",
+      "flag": "https://img.wikifx.com/flag/9115acb0a1e04209/TT.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/9115acb0a1e04209.png_wiki-template-global"
+    },
+    {
+      "countryCode": "784",
+      "twoCharCode": "AE",
+      "code": "00971",
+      "name": "United Arab Emirates",
+      "flag": "https://img.wikifx.com/flag/f6c94c275a58dcd7/AE.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/f6c94c275a58dcd7.png_wiki-template-global"
+    },
+    {
+      "countryCode": "788",
+      "twoCharCode": "TN",
+      "code": "00216",
+      "name": "Tunisia",
+      "flag": "https://img.wikifx.com/flag/cd9ae4cb2ccd2943/TN.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/cd9ae4cb2ccd2943.png_wiki-template-global"
+    },
+    {
+      "countryCode": "792",
+      "twoCharCode": "TR",
+      "code": "0090",
+      "name": "Turkey",
+      "flag": "https://img.wikifx.com/flag/9e5a3c4f42ca6119/TR.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/9e5a3c4f42ca6119.png_wiki-template-global"
+    },
+    {
+      "countryCode": "795",
+      "twoCharCode": "TM",
+      "code": "00993",
+      "name": "Turkmenistan",
+      "flag": "https://img.wikifx.com/flag/0d788d94f4345481/TM.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/0d788d94f4345481.png_wiki-template-global"
+    },
+    {
+      "countryCode": "798",
+      "twoCharCode": "TV",
+      "code": "00688",
+      "name": "Tuvalu",
+      "flag": "https://img.wikifx.com/flag/9afeece44d873275/TV.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/9afeece44d873275.png_wiki-template-global"
+    },
+    {
+      "countryCode": "800",
+      "twoCharCode": "UG",
+      "code": "00256",
+      "name": "Uganda",
+      "flag": "https://img.wikifx.com/flag/cff273e672b3acc7/UG.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/cff273e672b3acc7.png_wiki-template-global"
+    },
+    {
+      "countryCode": "804",
+      "twoCharCode": "UA",
+      "code": "00380",
+      "name": "Ukraine",
+      "flag": "https://img.wikifx.com/flag/5e03e8e3307b5b71/UA.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/5e03e8e3307b5b71.png_wiki-template-global"
+    },
+    {
+      "countryCode": "807",
+      "twoCharCode": "MK",
+      "code": "00389",
+      "name": "Macedonia",
+      "flag": "https://img.wikifx.com/flag/9564863b88d5c43c/MK.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/9564863b88d5c43c.png_wiki-template-global"
+    },
+    {
+      "countryCode": "818",
+      "twoCharCode": "EG",
+      "code": "0020",
+      "name": "Egypt",
+      "flag": "https://img.wikifx.com/flag/db390907541a234b/EG.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/db390907541a234b.png_wiki-template-global"
+    },
+    {
+      "countryCode": "826",
+      "twoCharCode": "UK",
+      "code": "0044",
+      "name": "United Kingdom",
+      "flag": "https://img.wikifx.com/flag/52c9e8fc8d7d65f6/UK.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/52c9e8fc8d7d65f6.png_wiki-template-global"
+    },
+    {
+      "countryCode": "832",
+      "twoCharCode": "JE",
+      "code": "0044",
+      "name": "Jersey",
+      "flag": "https://img.wikifx.com/flag/28a10a4a128a408c/JE.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/28a10a4a128a408c.png_wiki-template-global"
+    },
+    {
+      "countryCode": "833",
+      "twoCharCode": "IM",
+      "code": "0044",
+      "name": "Isle of Man",
+      "flag": "https://img.wikifx.com/flag/c223c96f8e6ccc29/IM.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/c223c96f8e6ccc29.png_wiki-template-global"
+    },
+    {
+      "countryCode": "834",
+      "twoCharCode": "TZ",
+      "code": "00255",
+      "name": "Tanzania",
+      "flag": "https://img.wikifx.com/flag/4a401a2431779d24/TZ.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/4a401a2431779d24.png_wiki-template-global"
+    },
+    {
+      "countryCode": "840",
+      "twoCharCode": "US",
+      "code": "001",
+      "name": "United States",
+      "flag": "https://img.wikifx.com/flag/adaa5e0b8a65a672/US.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/adaa5e0b8a65a672.png_wiki-template-global"
+    },
+    {
+      "countryCode": "850",
+      "twoCharCode": "VI",
+      "code": "001340",
+      "name": "United States Virgin Islands",
+      "flag": "https://img.wikifx.com/flag/ee3ceb57a09c96ef/VI.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/ee3ceb57a09c96ef.png_wiki-template-global"
+    },
+    {
+      "countryCode": "854",
+      "twoCharCode": "BF",
+      "code": "00226",
+      "name": "Burkina Faso",
+      "flag": "https://img.wikifx.com/flag/148f52cad46e3319/BF.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/148f52cad46e3319.png_wiki-template-global"
+    },
+    {
+      "countryCode": "858",
+      "twoCharCode": "UY",
+      "code": "00598",
+      "name": "Uruguay",
+      "flag": "https://img.wikifx.com/flag/2586ff913854a844/UY.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/2586ff913854a844.png_wiki-template-global"
+    },
+    {
+      "countryCode": "860",
+      "twoCharCode": "UZ",
+      "code": "00998",
+      "name": "Uzbekistan",
+      "flag": "https://img.wikifx.com/flag/249dab3c31906b4b/UZ.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/249dab3c31906b4b.png_wiki-template-global"
+    },
+    {
+      "countryCode": "862",
+      "twoCharCode": "VE",
+      "code": "0058",
+      "name": "Venezuela",
+      "flag": "https://img.wikifx.com/flag/1bd9b0fa0159103d/VE.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/1bd9b0fa0159103d.png_wiki-template-global"
+    },
+    {
+      "countryCode": "876",
+      "twoCharCode": "WF",
+      "code": "00681",
+      "name": "Wallis and Futuna",
+      "flag": "https://img.wikifx.com/flag/b06f611523c0d020/WF.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/b06f611523c0d020.png_wiki-template-global"
+    },
+    {
+      "countryCode": "882",
+      "twoCharCode": "WS",
+      "code": "00685",
+      "name": "Samoa",
+      "flag": "https://img.wikifx.com/flag/f130c81e6ae8432a/WS.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/f130c81e6ae8432a.png_wiki-template-global"
+    },
+    {
+      "countryCode": "887",
+      "twoCharCode": "YE",
+      "code": "00967",
+      "name": "Yemen",
+      "flag": "https://img.wikifx.com/flag/c78f494840f05187/YE.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/c78f494840f05187.png_wiki-template-global"
+    },
+    {
+      "countryCode": "894",
+      "twoCharCode": "ZM",
+      "code": "00260",
+      "name": "Zambia",
+      "flag": "https://img.wikifx.com/flag/133fa9c2b1351606/ZM.png_wiki-template-global",
+      "flag-c": "https://img.wikifx.com/flag-c/133fa9c2b1351606.png_wiki-template-global"
+    }
+  ]

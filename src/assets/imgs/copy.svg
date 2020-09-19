@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="17px" height="17px" viewBox="0 0 17 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>复制 copy</title>
+    <g id="登录" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="切图" transform="translate(-131.000000, -1077.000000)" stroke="#3674D7" stroke-width="0.8">
+            <g id="复制" transform="translate(131.000000, 1078.000000)">
+                <rect id="矩形" x="0.4" y="3.06666667" width="12.5333333" height="12.5333333" rx="2"></rect>
+                <path d="M12.5309245,-8.8817842e-16 C12.6999457,-8.8817842e-16 12.9674154,-8.8817842e-16 13.3333333,-8.8817842e-16 C14.8060927,-8.8817842e-16 16,1.19390733 16,2.66666667 L16,10.6666667 C16,12.139426 14.8060927,13.3333333 13.3333333,13.3333333 L5.33333333,13.3333333 C3.860574,13.3333333 2.66666667,12.139426 2.66666667,10.6666667 C2.66666667,10.2948495 2.66666667,10.0159867 2.66666667,9.83007812" id="矩形-copy-2" transform="translate(9.333333, 6.666667) scale(-1, -1) rotate(90.000000) translate(-9.333333, -6.666667) "></path>
+            </g>
+        </g>
+    </g>
+</svg>

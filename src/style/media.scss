@@ -1,0 +1,105 @@
+
+@media screen and (max-width: 1600px) {
+    .left .menu {
+        min-width: 190px !important;
+        .active-bar {
+            height: 48px !important;
+        }
+        .menu-item {
+            margin: 0 10px 0 15px !important;
+            padding: 13px 10px 13px 10px !important;
+            width: auto !important;
+            .menu-text {
+                font-size: 14px !important;
+                margin-left: 10px !important;
+            }
+        }
+        .menu-list .active {
+            position: relative;
+            margin: 15px 10px 15px 15px !important;
+        }
+    }
+
+    .content-wrapper {
+        margin-left: 200px !important;
+        width: calc(100% - 200px) !important;
+    }
+
+    .right,
+    .usd-list,
+    .mine {
+        width: auto !important;
+    }
+
+    
+    .assets-info {
+        .title {
+            padding: 17px 40px !important;
+        }
+        .all-assets {
+            margin: 40px 40px 0 !important;
+        }
+        .account-list{
+            padding: 40px!important;
+        }
+    }
+    .account-list{
+        padding: 40px 40px 2px!important;
+        &::before {
+            left: calc(50% - 40px)!important;
+        }
+    }
+    .tab-list .tab-item{
+        padding: 0 40px!important;
+    }
+
+    .coin-info .coin-title {
+        font-size: 16px !important;
+        padding: 15px 40px !important;
+    }
+
+    .tabs,
+    .trade-list .tab-list {
+        margin: 0 40px !important;
+        .tab-item {
+            padding:0 !important;
+            margin-right: 92px;
+        }
+    }
+    
+    .trade-list>.title {
+        padding: 17px 40px !important;
+    }
+    .account>.title {
+        padding: 17px 40px !important;
+    }
+    .account .content{
+        padding: 32px 40px!important;
+    }
+    .coin-info .coin-item{
+        margin: 0 40px!important;
+        border-radius: 4px;
+    }
+
+    .information, .person-title{
+        padding-left: 40px!important;
+        padding-right: 40px!important;
+    }
+    .person-item{
+        margin-left: 40px!important;
+    }
+    .list-info {
+        padding-right: 40px!important;
+    }
+    .layout .left .menu .menu-list {
+        margin-bottom: 5px !important;
+    }
+    .layout .left .menu .menu-list .menu-item .menu-text {
+        margin-left: 8px !important;
+    }
+
+    .account .warn {
+        padding: 10px 40px !important;
+    }
+}
+

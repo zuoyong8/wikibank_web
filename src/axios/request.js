@@ -1,9 +1,20 @@
 import axios from 'axios';
-import router from '../router';
-import { Message } from 'view-design';
+import router from '@/pages/system/router';
 let global = 'http://www.wikipay.net/api/v1'; //服务器
-// let global = 'http://192.168.1.69:2233/api/v1'; // 测试
+//let global = 'http://18.162.243.214:81/api/v1'; // 测试
+import Vue from 'vue';
+import VueMessages from 'vue-messages'
+Vue.use(VueMessages, {
+    content: '',
+    duration: 2,
+    // themes: 'blackGold', // classic or classicBold
+    styles: {
+        fontSize: '16px',
+        top: '28px'
+    }
+});
 
+let vue = new Vue();
 const request = axios.create({
     baseURL: global,
     timeout: 6000,
@@ -28,13 +39,14 @@ request.interceptors.request.use(config => {
 })
 
 request.interceptors.response.use(config => {
-    
-    // 返回请求正确的结果 token 失效
-    if (config.data.code === 1010012) {
-       Message.error('您已在其它地方登录！')
-       return router.push({ path: '/' });
+    const { code, msg } = config.data;
+    switch(code) {
+        case 1010012: // 返回请求正确的结果 token 失效
+            router.push({ path: '/' })
+            return Promise.reject(msg);
+        default:
+            return config.data;
     }
-    return config.data;
 }, error => {
     return Promise.reject(error);
 })

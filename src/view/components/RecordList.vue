@@ -2,7 +2,7 @@
   <div class="trade-list">
     <div class="title">
       <img :src="tradeIcon" alt class="icon" />
-      <span class="text">交易记录</span>
+      <span class="text">{{$t('account.record')}}</span>
     </div>
     <div class="tab-list">
       <div class="tab-title">
@@ -12,7 +12,7 @@
           :key="key"
           @click="switchTab(item.id, item.type)"
           :class="item.id === currentIndex ? 'active':''"
-        >{{item.name}}</div>
+        >{{$t('home.'+item.name)}}</div>
       </div>
 
       <InfiniteLoad
@@ -24,152 +24,30 @@
       ></InfiniteLoad>
     </div>
 
-    <ModalMask
-      :isShowModal="isShowDetailModal"
-      :isHideMask="isHideDetailMask"
-      @closeModal="closeDetailModal"
-      @openModal="openDetailModal"
-    >
-      <template v-slot:body>
-        <div class="content" v-if="modalType === 1">
-          <div class="content-title">充值详情</div>
-          <div class="content-desc">
-            <div class="key">订单号</div>
-            <div class="val">{{detail.orderId}}</div>
-          </div>
-          <div class="content-desc">
-            <div class="key">充值类型</div>
-            <div class="val">{{detail.withdrawType}}</div>
-          </div>
-          <div class="content-desc">
-            <div class="key">状态</div>
-            <div class="val">{{detail.statusStr}}</div>
-          </div>
-          <div class="content-desc">
-            <div class="key">创建时间</div>
-            <div class="val">{{detail.createAt}}</div>
-          </div>
-          <div class="content-desc">
-            <div class="key">充值{{detail.coinType}}</div>
-            <div class="val">{{detail.amount}} {{detail.coin}}</div>
-          </div>
-        </div>
-        <div class="content" v-if="modalType === 3">
-          <div class="content-title">转账详情</div>
-          <div class="content-desc">
-            <div class="key">订单号</div>
-            <div class="val">{{transfer.orderId}}</div>
-          </div>
-          <div class="content-desc">
-            <div class="key">状态</div>
-            <div class="val">{{transfer.status}}</div>
-          </div>
-          <div class="content-desc">
-            <div class="key">转账金额</div>
-            <div class="val">{{transfer.money}} USD</div>
-          </div>
-          <div class="content-desc">
-            <div class="key">创建时间</div>
-            <div class="val">{{transfer.createAt}}</div>
-          </div>
-          <div class="content-desc">
-            <div class="key">{{transfer.isFrom}}人姓名</div>
-            <div class="val">{{transfer.payName}}</div>
-          </div>
-          <div class="content-desc">
-            <div class="key">付款账户</div>
-            <div class="val">{{transfer.from}}</div>
-          </div>
-          <div class="content-desc">
-            <div class="key">备注</div>
-            <div class="val">{{transfer.comment}}</div>
-          </div>
-        </div>
-        <div class="content" v-if="modalType === 5">
-          <div class="content-title">兑换详情</div>
-          <div class="content-desc">
-            <div class="key">订单号</div>
-            <div class="val">{{exchange.orderId}}</div>
-          </div>
-          <div class="content-desc">
-            <div class="key">兑换金额</div>
-            <div class="val">
-              <div class="exchang-amount">{{exchange.bidAmount}} {{exchange.bidCoin}}</div>
-              <div class="exchang-amount">{{exchange.askAmount}} {{exchange.askCoin}}</div>
-            </div>
-          </div>
-          <div class="content-desc">
-            <div class="key">兑换类型</div>
-            <div class="val">{{exchange.bidCoin}} / {{exchange.askCoin}}</div>
-          </div>
-          <div class="content-desc">
-            <div class="key">创建时间</div>
-            <div class="val">{{exchange.createAt}}</div>
-          </div>
-          <div class="content-desc">
-            <div class="key">付款账户</div>
-            <div class="val">{{exchange.bidCoin}}</div>
-          </div>
-          <div class="content-desc">
-            <div class="key">收款账户</div>
-            <div class="val">{{exchange.askCoin}}</div>
-          </div>
-        </div>
-        <div class="content" v-if="modalType === 2">
-          <div class="content-title">提现详情</div>
-          <div class="content-desc">
-            <div class="key">订单号</div>
-            <div class="val">{{detail.orderId}}</div>
-          </div>
-          <div class="content-desc">
-            <div class="key">网络</div>
-            <div class="val">{{detail.coin}}</div>
-          </div>
-          <div class="content-desc">
-            <div class="key">状态</div>
-            <div class="val">{{detail.statusStr}}</div>
-          </div>
-          <div class="content-desc">
-            <div class="key">创建时间</div>
-            <div class="val">{{detail.createAt}}</div>
-          </div>
-          <div class="content-desc">
-            <div class="key">提现数量</div>
-            <div class="val">{{detail.amount}} {{detail.fromCoin}}</div>
-          </div>
-          <div class="content-desc">
-            <div class="key">手续费</div>
-            <div class="val">{{detail.fee}} {{detail.fromCoin}}</div>
-          </div>
-          <div class="content-desc">
-            <div class="key">变动{{detail.coinType}}</div>
-            <div class="val">{{detail.dynamicMoney}} {{detail.fromCoin}}</div>
-          </div>
-          <div class="content-desc">
-            <div class="key">接收方</div>
-            <div class="val">{{detail.toAddress}}</div>
-          </div>
-          <div class="content-desc">
-            <div class="key">备注</div>
-            <div class="val">{{detail.comment}}</div>
-          </div>
-        </div>
-      </template>
-    </ModalMask>
+    <AccountDetail
+        :detail="detail"
+        :transfer="transfer"
+        :exchange="exchange"
+        :isHideDetailMask="isHideDetailMask"
+        :isShowDetailModal="isShowDetailModal"
+        :modalType="modalType"
+        @closeDetailModal="closeDetailModal"
+      ></AccountDetail>
   </div>
 </template>
 <script>
 import { mapState, mapGetters, mapActions } from "vuex";
-import InfiniteLoad from "../components/InfiniteLoad";
-import ModalMask from "../components/ModalMask";
-import axios from "../../api/request";
+import InfiniteLoad from "@/view/components/InfiniteLoad";
+import ModalMask from "@/view/components/ModalMask";
+import axios from "@/api/request";
+import AccountDetail from "@/view/components/AccountDetail";
 import {
   fetchBill,
   fetchWithdrawDeposit,
   fetchWithdrawDepositDetail,
   fetchTransferDetail,
   fetchExchangeDetail
-} from "../../api/request";
+} from "@/api/request";
 import {
   formatDate,
   getStatus,
@@ -177,13 +55,15 @@ import {
   getTime,
   saveDecimal,
   formatEmail,
+  formatTel,
   sum
-} from "../../filters.js";
+} from "@/filters.js";
 export default {
   name: "usd_list",
   components: {
     InfiniteLoad,
-    ModalMask
+    ModalMask,
+    AccountDetail
   },
   data() {
     return {
@@ -224,8 +104,7 @@ export default {
         let orderEnd = order.substring(order.length - 3, order.length);
         let orderDateTime = formatDate(item.createAt, "yyyy-MM-dd hh:mm");
         let usdt = saveDecimal(item.amount, item.showPrecision);
-        let statusStr = item.status === 1 ? "成功" : "失败";
-        let sex = item.sex === 1 ? "先生" : "女士";
+        let statusStr = item.status === 1 ? this.$t('home.success') : this.$t('home.fail');
         let coin = item.type === 3 ? "USD" : item.coin;
         let avatar;
         let name;
@@ -234,47 +113,47 @@ export default {
         orderId = orderStart + "......" + orderEnd;
 
         if (item.type == 1 ) {
-          type = "充值";
-          name = item.name === "CARD" ? "CARD": item.name;
+          type = this.$t("home.deposit");
+          name = item.name === "AB" ? "CARD": item.name.split('-')[0];
           avatar = item.icon;
           infos = type + " · " + name;
-          amount = saveDecimal(+item.amount, item.showPrecision) + (item.name = "CARD" ? "USD": item.name);
-           // 根据usd计算对应的货币价格
-          usd = coinAbbre === "USD" ? "":
-            saveDecimal(+item.amount *  (item.name = "CARD" ? 1 : +item.usd) * rate , 2) +
-            coinAbbre;
+          amount = saveDecimal(+item.amount, item.showPrecision) + (item.name === "AB" ? " USD": ` ${name}`);
+          // 根据usd计算对应的货币价格
+          usd = coinSymbol + saveDecimal(+item.amount *  (item.name === "AB" ? 1 : +item.usd) * rate , 2) +
+            ` (${coinAbbre})`;
         } else if (item.type === 2) {
-          type = "提现";
+          type = this.$t("home.withdraw");
           avatar = item.icon;
           let money = +item.amount.replace(/^\-|\+$/, '');
           infos = type + " · " + item.name.split('-')[0];
-          amount ='-'+ saveDecimal(sum(+money, +item.fee, item.showPrecision), item.showPrecision) + item.name.split('-')[0];
+          amount ='-'+ saveDecimal(sum(+money, +item.fee), item.showPrecision) + ' ' + item.name.split('-')[0];
            // 根据usd计算对应的货币价格
-          usd =
-            saveDecimal(money *  +item.usd * rate , 2) +
-            coinAbbre;
+          usd = coinSymbol +
+            saveDecimal(sum(money, +item.fee) *  +item.usd * rate , 2) +
+            ` (${coinAbbre})`;
         } else if (item.type === 3) {
-          type = "转账 ";
+          type = this.$t("home.transfer");
           if(item.avatar) {
             avatar = item.avatar;
           } else {
             avatar = item.sex === 1 ? this.manAvatar : this.womanAvatar;
           }
           let money = +item.amount.replace(/(\+|-)/, '');
-         
+          let addr = item.amount.indexOf('-') > -1 ? '-':'+';
           infos = item.name;
-          amount = (item.side === 1 ? "+":"-") + saveDecimal(money, item.showPrecision) + "USD"; // side 1、来自 2、去往
-          usd = coinAbbre === 'USD' ? "": saveDecimal(money * rate, item.showPrecision) + coinAbbre;
+          amount = addr + '$' + saveDecimal(money, item.showPrecision) + " (USD)"; // side 1、来自 2、去往
+          usd = coinAbbre === 'USD' ? "": coinSymbol + saveDecimal(money * rate, item.showPrecision) + ` (${coinAbbre})`;
         } else if (item.type === 5) {
+          type = this.$t("home.exchange");
           let fromCoin = item.name.split('/')[0];
           let toCoin = item.name.split('/')[1];
           let fromMoney = item.amount.split('/')[0];
           let toMoney = item.amount.split('/')[1];
-          let symbol = item.amount.split('')[0];
           let decimal = 2;
-          type = "兑换";
+          let fromAddr = fromMoney.indexOf('-') > -1 ? '-':'+';
+          let toAddr = toMoney.indexOf('-') > -1 ? '-':'+';
           avatar = item.icon;
-          infos = type + " · " + item.name;
+          infos = type + " ( " + (fromCoin === 'USD' ? this.$t('home.usdAbbr'):fromCoin) + ' → ' + (toCoin === 'USD' ? this.$t('home.usdAbbr'):toCoin) + " ) ";
           if(fromCoin === "USD") {
             if(toCoin === "USDT") {
               decimal = 4;
@@ -285,23 +164,23 @@ export default {
             } else {
               decimal = 2;
             }
-          } else if(fromCoin === "USDT") {
+          } else if(toCoin === "USDT") {
             decimal = 4;
-          } else if(fromCoin === "BTC") {
+          } else if(toCoin === "BTC") {
             decimal = 8;
-          } else if(fromCoin === "ETH"){
+          } else if(toCoin === "ETH"){
             decimal = 5;
           }
 
-          if(fromCoin === "USD") {
-            amount =  fromMoney + fromCoin;
-            usd = toMoney + toCoin;
+          if(toCoin === "USD") {
+            amount = toAddr + (toCoin === 'USD' ? '$':'') + (toMoney ? toMoney : '0.00').replace(/(\+|-)/, '') + ` (${toCoin})`;
+            usd = coinAbbre === 'USD'? '':coinSymbol + saveDecimal(toMoney * rate, 2) + ` (${coinAbbre})`;
           } else {
-            amount =  fromMoney + fromCoin;
-            usd = toMoney + toCoin;
+            amount = (toMoney ? toMoney : '0.00') +` ${toCoin}`;
+            usd = coinSymbol + saveDecimal(toMoney * rate * item.usd, 2) + ` (${coinAbbre})`;
           }
         } else if (item.type === 6) {
-          type = "VISA转入";
+          type = this.$t("account.visaPay");
           avatar = item.icon;
           amount = item.amount;
         } else if (item.type === 8) {
@@ -314,13 +193,12 @@ export default {
           amount = item.amount;
         }
        
-
         return {
           id: item.orderId,
           avator: avatar,
           createTime: orderDateTime,
-          date: getDate(orderDateTime),
-          time: getTime(orderDateTime),
+          date: getDate(item.createAt),
+          time: getTime(item.createAt),
           name: name,
           orderId: item.orderId,
           ellipsisOrderId: orderId,
@@ -336,9 +214,15 @@ export default {
       });
     }
   },
-  mounted() {
-    this.switchTab(1, 1);
-    this.fetchWallet();
+  async mounted() {
+    try {
+      const { id, type } = this.$route.query
+      this.switchTab(+id, type);
+      await this.fetchWallet();
+    } catch (error) {
+      this.$Message.error(this.$t('login.alreadyLogin'));
+    }
+    
   },
   methods: {
     ...mapActions(['fetchWallet']),
@@ -380,16 +264,14 @@ export default {
       };
 
       this.isLoading = false;
-
       const res = await axios.fetchTradeRecord(params);
-
       this.isLoading = true;
 
       if (res.code === 0) {
         let { transactions } = res.data;
   
         this.orderList = [...this.orderList, ...transactions];
-        if (transactions.length === 0) this.noMore = true;
+        if (transactions.length === 0 || transactions.length < this.rows) this.noMore = true;
       } else {
         this.$Message.error(res.msg);
       }
@@ -402,37 +284,76 @@ export default {
         // 充值 提现
         const res = await fetchWithdrawDepositDetail(params);
         let item = res.data;
-  
+        let { status } = res.data;
+        let typeText, statusText;
+        if(type === 1) {
+          typeText = this.$t('home.deposit');
+        } else if(type === 2) {
+          typeText = this.$t("home.withdraw");
+        }
+        switch(status) {
+          case 1:
+            statusText = this.$t("home.notCheck");
+            break;
+          case 2:
+            statusText = this.$t("home.checking");
+            break;
+          case 3:
+            statusText = type === 1 ? this.$t("home.depositing") : this.$t("home.withdrawAsset");
+            break;
+          case 4:
+            statusText = type === 1 ? this.$t("account.depositSuccessStatus"):this.$t("account.withdrawSuccessStatus");
+            break;
+          case 5:
+            statusText = type === 1 ? this.$t("account.depositFailStatus"):this.$t("account.withdrawFailStatus");
+            break;
+          case 6:
+            statusText = this.$t("home.checkFail");
+            break;
+        }
+        let usd = item.accountType === 2 ? item.usd : 1; // USD账户汇率为 item.usd 数字货币账户汇率为 1
+        let decimal = item.accountType === 2 ?  2 : item.showPrecision;
         this.detail = {
           orderId: item.orderId,
           coin: item.coin === "AB" ? "USD": item.coin,
           fromCoin: item.coin.split('-')[0],
-          statusStr: item.statusStr,
+          toCoin: item.coin.split('-')[1],
+          status: item.status,
+          statusStr: statusText,
           createAt: formatDate(item.createAt, "yyyy-MM-dd hh:mm:ss"),
-          amount: saveDecimal(item.amount, item.showPrecision),
-          txidPrefixUrl: item.txidPrefixUrl,
-          fee: saveDecimal(item.fee, item.showPrecision),
+          amount: saveDecimal(item.amount * usd, decimal), // 提现金额/数量
+          depositAmount: saveDecimal(item.amount * item.usd, 2),
+          number: saveDecimal(item.amount, item.showPrecision),
+          txidPrefixUrl: item.txidPrefixUrl + item.txHash,
+          fee: saveDecimal(item.fee * usd, decimal), // 提现手续费
           fromAddress: item.fromAddress,
           toAddress: item.toAddress,
-          txHash: item.txHash,
+          txHash: item.txHash ,
           comment: item.comment,
-          coinType: item.coin === "AB" ? "金额":"数量",
+          coinType: item.coin === "AB" ? this.$t("home.money"):this.$t("account.amount"),
           withdrawType: item.coin === "AB" ? "CARD":"",
-          dynamicMoney: saveDecimal(sum(item.fee, item.amount, item.showPrecision), item.showPrecision)  // 变动金额
+          dynamicAccount: (item.coin === "AB" || item.accountType === 2) ? this.$t('home.dynamicMoney'): this.$t('home.dynamicNum'),
+          dynamicMoney: saveDecimal(sum(item.fee * usd, item.amount * usd), decimal),  // 变动金额/数量
+          accountType: item.accountType === 2 ? 'USD': item.coin.split('-')[0],
+          amountType: item.accountType === 2 ? this.$t('home.money'): this.$t('account.amount'),
+          usd: item.usd,
+          type: item.accountType,
+          usdAmount: saveDecimal(item.amount, item.showPrecision)
         };
       } else if (type === 3) {
         // 转账
         const res = await fetchTransferDetail(params);
         let item = res.data;
+        let addr = item.money.indexOf('-') > -1 ? '-':'+';
         this.transfer = {
           orderId: item.orderId,
           userId: item.userId,
-          status: item.status ? "成功" : "失败",
-          isFrom: item.money.indexOf('-') > -1 ? "收款":"付款",
-          money: saveDecimal(item.money.replace(/-/, ''), 2),
+          status: item.status ? this.$t('home.success') : this.$t('home.fail'),
+          isFrom: item.money.indexOf('-') > -1 ? this.$t('account.incomeName') : this.$t('home.payName'),
+          money: addr + '$' + saveDecimal(item.money.replace(/-/, ''), 2),
           createAt: formatDate(item.createAt, "yyyy-MM-dd hh:mm:ss"),
           payName: `${item.lastName}(*${item.lastName})`,
-          from: formatEmail(item.from),
+          from: formatTel(item.from),
           to: item.to,
           comment: item.comment
         };
@@ -444,8 +365,8 @@ export default {
           askCoin: item.askCoin, // 被被兑换币种
           bidCoin: item.bidCoin, // 兑换币种
           createAt: formatDate(item.createAt, "yyyy-MM-dd hh:mm:ss"),
-          bidAmount: "-" + item.strBidAmount , // 兑换金额
-          askAmount: "+" + item.strAskAmount, // 被兑换数量
+          bidAmount: "-" + (item.bidCoin === 'USD' ? `$${item.strBidAmount}`:item.strBidAmount) , // 兑换金额
+          askAmount: "+" + (item.askCoin === 'USD' ?  `$${item.strAskAmount}`:item.strAskAmount), // 被兑换数量
           usd: item.usd, // 兑换时汇率
         };
       }
@@ -473,24 +394,26 @@ export default {
 }
 
 .trade-list {
-  margin: 0 30px;
+  margin: 0 30px 0;
   background: #fff;
+  border-radius: 4px;
   .title {
     @include title;
   }
   .tab-list {
     margin: 0 64px;
-    border-bottom: 1px solid #eeeeee;
     font-size: 14px;
     .tab-title {
+      display: flex;
       padding: 17px 0;
       .tab-item {
+        // width: 25%;
         background: #fff;
         display: inline-block;
-        // padding: 5px 18px;
+        padding: 5px 90px 5px 0;
         color: #666;
         cursor: pointer;
-        margin-right: 95px;
+        // margin-right: 95px;
         transition: all 0.2s ease-out;
         &:hover {
           color: #3674D7;
@@ -506,22 +429,41 @@ export default {
   }
 }
 .content {
-  width: 760px;
-  padding: 32px 88px 60px;
+  width: 560px;
+  padding: 32px 40px 60px;
   .content-title {
+    margin-bottom: 40px;
     font-size: 22px;
-    color: #000;
+    color: #333;
     font-weight: bold;
     text-align: center;
   }
   .content-desc {
+    margin-bottom: 28px;
     display: flex;
     justify-content: space-between;
     color: #999;
     font-size: 14px;
-    margin-top: 44px;
+    .val {
+      color: #333;
+    }
+    &:last-child{
+      margin-bottom: 0;
+    }
     .exchang-amount {
       text-align: right;
+    }
+    .hash {
+      cursor: pointer;
+    }
+    .show-content {
+      color: #3674D7;
+      cursor: pointer;
+    }
+    .long-content {
+      width: 360px;
+      text-align: right;
+      word-break: break-word;
     }
   }
 }

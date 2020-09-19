@@ -207,6 +207,7 @@ export default {
   .coin-avatar {
     width: 20px;
     height: 20px;
+    border-radius: 2px;
   }
   .enter-input {
     vertical-align: middle;
@@ -282,6 +283,7 @@ export default {
           height: 40px;
           vertical-align: middle;
           margin-right: 8px;
+          border-radius: 2px;
         }
         .name {
           vertical-align: middle;

@@ -484,7 +484,7 @@
   content: "\e913";
 }
 .icon--copy4:before {
-  content: "\e991";
+  /* content: "\e991"; */
   color: #b5cae0;
 }
 .icon--copy3:before {

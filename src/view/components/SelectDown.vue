@@ -8,11 +8,10 @@
         <li v-for="(item, key) in list" :key="key" @click="changeItem(item)" class="coin-list">
           <div class="coin-type">
             <img :src="item.avatar" alt class="coin-avatar" />
-            <span class="coin-name">{{item.name}}</span>
+            <span class="coin-name">{{item.name}} {{$t('home.account')}}</span>
           </div>
           <div class="coin-number">
             <span>{{item.count}}</span>
-            <!-- <span class="coin-marks">{{item.type}}</span> -->
           </div>
         </li>
       </ul>
@@ -51,17 +50,15 @@ export default {
     cursor: pointer;
     text-align: center;
     border: 1px solid #dfe2e7;
-    padding: 8px 12px;
-    margin: 7px 0 4px;
+    padding: 10px 12px;
+    margin: 0;
     display: flex;
     justify-content: space-between;
-    border-radius: 4px;
   }
   .dropdown-list {
     width: 100%;
-    height: 212px;
     position: absolute;
-    top: 42px;
+    top: 36px;
     left: 0;
     background: #fff;
     box-shadow: 0px 5px 10px 0px rgba(162, 177, 202, 0.5);
@@ -88,30 +85,31 @@ export default {
         .coin-avatar {
             width: 20px;
             height: 20px;
+            border-radius: 2px;
         }
         .coin-name {
             color: #333;
             font-size: 13px;
             vertical-align: middle;
             margin-left: 8px;
+            border-radius: 4px;
         }
         .coin-number {
             padding-right: 20px;
             color: #818B99;
             font-size: 13px;
-            .coin-marks {
-                margin-left: 6px;
-            }
         }
         &:hover {
           background: #E8F0FC;
           color: #3674d7;
         }
         &:first-child {
-          border-radius: 5px;
+          border-top-left-radius: 5px;
+          border-top-right-radius: 5px;
         }
         &:last-child {
-          border-radius: 5px;
+          border-bottom-left-radius: 5px;
+          border-bottom-right-radius: 5px;
         }
       }
       .active {

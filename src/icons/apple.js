@@ -2,9 +2,9 @@
 var icon = require('vue-svgicon')
 icon.register({
   'apple': {
-    width: 24,
-    height: 28,
-    viewBox: '0 0 24 28',
-    data: '<defs><filter x="-7.5%" y="-25%" width="115%" height="150%" filterUnits="objectBoundingBox" id="svgicon_apple_a"><feOffset dy="2" in="SourceAlpha" result="shadowOffsetOuter1"/><feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"/><feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5 0" in="shadowBlurOuter1" result="shadowMatrixOuter1"/><feMerge><feMergeNode in="shadowMatrixOuter1"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><g filter="url(#svgicon_apple_a)" transform="translate(-45 -12)" _fill="#333" fill-rule="nonzero"><path pid="0" d="M62.364 24.627c.023-1.562.825-3.002 2.12-3.808a4.574 4.574 0 0 0-3.592-1.983c-1.53-.156-2.987.918-3.764.918-.776 0-1.974-.893-3.243-.87-1.687.041-3.23.993-4.064 2.508-1.73 3.061-.442 7.59 1.247 10.075.825 1.22 1.809 2.58 3.101 2.532 1.245-.052 1.715-.82 3.22-.82 1.504 0 1.926.82 3.243.793 1.338-.027 2.187-1.238 3.008-2.456A11.008 11.008 0 0 0 65 28.672c-1.582-.683-2.619-2.273-2.636-4.045zm-2.473-7.434A4.449 4.449 0 0 0 60.913 14a4.387 4.387 0 0 0-2.893 1.514 4.242 4.242 0 0 0-1.044 3.092 3.612 3.612 0 0 0 2.915-1.413z"/></g>'
+    width: 18,
+    height: 23,
+    viewBox: '0 0 18 23',
+    data: '<path pid="0" d="M15.035 12.503c.025-1.75.927-3.363 2.385-4.265a5.152 5.152 0 00-4.042-2.22c-1.722-.175-3.36 1.028-4.234 1.028-.873 0-2.22-1.001-3.648-.976-1.898.047-3.633 1.113-4.573 2.81-1.945 3.428-.497 8.501 1.403 11.283.93 1.366 2.035 2.89 3.49 2.836 1.4-.058 1.93-.92 3.621-.92 1.693 0 2.167.92 3.649.89 1.505-.03 2.46-1.387 3.384-2.75A12.305 12.305 0 0018 17.032c-1.78-.765-2.946-2.546-2.965-4.53zM12.693 4.16C13.63 3.013 14.094 1.515 13.984 0c-1.408.142-2.713.847-3.654 1.972-.938 1.094-1.414 2.55-1.318 4.027 1.429.026 2.788-.654 3.681-1.841v.001z" _fill="#FFF" fill-rule="nonzero"/>'
   }
 })

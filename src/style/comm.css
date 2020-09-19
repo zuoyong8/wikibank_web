@@ -2,10 +2,10 @@
     display: block;
     width: 0;
     height: 0;
-    left: 102px;
-    top: -22px;
-    position: relative;
-    border-width: 7px 0 7px 7px;
+    right: -6px;
+    top: 7px;
+    position: absolute;
+    border-width: 5px 0 5px 5px;
     border-style: solid;
     border-color: transparent transparent transparent rgba(54,116,215,0.3);
 }
@@ -19,4 +19,25 @@
     border-width: 5px 0 5px 5px;
     border-style: solid;
     border-color: transparent transparent transparent #F8FBFF;
+}
+
+.loading {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 1px solid #fff;
+    border-left-color: transparent;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    animation: move 1s linear infinite;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+  @keyframes move {
+    form {
+      transform: rotate(0);
+    }
+    to {
+      transform: rotate(360deg);
+    }
 }

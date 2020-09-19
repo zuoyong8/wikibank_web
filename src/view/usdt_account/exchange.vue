@@ -32,7 +32,7 @@ export default {
       formCoin: "USDT",
       toCoin: "USD",
       number: "",
-      price: 1,
+      price: '1',
       stepNum: 1,
       payPassword: "", // 支付密码
       isDisabled: true
@@ -46,7 +46,7 @@ export default {
   },
   methods: {
     getPrice(usd, decimal) {
-      this.price = +saveDecimal(usd, decimal);
+      this.price = saveDecimal(usd, decimal);
     },
     checkFromCoin(item) {
       this.fromCoinAvatar = item.avatar;

@@ -1,7 +1,24 @@
-import request from "../axios/request";
-import flagJson from "../db/flag.json";
-
+import request from "@/axios/request";
+import flagJson from "@/db/AreaCodeCN.json";
+let global = 'http://www.wikipay.net/api/v1';
+//let global = 'http://18.162.243.214:81/api/v1'; // 测试
 export default {
+    // 验证提现地址是否正确
+    vertifyAddress: params => request({
+        method: "GET", url: "/account/address/validate", params
+    }),
+    // 登录 
+    login: params => request({
+        method: "POST", url: "/web/pc/login", data: params
+    }),
+    // 获取二维码
+    getQrcode: params => request({
+        method: "GET", url: "/web/pc/qrcode", params
+    }),
+    // 二维码检测
+    checkQrcode: params => request({
+        method: "GET", url: `/web/pc/qrcode/${params}`
+    }),
     // 提现、转账风控
     limitPayCheck: params => request({
         method: "GET", url: "/account/pay/check", params
@@ -52,7 +69,10 @@ export default {
     fetchPersonInfo: params => request({
         method: "GET", url: "/user/info", params
     }),
-
+    // 认证邮箱
+    checkEmail: params => request({
+        method: "GET", url: "/user/email/check", params
+    }),
     // 验证邮箱是否存在
     isExistEmail: params => request({
         method: "GET", url: "/user/email/validate", params
@@ -108,8 +128,13 @@ export default {
         method: "GET", url: "/web/pc/login/captchaid", params
     }),
     // 获取图形验证码
-    getVertifyImg: params => request({
-        method: "GET", url: "/web/pc/login/captcha", params
+    getVertifyImg: params => {
+        return global + "/web/pc/login/captcha?id=" + params
+    },
+
+    // 获取配置信息
+    getConfigInfo: params => request({
+        method: "GET", url: "user/config", params
     })
 }
 

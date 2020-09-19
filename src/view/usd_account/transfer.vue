@@ -3,32 +3,31 @@
     <div class="account">
       <div class="title">
         <img :src="depositIcon" alt class="icon" />
-        <span class="text">转账</span>
+        <span class="text">{{$t('home.transfer')}}</span>
       </div>
       <div class="content" v-if="stepNum === 1">
         <div class="row">
-          <div class="key">收款账户</div>
+          <div class="key">{{$t('account.incomeAccount')}}</div>
           <div class="val">
             <div>
               <input
                 type="text"
                 class="enter-input"
                 v-model="form.incomeAccount"
-                placeholder="手机号或邮箱"
+                :placeholder="$t('login.accountPlace')"
               />
               <div class="contact-list">
-                <span class="icon--copy3" style="margin-left:15px;width:20px;height:20px;"></span>
-                <span class="contact" @click="getContactList">联系人</span>
+                <img :src="contactIcon" class="contact-icon" /> 
+                <span class="contact" @click="getContactList">{{$t('account.contact')}}</span>
                 <ModalMask
-                  :isShowModal="isShowContactModal"
+                  :isShowModal="isShowContactModal" 
                   :isHideMask="isHideContactMask"
                   @closeModal="closeContactModal"
                   @openModal="openContactModal"
                 >
                   <template v-slot:body>
                     <div class="modal-head">
-                      <span class="modal-title">转账联系人</span>
-                      <span class="icon--copy4 modal-close" @click.stop="openContactModal(false)"></span>
+                      <span class="modal-title">{{$t('home.transfer')}}{{$t('account.contact')}}</span>
                     </div>
                     <div class="modal-body">
                       <div class="address-list">
@@ -39,8 +38,8 @@
                           @click.stop="getContact(item.id, item.account,item.lastName, item.name, item.comment, item.avatar, item.email )"
                         >
                           <img :src="item.url" alt class="withdraw-pic" />
-                          <span class="withdraw-type">{{item.lastName}} ({{item.name}})</span>
-                          <span class="withdraw-code">账号：({{item.account}})</span>
+                          <span class="withdraw-type">{{item.comment || item.lastName}} ({{item.name}})</span>
+                          <span class="withdraw-code">{{$t('home.account')}}：({{item.account}})</span>
                           <span class="radio" :class="index === item.id ? 'active':''"></span>
                         </div>
                       </div>
@@ -57,8 +56,8 @@
             <div class="input-tips" @click="vertifyIncomeName">校验收款人姓名</div>
           </div>
         </div> -->
-        <div class="row" :style="{marginTop: '40px'}">
-          <div class="key">转账金额</div>
+        <div class="row" :style="{marginTop: '24px'}">
+          <div class="key">{{$t('account.transferMoney')}}</div>
           <div class="val">
             <div class="transfer-box">
               <input
@@ -71,7 +70,7 @@
               <div class="all-money">
                 USD
                 <span class="split"></span>
-                <span class="total" @click="transferAll">全部</span>
+                <span class="total" @click="transferAll">{{$t('home.all')}}</span>
               </div>
             </div>
           </div>
@@ -82,15 +81,15 @@
             <div class="input-tips">{{calcPrice}}</div>
           </div>
         </div>
-        <div class="row" :style="{marginTop: coinAbbre !== 'USD' ? '18px': '40px'}">
-          <div class="key">付款备注</div>
+        <div class="row" :style="{marginTop: coinAbbre !== 'USD' ? '18px': '24px'}">
+          <div class="key">{{$t('personCenter.mark')}}</div>
           <div class="val">
             <div>
               <input
                 type="text"
                 class="enter-input"
                 v-model="form.payComment"
-                placeholder="仅在'账户明细'中显示"
+                :placeholder="$t('placehode.accountDetailShow')"
               />
             </div>
           </div>
@@ -105,7 +104,7 @@
         <div class="row" :style="{marginTop: '0'}">
           <div class="key"></div>
           <div class="val">
-            <div class="confirm" @click="transfer">确认</div>
+            <div :class="['confirm', loading ? 'disabled':'']" @click="transfer"><span class="loading" v-if="loading"></span> {{$t('account.confirm')}}</div>
           </div>
         </div>
       </div>
@@ -113,24 +112,30 @@
         <div class="transfer-info">
           <div class="base-info">
             <div class="pay-money">
-              转账金额
+              {{$t('account.transferMoney')}}
               <span class="usd">-${{form.transferMoney}}</span>
-              <span class="addre">USD</span>
+              <span class="addre">(USD)</span>
               <!-- <span class="transform-money">≈{{calcPrice}}</span> -->
             </div>
             <div>
-              <span class="field">收款人姓名：{{lastName}}({{contactName}})</span>
-              <span class="field">收款账户：{{form.incomeAccount}}</span>
-              <span class="field">付款账户：{{userInfo.email}}</span>
+              <span class="field">{{$t('account.incomeName')}}：{{comment || lastName}}({{contactName}})</span>
+              <span class="field">{{$t('account.incomeAccount')}}：{{form.incomeAccount}}</span>
+              <span class="field">{{$t('account.payAccount')}}：{{userInfo.phone}}</span>
             </div>
           </div>
           <div class="order-open">
-            <div class="order-button" @click="openOrder">{{orderState}}</div>
+            <div class="order-button" @click="openOrder">{{$t('account.'+orderState)}}</div>
           </div>
         </div>
         <div v-show="orderDetail" class="order-detail">
-          <div class="field">订单时间：{{form.transferDate}}</div>
-          <div class="field">备注：{{form.payComment}}</div>
+          <div class="field">{{$t('home.orderTime')}}：{{form.transferDate}}</div>
+          <div class="marks" :style="{display: 'flex'}">
+            <div class="marks-key">
+              {{$t("home.marks")}}：
+            </div>
+            <div class="marks-val" :style="{flex: '1'}">
+              {{form.payComment}}</div>
+            </div>
         </div>
       </div>
     </div>
@@ -145,31 +150,34 @@
                   <img :src="fromCoinAvatar" alt class="coin-avatar" />
                   <input type="text" v-model="totalNumber" placeholder="0.0000" class="enter-input" />
                 </div>
-                <img :src="bottomArrow" alt class="arrow" />
+                <img :src="bottomArrow" alt :class="['arrow', isShowFromSelect ? 'active':'']" />
               </div>
             </template>
           </SelectDown>
         </div>
       </div>
-      <div class="pay-tips">点击“去支付”后，请打开手机端APP的首页，点击扫一扫，扫描二维码支付</div>
-      <div class="go-pay" @click="goPay">-${{form.transferMoney}} USD ,去支付</div>
+      <div class="pay-tips">{{$t('account.payTips')}}</div>
+      <div :class="['go-pay', loading ? 'disabled':'']" @click="goPay">
+        <span class="loading" v-if="loading"></span>-${{form.transferMoney}} (USD) ,{{$t('account.goPay')}}
+      </div>
     </div>
     <CreateQrcode
       :isShowModal="isShowWithdrawModal"
       :isHideMask="isHideWithdrawMask"
-      :title="createQrcodeTitle"
+      :title="$t('home.transferDetail')"
       :qrcodeCode="qrcodeStatus"
+      :transId="transId"
       @openWithdrawModal="openWithdrawModal"
       @closeWitdrawModal="closeWitdrawModal"
     >
       <template v-slot:info>
         <div class="detail-info">
           <div class="row" :style="{marginBottom: '0'}">
-            <div class="key">转账金额</div>
+            <div class="key">{{$t('account.transferMoney')}}</div>
             <div class="val">
               <div>
-                <span class="number">-{{form.transferMoney}}</span>
-                <span class="coin-addre">USD</span>
+                <span class="number">-${{form.transferMoney}}</span>
+                <span class="coin-addre">(USD)</span>
               </div>
             </div>
           </div>
@@ -178,7 +186,7 @@
             <div class="val">{{calcPrice}}</div>
           </div>
           <div class="row" :style="{marginTop: '8px'}">
-            <div class="key">收款账户</div>
+            <div class="key">{{$t('account.incomeAccount')}}</div>
             <div class="val">{{form.incomeAccount}}</div>
           </div>
         </div>
@@ -193,20 +201,20 @@
       <template v-slot:body>
         <div class="modal-content">
           <div class="modal-title">
-            限额验证
+            {{$t('account.limitVertify')}}
             <img :src="closeBtn" alt="" class="close-btn" @click="closeSendMsgModal(false)">
           </div>
           <div class="find-pay-step">
-            <div class="vertify-code">手机验证码</div>
+            <div class="vertify-code">{{$t('personCenter.telVertifyCode')}}</div>
             <VertifyCode
               :type="'1'"
               :vertifyContent="userInfo.phone"
               :areaCode="areaCode"
-              :vertifyText="sendMsgPlacehode"
+              :vertifyText="$t('customError.'+sendMsgPlacehode)"
               :value="sendMsgCode"
               v-model="sendMsgCode"
             ></VertifyCode>
-            <a href="javascript:;" class="confirm-button" @click="vertifyTelCode">确定</a>
+            <a href="javascript:;" class="confirm-button" @click="vertifyTelCode">{{$t('personCenter.confirm')}}</a>
           </div>
         </div>
       </template>
@@ -222,7 +230,6 @@ import SelectDown from "../components/SelectDown";
 import CreateQrcode from "../components/CreateQrcode";
 import VertifyCode from "../components/VertifyCode";
 import ExcessVertify from "../components/ExcessVertify";
-import QRCode from "qrcode";
 import { saveDecimal, formatDate, isNumber } from "../../filters.js";
 import { mapState, mapGetters, mapActions } from "vuex";
 export default {
@@ -232,11 +239,12 @@ export default {
     SelectDown,
     CreateQrcode,
     VertifyCode,
-    QRCode,
     ExcessVertify
   },
   data() {
     return {
+      contactIcon: require('@/assets/account/contact_icon_20200902.png'),
+      loading: false,
       tipsIcon: require("../../assets/login/tips_icon_20200730.png"),
       tips: "", // 限额提示
       isExcess: false, // 是否限额
@@ -245,12 +253,11 @@ export default {
       isHideSendMsgMask: false, //
       tel: "",
       areaCode: "0086",
-      sendMsgPlacehode: "请输入手机验证码",
+      sendMsgPlacehode: "telVertifyCodeTips",
       sendMsgCode: "",
       closeBtn: require("../../assets/person/close_20200722.png"),
       isShowWithdrawModal: false,
       isHideWithdrawMask: true,
-      createQrcodeTitle: "转账详情",
       transId: "", // 转账id
       lastName: "",
       totalNumber: "",
@@ -313,7 +320,7 @@ export default {
       ], // chain
       password: "",
       stepNum: 1,
-      orderState: "订单展开",
+      orderState: "orderExpand",
       timer: "",
       statusId: 0, // 状态id
       qrcodeStatus: -1, // 二维码状态
@@ -326,7 +333,7 @@ export default {
       const { rate, coinSymbol, coinAbbre } = this;
 
       return (
-        coinSymbol + saveDecimal(rate * +this.form.transferMoney, 2) + coinAbbre
+        coinSymbol + saveDecimal(rate * +this.form.transferMoney, 2) + " "+`(${coinAbbre})`
       );
     },
     moneyList() {
@@ -399,21 +406,21 @@ export default {
     },
     // 转账
     transfer() {
-      if (this.form.incomeAccount == "") {
-        this.$Message.error("收款账户不能为空");
+      if (!this.form.incomeAccount) {
+        this.$Message.error(this.$t('customError.incomeAccountTips'));
         return;
-      } else if (this.form.transferMoney == "") {
-        this.$Message.error("转账金额不能为空");
+      } else if (!+this.form.transferMoney) {
+        this.$Message.error(this.$t('customError.transferMoneyTips'));
         return;
       } else if (
         this.form.transferMoney &&
         !isNumber(this.form.transferMoney)
       ) {
-        this.$Message.error("请输入数字");
+        this.$Message.error(this.$t('customError.numberTips'));
         return;
       } else if(this.isExcess) {
         if(!this.phoneVertifyCode) {
-          return this.$Message.error('请输入验证码！');
+          return this.$Message.error(this.$t('login.vertifyCodePlace'));
         }
       }
       this.form.transferDate = formatDate(new Date(), "yyyy-MM-dd hh:mm:ss");
@@ -428,15 +435,11 @@ export default {
         comment: this.form.payComment
       };
       this.qrcodeStatus = -1;
+      this.loading = true;
       const res = await axios.createTransferOrder(params);
-
+      this.loading = false;
       if (res.code === 0) {
         this.transId = res.data.transId;
-        const qrcode = document.querySelector("#qrcode");
-        QRCode.toCanvas(qrcode, this.transId, {
-          width: 210,
-          height: 210
-        });
         this.openWithdrawModal(true);
         this.qrcodeStatus = 1;
         this.timer = setInterval(this.checkTransferStatus, 5000);
@@ -446,9 +449,9 @@ export default {
     },
     openOrder() {
       if (this.orderDetail) {
-        this.orderState = "订单展开";
+        this.orderState = "orderExpand";
       } else {
-        this.orderState = "订单收起";
+        this.orderState = "orderCollease";
       }
       this.orderDetail = !this.orderDetail;
     },
@@ -547,9 +550,14 @@ export default {
         const { success } = res.data;
         if (success) {
             this.closeWitdrawModal(true);
-            this.$Message.success("转账成功！");
+            this.$Message.success(this.$t('customError.transferSuccess'));
             this.fetchWallet();
-            this.$router.push({ path: "/console/usd" });
+            setTimeout( () => {
+              this.$router.push({ 
+                path: "/usd", 
+                query: { id: 2, type: 3 } 
+              });
+            },2000)
         }
       } else if(res.code === 1010060) {// 二维码过期
         clearInterval(this.timer);
@@ -560,22 +568,29 @@ export default {
       const params = {
         info: this.form.incomeAccount
       };
+      this.loading = true;
       const res = await axios.vertifyIncomeName(params);
       if (res.code === 0) {
         const { lastName, userId } = res.data.contacts[0];
         this.lastName = lastName;
         this.contactName = "*" + lastName;
-        if(userId === this.userInfo.userId) return this.$Message.error("不能转账给自己！");
+        if(userId === this.userInfo.userId) {
+          this.loading = false;
+          return this.$Message.error(this.$t('customError.notTransferSelf'));
+        } 
         this.payCheck();
       } else {
         this.$Message.error(res.msg);
+        this.loading = false;
       }
     },
     // 验证手机验证码
     async vertifyTelCode() {
-      if (!this.phoneVertifyCode.trim())
-        return this.$Message.error("请填写手机验证码！");
-
+      if (!this.phoneVertifyCode.trim()) {
+        this.loading = false;
+        return this.$Message.error(this.$t('customError.telVertifyCodeTips'));
+      }
+        
       const params = {
         areaCode: this.userInfo.areaCode,
         phoneNumber: this.userInfo.phone,
@@ -584,7 +599,7 @@ export default {
       };
 
       const res = await axios.vertifyTelCode(params);
-
+      this.loading = false;
       if (res.code === 0) {
         const { success } = res.data;
         if(!success) {
@@ -606,27 +621,28 @@ export default {
       if (res.code === 0) {
         const { success } = res.data;
         if (success) {
+          this.loading = false;
           this.stepNum++;
         } else {
+          this.loading = false;
           this.$Message.error(res.msg);
         }
       } else if (res.code === 1010043) {
-        this.tips = res.msg;
-        if(this.isExcess) {
-          this.vertifyTelCode();
-        } else {
-          this.isExcess = true;
-        }
+        this.isVertifyTelCode(res);
       } else if(res.code === 1010042) {
-        this.tips = res.msg;
-        if(this.isExcess) {
-          this.vertifyTelCode();
-        } else {
-          this.isExcess = true;
-        }
-      } 
-      else {
+        this.isVertifyTelCode(res);
+      } else {
         this.$Message.error(res.msg);
+        this.loading = false;
+      }
+    },
+    isVertifyTelCode(res) {
+      this.tips = res.msg;
+      if(this.isExcess) {
+        this.vertifyTelCode();
+      } else {
+        this.loading = false;
+        this.isExcess = true;
       }
     },
     beforeDestory() {
@@ -637,6 +653,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../../style/comm.css';
 .modal-content {
   width: 480px;
   padding: 23px 26px 32px;
@@ -715,6 +732,7 @@ export default {
   .coin-avatar {
     width: 20px;
     height: 20px;
+    border-radius: 2px;
   }
   .enter-input {
     vertical-align: middle;
@@ -753,7 +771,7 @@ export default {
 }
 .modal-body {
   height: 335px;
-  overflow-y: scroll;
+  overflow-y: auto;
   .address-list {
     margin: 0 0 8px 7px;
     .address-item {
@@ -766,7 +784,7 @@ export default {
       .withdraw-pic {
         width: 29px;
         height: 29px;
-        border-radius: 50%;
+        border-radius: 4px;
       }
       .withdraw-type {
         color: #333;
@@ -791,6 +809,16 @@ export default {
       }
       .active {
         border: 2px solid #3674d7;
+        &::before {
+          position: absolute;
+          top: 2px;
+          left: 2px;
+          content: "";
+          width: 4px;
+          height: 4px;
+          background: #3674d7;
+          border-radius: 50%;
+        }
       }
     }
   }
@@ -806,14 +834,14 @@ export default {
     .row {
       display: flex;
       align-items: center;
-      margin-top: 18px;
+      margin-top: 24px;
       &:first-child {
         margin-top: 0;
       }
       .key {
         color: #666;
         font-size: 14px;
-        width: 130px;
+        width: 90px;
       }
       .val {
         .account-tips {
@@ -855,16 +883,23 @@ export default {
           color: #666;
           margin-top: 6px;
           cursor: pointer;
+          line-height: 12px;
         }
         .contact {
           margin-left: 8px;
           color: #3674d7;
           font-size: 14px;
           cursor: pointer;
+          vertical-align: middle;
         }
         .contact-list {
           position: relative;
           display: inline-block;
+          .contact-icon {
+            width: 20px;
+            height: 20px;
+            margin-left: 15px;
+          }
         }
         .transfer-box {
           position: relative;
@@ -933,24 +968,36 @@ export default {
       }
       .field {
         @include field;
+        margin-bottom: 5px;
       }
     }
 
     .order-open {
       .order-button {
+        width: 152px;
         color: #3674d7;
         border: 1px solid #3674d7;
         padding: 8px 12px;
         border-radius: 2px;
         cursor: pointer;
         margin-left: 46px;
+        text-align: center;
       }
     }
   }
   .order-detail {
+    display: flex;
     padding: 16px 62px;
     .field {
       @include field;
+    }
+    .marks {
+      display: flex;
+      color: #7d91a9;
+      font-size: 14px;
+      .marks-val {
+        flex: 1;
+      }
     }
   }
 }
@@ -964,6 +1011,7 @@ export default {
     color: #333;
     margin-right: 8px;
     font-weight: bold;
+    margin-bottom: 40px;
   }
   .pay-tips {
     // margin: 40px 0 16px;
@@ -992,6 +1040,11 @@ export default {
     .arrow {
       width: 13px;
       height: 8px;
+      transition: all .2s ease;
+      transform: rotate(0);
+    }
+    .active {
+      transform: rotate(180deg);
     }
   }
   .select-type {

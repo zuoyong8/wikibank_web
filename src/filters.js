@@ -1,3 +1,4 @@
+import Decimal from 'decimal.js'
 export const formatDate = (date, fmt) => {
     if (!date) {
         return
@@ -54,7 +55,6 @@ export const getStatus = (type ,status) => {
 // 时间格式化
 export const getDate = date => {
     let datetime = new Date(date);
-
     const [year, month, day] = [datetime.getFullYear(),  format(datetime.getMonth() + 1 ), format(datetime.getDate())];
 
     return `${year}-${month}-${day}`;
@@ -85,12 +85,7 @@ export function getCoinDigit(type) {
 }
 // num 保留的数字 digit 保留的小数位数
 export function saveDecimal(num, digit) {
-    let floatNum = parseFloat(num);
-    if(isNaN(floatNum)) return false;
-
-    floatNum = Math.floor(num * 10 ** digit) / 10 ** digit;
-
-    let str = floatNum.toString();
+    let str = num.toString();
     let decimalPos = str.indexOf('.');
 
     if(decimalPos < 0) {
@@ -98,15 +93,34 @@ export function saveDecimal(num, digit) {
         str += ".";
     }
 
-    while(str.length <= decimalPos + digit) {
-        str += "0";
+    let arr = str.split('.');
+    if(arr[1].length < digit) {
+        while(str.length <= decimalPos + digit) {
+            str += "0";
+        }
+    } else {
+        str = arr[0] +'.'+ arr[1].substring(0, digit)
     }
+
     return str;
 }
-
-export function sum(a, b, digit) {
-    return (a * (10 ** digit) + b * (10 ** digit)) / (10 ** digit);
+// 加
+export function sum(a, b) {
+    return Decimal(a).add(Decimal(b)).toNumber();
 }
+// 减
+export function sub(a, b) {
+    return Decimal(a).sub(Decimal(b)).toNumber();
+}
+// 乘
+export function mul(a, b) {
+    return Decimal(a).mul(Decimal(b)).toNumber();
+}
+// 除
+export function div(a, b){
+    return Decimal(a).div(Decimal(b)).toNumber();
+}
+
 // 金额格式化
 export function toThousandFilter(num) {
     return (num || 0).toString().replace(/^-?\d+/g, m => m.replace(/(?=(?!\b)(\d{3})+$)/g, ','))

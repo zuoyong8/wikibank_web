@@ -2,17 +2,28 @@
   <div class="header">
     <div class="content">
       <div>
-        <img :src="logo" alt class="logo" />
+      <a href="/" >
+        <img @click="toTop" :src="logo" alt class="logo" />
+      </a>
       </div>
       <div class="right">
-        <div class="site-text">WikiPay 首页</div>
+        <slot>
+          <div class="qrcode-box" :style="{marginRight: '24px'}">
+            <icon name="qrcode" class="code-icon"/>
+            <div class="qrcode">
+              <canvas id="download" class="inner-qrcode"></canvas>
+            </div>
+          </div>
+          <div class="divide">|</div>
+          <a href="/"  class="site-text">{{$t("login.businessSys")}}</a>
+        </slot>
         <div class="divide">|</div>
         <div class="language-tips">
           <div class="select-widget">
             <div class="select-val">
-              <img :src="flagIcon" alt class="flag-icon" />
-              <span class="language">{{defaultLang}}</span>
-              <span class="down-icon"></span>
+              <img :src="langFlag" alt class="flag-icon" />
+              <span class="language">{{language}}</span>
+              <icon name="arrow" class="down-icon"/>
             </div>
             <div class="select-triangle"></div>
             <div class="select-list">
@@ -20,7 +31,7 @@
                 class="select-language-item"
                 v-for="item in languageList"
                 :key="item.id"
-                @click="getSelectVal(item.lang)"
+                @click="getSelectVal(item)"
               >
                 <img :src="item.flag" alt class="flag-icon" />
                 <span class="lang-text">{{item.lang}}</span>
@@ -28,104 +39,88 @@
             </div>
           </div>
         </div>
+        <!-- <div class="divide login-divide">|</div> -->
+        <!-- <a href="/login" class="site-text login-btn">{{$t("login.login")}}</a> -->
       </div>
     </div>
   </div>
 </template>
 <script>
+import { mapState, mapMutations, mapGetters } from 'vuex';
+import { backtop } from '@/utils/index.js';
+import QRCode from "qrcode";
+import '@/icons/arrow';
+import "@/icons/qrcode";
 export default {
   name: "",
-  components: {},
+  components: { QRCode },
   data() {
     return {
       logo: require("./header/images/logo_icon_20200525.png"),
-      flagIcon: require("../../assets/imgs/flag_icon_20200526.png"),
-      defaultLang: "简体中文",
-      languageList: [
-        {
-          id: 1,
-          lang: "简体中文",
-          flag: require("../../assets/imgs/flag_icon_20200526.png"),
-          value: "zh-cn"
-        },
-        // {
-        //   id: 2,
-        //   lang: "繁体中文",
-        //   flag: require("../../assets/imgs/flag_icon_20200526.png"),
-        //   value: "zh-cn"
-        // },
-        // {
-        //   id: 3,
-        //   lang: "英语",
-        //   flag: require("../../assets/imgs/flag_icon_20200526.png"),
-        //   value: "zh-cn"
-        // }
-      ]
     };
   },
   computed: {
-    currentLanguage() {
-      return this.$store.state.language;
-    }
+    ...mapState(['language', 'langFlag', 'languageList', "flagList", "areaFlag", 'areaCode', 'countryCode'])
   },
   methods: {
+    ...mapMutations(['getFlags', 'changeAreaName']),
     // 选择语言
-    getSelectVal(val) {
-      this.defaultLang = val;
+    getSelectVal(item) {
+      this.$i18n.locale = item.value;
+      this.$store.commit("changeLanguage", item);
+      this.getFlags();
+      const areaItem = { 
+        flag: this.areaFlag, 
+        code: this.areaCode,
+        countryCode: this.countryCode
+      };
+      this.changeAreaName(areaItem);
     },
-    backHome() {
-      this.$router.push("/");
+    toTop() {
+      backtop();
     },
-    selectLang(value) {
-      if (value === "en") {
-        this.language = "English";
-      } else if (value === "zh-CN") {
-        this.language = "简体中文";
-      } else if (value === "vi") {
-        this.language = "越南語";
-      }
-      this.$i18n.locale = value;
-      this.$store.commit("changeLanguage", value);
-      this.languageId = value;
-      localStorage.setItem("language", value);
-    }
+    createQrocde() {
+      let qrcode = document.querySelector("#download");
+      QRCode.toCanvas(qrcode, "https://m.wikipay.net/download", {
+        width: 110,
+        height: 110,
+      });
+    },
+  },
+  mounted() {
+    this.createQrocde();
   },
   created() {
-    let language = ["zh-CN", "en", "vi"];
-    let JsSrc = (navigator.language || navigator.browserLanguage).toLowerCase();
-    // JsSrc = JsSrc == "zh-cn" ? "zh" : JsSrc;
+    // let JsSrc = (navigator.language || navigator.browserLanguage).toLowerCase();
+    // console.log(JsSrc)
+    // // JsSrc = JsSrc == "zh-cn" ? "zh" : JsSrc;
 
-    // 如何导航到这个页面的（ 1、通过刷新或location.reload方法显示的）
-    if (window.performance.navigation.type != 1) {
-      if (language.indexOf(JsSrc) > -1) {
-        this.$store.commit("changeLanguage", JsSrc);
-      } else {
-        // 默认设置中文
-        this.$store.commit("changeLanguage", "zh-CN");
-      }
-    }
-    window.addEventListener("setLanguage", () => {
-      document.title = this.$t("title");
-    });
-    this.pathName = this.$route.name;
-    if (localStorage.getItem("language")) {
-      this.language = this.$i18n.locale = this.$store.getters.getLanguage;
-    } else {
-      this.language = this.$i18n.locale = "zh-CN";
-    }
-    this.languageId = this.language;
-    if (this.language === "en") {
-      this.language = "English";
-    } else if (this.language === "zh-CN") {
-      this.language = "简体中文";
-    } else if (this.language === "vi") {
-      this.language = "越南語";
-    }
-  }
+    // // 如何导航到这个页面的（ 1、通过刷新或location.reload方法显示的）
+    // if (window.performance.navigation.type != 1) {
+    //   if (this.languageList.indexOf(JsSrc) > -1) {
+    //     this.$store.commit("changeLanguage", JsSrc);
+    //   } else {
+    //     // 默认设置中文
+    //     this.$store.commit("changeLanguage", "zh-CN");
+    //   }
+    // }
+
+    // window.addEventListener("changeLanguage", () => {
+    //   document.title = this.$t("title");
+    // });
+
+    // if (localStorage.getItem("language")) {
+    //   this.language = this.$i18n.locale = this.langAbbr;
+    // } else {
+    //   this.language = this.$i18n.locale = "zh-CN";
+    // }
+
+  },
 };
 </script>
 
 <style lang="scss" scoped>
+$common-width: 1200px;
 @mixin select-widget {
   position: relative;
   z-index: 1;
@@ -182,6 +177,8 @@ export default {
 
   .select-val {
     @include select-val();
+    // width: 175px;
+    text-align: center;
   }
 
   .select-triangle {
@@ -192,13 +189,18 @@ export default {
     @include select-list();
   }
 }
+
 .header {
-  background: #040e2a;
+  background: rgba(4,14,42, 1);
+  transition: all 0.5s;
+  font-size: 14px;
+  &:hover{
+    background: rgba(4,14,42, 1);
+  }
   .content {
-    min-width: 1200px;
-    width: 1200px;
+    width: $common-width;
     margin: 0 auto;
-    padding: 10px 0;
+    // padding: 10px 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -211,30 +213,40 @@ export default {
       opacity: 1;
     }
   }
+  
   .site-text {
     display: inline-block;
     cursor: pointer;
     color: #fff;
     text-decoration: none;
-    margin-right: 24px;
+    padding: 15px 24px;
     font-size: 14px;
     opacity: 0.9;
     &:hover {
       opacity: 1;
     }
   }
+  .login-btn{
+    display: none;
+    background: #3674D7;
+    margin-left: 24px;
+  }
   .divide {
     display: inline-block;
+    color: #515a6e;
+    &.login-divide{
+      display: none;
+    }
   }
 
   .language-tips {
     display: inline-block;
     .select-widget {
-      width: 162px;
+      // width: 162px;
       @include select-widget();
 
       .select-val {
-        padding: 0 24px;
+        padding: 0 0 0 24px;
         color: #fff;
         @include select-val();
         .flag-icon {
@@ -245,7 +257,8 @@ export default {
         }
         .language {
           display: inline-block;
-          width: 60px;
+          // width: 76px;
+          text-align: center;
           white-space: nowrap;
           text-overflow: ellipsis;
           opacity: 0.9;
@@ -260,8 +273,7 @@ export default {
           width: 8px;
           height: 4px;
           margin-left: 8px;
-          mask-image: url("../../assets/login/arrow_20200717.svg");
-          background-color: #fff;
+          fill: currentColor;
         }
       }
 
@@ -274,7 +286,7 @@ export default {
       .select-list {
         @include select-list($w: 158px);
         top: 30px;
-        height: 160px;
+        height: 150px;
       }
     }
     .select-language-item {
@@ -301,6 +313,54 @@ export default {
         margin-left: 10px;
       }
     }
+  }
+
+  .qrcode-box {
+    display: inline-block;
+    position: relative;
+    &:hover {
+      .qrcode {
+        visibility: visible;
+        opacity: 1;
+        transform: scaleY(1);
+      }
+    }
+
+    .code-icon {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      fill: #fff;
+      vertical-align: middle;
+      cursor: pointer;
+    }
+
+    .qrcode {
+      position: absolute;
+      top: 32px;
+      left: -43px;
+      width: 106px;
+      height: 106px;
+      border-radius: 2px;
+      background: #fff;
+      transition: all 0.2s ease-in;
+      transform: scaleY(0);
+      transform-origin: center top;
+      opacity: 0;
+      visibility: hidden;
+      overflow: hidden;
+
+      .inner-qrcode {
+        background: #d8d8d8;
+        margin-top: -2px;
+        max-width: 100%;
+      }
+    }
+  }
+}
+@media screen and (max-width: 1200px) {
+  .header .content {
+    width: 992px;
   }
 }
 </style>

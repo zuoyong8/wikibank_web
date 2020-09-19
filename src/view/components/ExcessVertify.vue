@@ -1,7 +1,7 @@
 <template>
   <div v-if="isExcess">
     <div class="row" :style="{marginTop: '40px'}">
-      <div class="key">手机验证码</div>
+      <div class="key">{{$t('personCenter.telVertifyCode')}}</div>
       <div class="val">
         <div>
           <input
@@ -9,18 +9,24 @@
             class="enter-input"
             v-model="phoneVertifyCode"
             :phone="phone"
-            placeholder="请输入手机验证码"
+            :placeholder="$t('customError.telVertifyCodeTips')"
             @change="enterCode"
             :style="{width: '290px', marginRight:'40px'}"
           />
-          <span class="get-code" @click="sendVertifyCode">{{countText}}</span>
+          <span class="get-code" @click="sendVertifyCode">
+            <span v-if="status === 1">{{$t('customError.sendVertifyCode')}}</span>
+            <span v-else-if="status === 2">{{countText}}</span>
+            <span v-else-if="status === 3">{{$t('customError.againSend')}}</span>  
+          </span>
         </div>
       </div>
     </div>
     <div class="row" :style="{marginTop: '0'}">
       <div class="key"></div>
       <div class="val">
-        <div class="tips">{{tips}}</div>
+        <div class="tips">
+          <img :src="tipsIcon" alt="" class="tips-icon"> 
+          <span class="tips-text">{{tips}}</span></div>
       </div>
     </div>
   </div>
@@ -34,10 +40,12 @@ export default {
   components: {},
   data() {
     return {
+      status: 1,
       isCalc: false,
-      countText: "获取",
+      countText: "",
       count: 0,
-      phoneVertifyCode: this.value
+      phoneVertifyCode: this.value,
+      tipsIcon: require("../../assets/login/tips_icon_20200730.png")
     };
   },
   watch: {
@@ -63,10 +71,10 @@ export default {
       let vert = this.phone.trim();
 
       if (!vert) {
-        return this.$Message.error("请输入手机号！");
+        return this.$Message.error(this.$t('customError.telTips'));
       }
       if (!/^1[\d]{10}$/.test(vert)) {
-        return this.$Message.error("请输入正确的手机号");
+        return this.$Message.error(this.$t('customError.telRuleTips'));
       }
 
       if (this.isCalc) return;
@@ -82,17 +90,16 @@ export default {
         device: 1
       };
 
-      this.$Spin.show();
       const res = await axios.sendVerifyCode(telParams);
-      this.$Spin.hide();
 
       if (res.code === 0) {
         const { success } = res.data;
         if (success) {
-          this.$Message.info("发送成功！");
+          this.$Message.success(this.$t('customError.sendSuccess'));
           let timer = setInterval(() => {
+            this.status = 2;
             if (this.count <= 0) {
-              this.countText = "获取";
+              this.status = 3;
               this.isCalc = false;
               clearInterval(timer);
               return;
@@ -102,7 +109,7 @@ export default {
           }, 1000);
         } else {
           this.isCalc = false;
-          this.$Message.error("发送失败！");
+          this.$Message.error(this.$t('customError.sendFail'));
         }
       } else {
         this.isCalc = false;
@@ -133,6 +140,34 @@ export default {
       border: 1px solid #e7c560;
       background: #ffffb8;
       margin-top: 8px;
+      position: relative;
+      .tips-icon {
+        width: 16px;
+        height: 16px;
+        margin-right: 8px;
+      }
+      .tips-text {
+        vertical-align: middle;
+      }
+      &::before {
+        position: absolute;
+        content: "";
+        z-index: 1;
+        top: -12px;
+        left: 100px;
+        border: 6px solid #ffffb8;
+        border-color: transparent;
+        border-bottom-color: #ffffb8;
+      }
+      &::after {
+        position: absolute;
+        content: "";
+        top: -13px;
+        left: 100px;
+        border: 6px solid #e7c560;
+        border-color: transparent;
+        border-bottom-color: #e7c560;
+      }
     }
     .get-code {
       cursor: pointer;

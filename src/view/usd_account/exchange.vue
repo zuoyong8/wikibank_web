@@ -2,33 +2,33 @@
   <div class="account">
     <div class="title">
       <img :src="depositIcon" alt class="icon" />
-      <span class="text">兑换</span>
+      <span class="text">{{$t('home.exchange')}}</span>
     </div>
     <div class="content">
       <div v-if="stepNum === 1">
         <div class="row">
-          <div class="key">从</div>
+          <div class="key">{{$t('account.from')}}</div>
           <div class="val">
             <div class="from">
               <input
                 type="text"
                 class="enter-input disabled"
-                v-model="formCoin"
-                placeholder="手机号或邮箱"
+                :value="$t('leftMenu.usdAccount')"
+                :placeholder="$t('login.accountPlace')"
                 :style="{paddingLeft: '42px'}"
               />
-              <img :src="fromCoinAvatar" alt="" class="from-img">
+              <img :src="fromCoinAvatar" alt class="from-img" />
             </div>
           </div>
         </div>
         <div class="row" :style="{marginTop: '0'}">
           <div class="key"></div>
           <div class="val">
-            <div class="input-tips">可兑换 {{getWallet.usdAvail}} USD</div>
+            <div class="input-tips">{{$t('home.availAsset')}} ${{getWallet.usdAvail}} (USD)</div>
           </div>
         </div>
-        <div class="row">
-          <div class="key">到</div>
+        <div class="row" style="margin-top: 18px">
+          <div class="key">{{$t('account.to')}}</div>
           <div class="val">
             <div class="select-type">
               <SelectDown :isShow="isShowFromSelect" :list="moneyList" @selectList="checkFromCoin">
@@ -36,21 +36,22 @@
                   <div class="coin-title" @click="selectFromCoin">
                     <div>
                       <img :src="toCoinAvatar" alt class="coin-avatar" />
-                      <input type="text" v-model="toCoin" placeholder="0.0000" class="coin-input" />
+                      <input type="text" :value="toCoin + ' ' + $t('home.account')" placeholder="0.0000" class="coin-input disabled" />
                     </div>
-                    <img :src="bottomArrow" alt class="arrow" />
+                    <img :src="bottomArrow" alt :class="['arrow', isShowFromSelect ? 'active':'']" />
                   </div>
                 </template>
               </SelectDown>
-             </div>
+            </div>
           </div>
         </div>
-        <div class="row" :style="{marginTop: '40px'}">
-          <div class="key">数量</div>
+        <div class="row" >
+          <div class="key">{{$t('account.amount')}}</div>
           <div class="val">
             <div>
               <div class="transfer-box">
-                <img :src="fromCoinAvatar" alt="" class="from-img">
+                <!-- <img :src="fromCoinAvatar" alt class="from-img" /> -->
+                <span class="coin-symbol">$</span>
                 <input
                   type="text"
                   class="enter-input"
@@ -62,7 +63,7 @@
                 <div class="all-money">
                   USD
                   <span class="split"></span>
-                  <span class="total" @click="transferAll">全部</span>
+                  <span class="total" @click="transferAll">{{$t('home.all')}}</span>
                 </div>
               </div>
             </div>
@@ -73,28 +74,29 @@
           <div class="val">
             <div class="tips-box">
               <div class="input-tips">{{calcCoin}} {{toCoin}}</div>
-              <div class="coin-rate">(1 USD = {{price}} {{toCoin}})</div>
+              <div class="coin-rate">$1 (USD) = {{price}} {{toCoin}}</div>
             </div>
           </div>
         </div>
         <div class="row" :style="{marginTop: '0'}">
           <div class="key"></div>
           <div class="val">
-            <div class="confirm" @click="next">确认</div>
+            <div class="confirm" @click="next">{{$t('account.confirm')}}</div>
           </div>
         </div>
       </div>
 
       <div v-if="stepNum === 2">
         <div class="row">
-          <div class="key">支付密码</div>
+          <div class="key">{{$t('account.payPwd')}}</div>
           <div class="val">
             <div>
               <input
+                maxlength="6"
                 type="password"
                 class="enter-input"
                 v-model="payPassword"
-                placeholder="请输入支付密码"
+                :placeholder="$t('customError.payPwd')"
               />
             </div>
           </div>
@@ -102,30 +104,31 @@
         <div class="row" :style="{marginTop: '0'}">
           <div class="key"></div>
           <div class="val">
-            <div class="confirm" @click="exchange">确认</div>
+            <div class="confirm" @click="exchange">{{$t('account.confirm')}}</div>
           </div>
         </div>
       </div>
       <div class="tips">
-        <p>温馨提示</p>
-        <p>• 目前仅支持（USDT/USD、BTC/USD、ETH/USD）相互兑换。</p>
-        <p>• 兑换后的资产将自动转入相对应的账户里。</p>
-        <p>• 请务必确认电脑及浏览器安全，防止信息被篡改或泄露。</p>
+        <p>{{$t("warmPrompt.warmTips")}}</p>
+        <p>• {{$t("warmPrompt.supportExchange")}}</p>
+        <p>• {{$t("warmPrompt.enterAccount")}}</p>
+        <p>• {{$t("warmPrompt.confirmSafe")}}</p>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import axios from "../../api/request";
-import { saveDecimal, isNumber } from "../../filters.js";
+import axios from "@/api/request";
+import { saveDecimal, isNumber, div } from "@/filters.js";
 import { mapState, mapGetters } from "vuex";
-import SelectDown from "../components/SelectDown";
+import SelectDown from "@/view/components/SelectDown";
 import { mapActions } from "vuex";
+import '@/icons/usd';
 export default {
   name: "deposit",
   components: {
-    SelectDown
+    SelectDown,
   },
   data() {
     return {
@@ -134,40 +137,41 @@ export default {
       number: "",
       price: 1,
       usd: 1,
-      decimal: 0, // 保留的小数位数 
+      decimal: 0, // 保留的小数位数
       stepNum: 1,
       payPassword: "", // 支付密码
       isShowFromSelect: false,
-      fromCoinAvatar: require("../../assets/person/usd_20200628.png"),
+      fromCoinAvatar: require("../../assets/login/usd_icon_20200821.png"),
       toCoinAvatar: require("../../assets/person/btc_icon_20200624.png"),
       bottomArrow: require("../../assets/person/bottom_icon_20200628.png"),
-      depositIcon: require("../../assets/account/exchange_icon_20200731.png")
+      depositIcon: require("../../assets/account/exchange_icon_20200731.png"),
     };
   },
   computed: {
     ...mapState(["rate"]),
     ...mapGetters(["getWallet", "getAccountList"]),
+    // toFixed 1.将科学技数法转化为数字 2. 具有四舍五入的功能，故多保存一位数
     calcCoin() {
-      return saveDecimal(+this.number / this.usd, this.decimal);
+      return saveDecimal(div((+this.number), this.usd).toFixed(9), this.decimal);
     },
     moneyList() {
       return this.getAccountList
-        .filter(item => item.coinName !== "USD")
-        .map(item => {
+        .filter((item) => item.coinName !== "USD")
+        .map((item) => {
           return {
             avatar: item.coinAvatar,
             name: item.coinName,
             count: item.available,
-            type: item.coinName
+            type: item.coinName,
           };
         });
-    }
+    },
   },
   mounted() {
     this.getPrice();
   },
   methods: {
-    ...mapActions(['fetchWallet']),
+    ...mapActions(["fetchWallet"]),
     // 显示/隐藏 弹框
     selectFromCoin() {
       if (this.isShowFromSelect) {
@@ -189,57 +193,63 @@ export default {
       this.getPrice();
     },
     async getPrice() {
-      
       const params = {
         coin: this.toCoin,
         type: 1,
-        side: "buy"
-      }
-      if(this.toCoin === "ETH") {
-        this.decimal = 5
+        side: "buy",
+      };
+      if (this.toCoin === "ETH") {
+        this.decimal = 5;
       } else if (this.toCoin === "BTC") {
-        this.decimal = 8
-      } else if(this.toCoin === "USDT") {
-        this.decimal = 4
+        this.decimal = 8;
+      } else if (this.toCoin === "USDT") {
+        this.decimal = 4;
       }
       const res = await axios.convertPrice(params);
 
-      if(res.code === 0) {
+      if (res.code === 0) {
         const { usd } = res.data;
         this.usd = usd;
-        this.price = saveDecimal(1/usd, this.decimal);
+        this.price = saveDecimal(1 / usd, this.decimal);
       } else {
         this.$Message.error(res.msg);
       }
     },
     // 金额明细
     getMoney() {
-      let money = isNumber(this.number) ? this.number: 0;
+      let money = isNumber(this.number) ? this.number : "";
 
-      if(+this.number > +this.getWallet.usdAvail) {
+      if (!isNumber(money)) {
+        return (this.number = "");
+      }
+
+      if (+this.number > +this.getWallet.usdAvail) {
         this.number = this.getWallet.usdAvail;
       } else {
         this.number = saveDecimal(money, 2);
       }
     },
-    // 转账所有
+    // 兑换所有
     transferAll() {
       this.number = this.getWallet.usdAvail;
     },
     next() {
-      if(!+this.number) return this.$Message.error("请输入数量！");
+      if (!+this.number)
+        return this.$Message.error(this.$t("customError.amountTips"));
       this.stepNum++;
     },
     async exchange() {
       const paw = this.payPassword;
-      if(!(paw.trim())) return this.$Message.error("请输入支付密码！");
-      if(!/^\d{6}$/.test(paw)) return this.$Message.error("密码格式不正确！");
+      if (!paw.trim())
+        return this.$Message.error(this.$t("customError.payPwd"));
+      if (!/^\d{6}$/.test(paw))
+        return this.$Message.error(this.$t("customError.pwdRuleTips"));
 
       const params = {
         bidCoin: this.formCoin,
         askCoin: this.toCoin,
         amount: +this.number,
-        payPwd: paw
+        payPwd: paw,
       };
 
       const res = await axios.exchange(params);
@@ -247,17 +257,22 @@ export default {
       if (res.code === 0) {
         const { success } = res.data;
         if (success) {
-          this.$Message.success("兑换成功！");
+          this.$Message.success(this.$t("customError.exchangeSuccess"));
           this.fetchWallet();
-          this.$router.push({path: '/console/usd'});
+          setTimeout( () => {
+             this.$router.push({
+              path: "/usd",
+              query: { id: 3, type: 5 },
+            });
+          },2000)
         } else {
-          this.$Message.error("兑换失败！");
+          this.$Message.error(this.$t("customError.exchangeFail"));
         }
       } else {
         this.$Message.error(res.msg);
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -303,6 +318,7 @@ export default {
   .coin-avatar {
     width: 20px;
     height: 20px;
+    border-radius: 2px;
   }
   .enter-input {
     vertical-align: middle;
@@ -350,18 +366,18 @@ export default {
     .row {
       display: flex;
       align-items: center;
-      margin-top: 18px;
+      margin-top: 24px;
       &:first-child {
         margin-top: 0;
       }
       .key {
         color: #666;
         font-size: 14px;
-        width: 130px;
+        width: 90px;
       }
       .val {
         width: 360px;
-        
+
         .tips-box {
           display: flex;
           justify-content: space-between;
@@ -373,31 +389,43 @@ export default {
           border-radius: 2px;
           outline: none;
           &:focus {
-            border: 1px solid #3674D7;
+            border: 1px solid #3674d7;
           }
           &::placeholder {
             color: #ccc;
           }
         }
-        
+
         .coin-rate {
           margin-top: 6px;
           color: #4eb091;
-          font-size: 14px;
+          font-size: 12px;
+          background: #f4faf8;
+          padding: 0 4px;
+          border-radius: 2px;
         }
         .input-tips {
           font-size: 12px;
           color: #666;
           margin-top: 6px;
           text-align: right;
+          line-height: 12px;
         }
 
         .transfer-box {
           position: relative;
-          .from-img{
+          .from-img {
             position: absolute;
             top: 11px;
             left: 13px;
+            width: 20px;
+            height: 20px;
+            border-radius: 2px;
+          }
+          .coin-symbol {
+            position: absolute;
+            top: 11px;
+            left: 18px;
             width: 20px;
             height: 20px;
           }
@@ -430,8 +458,9 @@ export default {
             left: 13px;
             width: 20px;
             height: 20px;
+            border-radius: 2px;
           }
-        }  
+        }
         .confirm {
           margin-top: 40px;
           display: inline-block;
@@ -458,12 +487,18 @@ export default {
           .arrow {
             width: 13px;
             height: 8px;
+            transition: all .2s ease;
+            transform: rotate(0);
+          }
+          .active {
+            transform: rotate(180deg);
           }
         }
+        
       }
     }
     .tips {
-      margin-left: 129px;
+      margin-left: 90px;
       margin-top: 39px;
       color: #999;
       font-size: 12px;
@@ -475,6 +510,5 @@ export default {
     width: 360px;
     @include coin-list;
   }
- 
 }
 </style>

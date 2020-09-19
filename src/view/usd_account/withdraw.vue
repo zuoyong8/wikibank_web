@@ -2,20 +2,12 @@
   <div class="account">
     <div class="title">
       <img :src="depositIcon" alt class="icon" />
-      <span class="text">
-        提现
-        <span
-          class="rule"
-          v-if="coinIndex !== -1 && chainIndex !== -1"
-        >(1 USD = {{price}} {{checkCoin}} )</span>
-      </span>
+      <span class="text">{{$t('home.withdraw')}}</span>
     </div>
-    <div
-      class="warn"
-    >您的提币操作一旦完成，对应的资产所有权将由您变更为目标地址所对应的账户所有人享有，请您务必在提币操作前，仔细核对提币地址信息，确保提币属于自愿行为，并确认不涉及任何传销、非法集资、诈骗等违法情形，谨防上当受骗，避免造成不必要的财产损失。</div>
+    <div class="warn">{{$t('account.withdrawTips')}}</div>
     <div class="content">
       <div class="row">
-        <div class="key">提现方式</div>
+        <div class="key">{{$t('account.withdrawWay')}}</div>
         <div class="val">
           <div class="coin-list">
             <div
@@ -34,8 +26,8 @@
           </div>
         </div>
       </div>
-      <div class="row" :style="{marginTop: '47px'}" v-show="isShowChain" v-if="coinIndex !== -1">
-        <div class="key">链名称</div>
+      <div class="row" :style="{marginTop: '24px'}" v-show="isShowChain" v-if="coinIndex !== -1">
+        <div class="key">{{$t('account.chainNmme')}}</div>
         <div class="val">
           <div>
             <div class="chain-list">
@@ -52,23 +44,30 @@
       </div>
 
       <div v-if="isShowForm">
-        <div class="row" :style="{marginTop: '47px'}">
-          <div class="key">提现地址</div>
+        <div class="row" :style="{marginTop: '24px'}">
+          <div class="key">{{$t('account.withdrawAddr')}}</div>
           <div class="val">
             <input
               type="text"
               class="enter-input"
-              v-model="form.withdrawAddress"
-              placeholder="粘贴地址或从地址簿选择"
+              v-model.trim="withdrawAddress"
+              :placeholder="$t('customError.pasteAddress')"
+              @blur="vertifyAddr"
             />
             <span class="select-address" @click="selectAddress">
-              <span class="icon-uniE900"></span>
-              <span class="address">地址簿</span>
+              <img :src="addressIcon" alt="" class="address-icon">
+              <span class="address">{{$t("personCenter.addressBook")}}</span>
             </span>
           </div>
         </div>
-        <div class="row" :style="{marginTop: '47px'}">
-          <div class="key">数量</div>
+        <div class="row">
+          <div class="key"></div>
+          <div class="val">
+            <div class="addr-tips">{{addressTips}}</div>
+          </div>
+        </div>
+        <div class="row" :style="{marginTop: '24px'}">
+          <div class="key">{{$t("account.amount")}}</div>
           <div class="val">
             <div class="transfer-box">
               <input
@@ -81,7 +80,7 @@
               <div class="all-money">
                 {{checkCoin}}
                 <span class="split"></span>
-                <span class="total" @click="transferAll">全部</span>
+                <span class="total" @click="transferAll">{{$t("home.all")}}</span>
               </div>
             </div>
           </div>
@@ -89,22 +88,36 @@
         <div class="row" :style="{marginTop: '0'}">
           <div class="key"></div>
           <div class="val">
-            <div class="input-tips">{{calcCoin}} USD</div>
+            <div class="input-tips">
+              <span>${{calcCoin}} (USD)</span>
+              <span class="rule">$1 (USD) = {{price}} {{checkCoin}}</span>
+            </div>
           </div>
         </div>
         <div class="row" :style="{marginTop: '20px'}">
-          <div class="key">手续费</div>
+          <div class="key">{{$t("home.fees")}}</div>
           <div class="val">
             <div class="transfer-box">
-              <input type="text" class="enter-input disabled" readonly v-model="form.fees" placeholder="手续费" />
+              <input
+                type="text"
+                class="enter-input disabled"
+                readonly
+                v-model="form.fees"
+                :placeholder="$t('home.fees')"
+              />
               <div class="all-money">{{checkCoin}}</div>
             </div>
           </div>
         </div>
-        <div class="row" :style="{marginTop: '47px'}">
-          <div class="key">提现备注</div>
+        <div class="row" :style="{marginTop: '24px'}">
+          <div class="key">{{$t("home.withdraw")}}{{$t("home.marks")}}</div>
           <div class="val">
-            <input type="text" class="enter-input" v-model="form.comment" placeholder="仅在“账户明细”中显示" />
+            <input
+              type="text"
+              class="enter-input"
+              v-model="form.comment"
+              :placeholder="$t('placehode.accountDetailShow')"
+            />
           </div>
         </div>
         <ExcessVertify
@@ -117,89 +130,73 @@
         <div class="row" :style="{marginTop: '0'}">
           <div class="key"></div>
           <div class="val">
-            <div class="confirm" @click="payCheck">确认</div>
+            <div class="confirm" @click="payCheck">{{$t("account.confirm")}}</div>
           </div>
         </div>
         <div class="tips" v-if="checkCoin === 'USDT' && checkChain === 'ERC20'">
-          温馨提示
-          <p>• 最小提币数量为：2 USDT (ERC20)。</p>
-          <p>• 为保障资金安全，当您账户安全策略变更、密码修改、我们会对提币进行人工审核，请耐心等待工作人员电话或邮件联系。</p>
+          {{$t("warmPrompt.warmTips")}}
+          <!-- <p>• {{$t("warmPrompt.minWithdraw", {minCoin: '2 USDT (ERC20)'})}}</p> -->
+          <p>• {{$t("warmPrompt.withdrawSafe")}}</p>
         </div>
         <div class="tips" v-if="checkCoin === 'USDT' && checkChain === 'OMNI'">
-          温馨提示
-          <p>• 最小提币数量为：10 USDT (OMNI)。</p>
-          <p>• 为保障资金安全，当您账户安全策略变更、密码修改、我们会对提币进行人工审核，请耐心等待工作人员电话或邮件联系。</p>
+          {{$t("warmPrompt.warmTips")}}
+          <!-- <p>• {{$t("warmPrompt.minWithdraw", {minCoin: '10 USDT (OMNI)'})}}</p> -->
+          <p>• {{$t("warmPrompt.withdrawSafe")}}</p>
         </div>
         <div class="tips" v-if="checkCoin === 'BTC'">
-          温馨提示
-          <p>• 最小提币数量为：0.001 BTC。</p>
-          <p>• 为保障资金安全，当您账户安全策略变更、密码修改、我们会对提币进行人工审核，请耐心等待工作人员电话或邮件联系。</p>
+          {{$t("warmPrompt.warmTips")}}
+          <!-- <p>• {{$t("warmPrompt.minWithdraw", {minCoin: '0.001 BTC'})}}</p> -->
+          <p>• {{$t("warmPrompt.withdrawSafe")}}</p>
         </div>
         <div class="tips" v-if="checkCoin === 'ETH'">
-          温馨提示
-          <p>• 最小提币数量为：0.05ETH。</p>
-          <p>• 请不要直接提币到ICO的众筹地址，这会导致您无法收取众筹到的数字资产。</p>
-          <p>• 提币到合约地址可能会发生合约执行失败，将导致转账失败，资产将退回。我们会人工处理退回到原账户，处理时间较长，请您谅解。</p>
-          <p>• 网络转账费用是不固定的，取决于转账时合约执行需要消耗的算力。当前我们为提币支付的Gas Limit为90000，用于执行转账或合约执行。如果此次交易消耗超过90000 gas，将导致转账失败，资产将退回。我们会人工处理退回到原账户，请您谅解。</p>
-          <p>• 为保障资金安全，当您账户安全策略变更、密码修改、我们会对提币进行人工审核，请耐心等待工作人员电话或邮件联系。</p>
+          {{$t("warmPrompt.warmTips")}}
+          <!-- <p>• {{$t("warmPrompt.minWithdraw", {minCoin: '0.05ETH'})}}</p> -->
+          <p>• {{$t("warmPrompt.digitAsset")}}</p>
+          <p>• {{$t("warmPrompt.backAccount")}}</p>
+          <p>• {{$t("warmPrompt.internetWithdraw")}}</p>
+          <p>• {{$t("warmPrompt.withdrawSafe")}}</p>
         </div>
       </div>
 
       <div class="row" v-if="coinIndex === -1">
         <div class="key"></div>
         <div class="val">
-          <div class="deposit-tips">请选择您的提现方式...</div>
+          <div class="deposit-tips">{{$t('account.withdrawWayTips')}}...</div>
         </div>
       </div>
       <div class="row" v-if="coinIndex === 1 && chainIndex === -1">
         <div class="key"></div>
         <div class="val">
-          <div class="deposit-tips">请选择链名称...</div>
+          <div class="deposit-tips">{{$t('account.chainTips')}}...</div>
         </div>
       </div>
     </div>
 
-    <!--提示地址簿-->
-    <ModalMask
-      :isShowModal="isShowAddressModal"
-      :isHideMask="isHideAddressMask"
-      @closeModal="closeAddressModal"
-      @openModal="openAddressModal"
+    <!-- 地址簿 -->
+    <AddressList
+      :isHideAddressMask="isHideAddressMask"
+      :isShowAddressModal="isShowAddressModal"
+      :addressList="addressList"
+      :index="index"
+      @getRadio="getRadio"
+      @openAddressModal="openAddressModal"
+      @closeAddressModal="closeAddressModal"
     >
-      <template v-slot:body>
-        <div class="modal-head">
-          <span class="modal-title">提现地址薄</span>
-          <span class="icon--copy4 modal-close" @click="openAddressModal(false)"></span>
-        </div>
-        <div class="modal-body">
-          <div class="address-list">
-            <div
-              class="address-item"
-              v-for="item in addressList"
-              :key="item.id"
-              @click="getRadio(item.id, item.address)"
-            >
-              <img :src="item.url" alt class="withdraw-pic" />
-              <span class="withdraw-type">{{item.comment}}</span>
-              <span class="withdraw-code">({{item.address}})</span>
-              <span class="radio" :class="index === item.id ? 'active':''"></span>
-            </div>
-          </div>
-        </div>
-      </template>
-    </ModalMask>
+    </AddressList>
+
     <CreateQrcode
       :isShowModal="isShowWithdrawModal"
       :isHideMask="isHideWithdrawMask"
-      :title="createQrcodeTitle"
+      :title="$t('home.withdraw')+$t('home.detail')"
       :qrcodeCode="qrcodeStatus"
+      :transId="transId"
       @openWithdrawModal="openWithdrawModal"
       @closeWitdrawModal="closeWitdrawModal"
     >
       <template v-slot:info>
         <div class="detail-info">
           <div class="row">
-            <div class="key">提现数量</div>
+            <div class="key">{{$t('home.withdrawNum')}}</div>
             <div class="val">
               <div>
                 <span class="number">{{form.number}}</span>
@@ -208,7 +205,7 @@
             </div>
           </div>
           <div class="row">
-            <div class="key">手续费</div>
+            <div class="key">{{$t('home.fees')}}</div>
             <div class="val">
               <div>
                 <span class="number">{{form.fees}}</span>
@@ -217,8 +214,8 @@
             </div>
           </div>
           <div class="row">
-            <div class="key">提现地址</div>
-            <div class="val">{{form.withdrawAddress}}</div>
+            <div class="key">{{$t('account.withdrawAddr')}}</div>
+            <div class="val withdraw-address">{{withdrawAddress}}</div>
           </div>
         </div>
       </template>
@@ -230,7 +227,7 @@
       :isShowCancel="isShowCancel"
       :fromIcon="fromIcon"
       :toIcon="toIcon"
-      :fromText="fromText"
+      :fromText="$t('home.usdAbbr')"
       :toText="toText"
       :title="title"
       @closeDepositModal="closeDepositModal"
@@ -240,7 +237,7 @@
     >
       <template v-slot:desc>
         <div class="model-tips">
-          <p>仅支持 {{coin}} 地址, 一旦转错资产将不可找回</p>
+          <p>{{$t('account.withdrawAddrTips', {coin: coin})}}</p>
         </div>
       </template>
     </DepositModal>
@@ -257,25 +254,29 @@ import ModalMask from "../components/ModalMask";
 import CreateQrcode from "../components/CreateQrcode";
 import { fetchAddressList, handleWithdraw } from "../../api/request";
 import { saveDecimal, isNumber } from "../../filters";
-import QRCode from "qrcode";
+import AddressList from "@/view/components/AddressList";
+import { vertify } from "@/mixins/vertifyAddr.js"
 export default {
   name: "deposit",
   components: {
     DepositQrcode,
     ModalMask,
-    QRCode,
     CreateQrcode,
     ExcessVertify,
-    DepositModal
+    DepositModal,
+    AddressList
   },
+  mixins: [vertify],
   data() {
     return {
-      title:"提现",
+      withdrawAddress: "", // 提现地址
+      addressTips: "", // 验证地址提示
+      addressIcon: require('@/assets/account/address_icon_20200902.png'),
+      title: "withdraw",
       isShowForm: false, // 是否显示表单
       isShowDepositModal: false,
       isHideDepositMask: false,
       isShowCancel: true,
-      lastCoinType: "",
       recordCoin: [],
       fromIcon: require("../../assets/account/usd_logo_20200728.png"),
       toIcon: "",
@@ -288,7 +289,6 @@ export default {
       isShowAddressModal: false,
       isShowWithdrawModal: false,
       isHideWithdrawMask: true,
-      createQrcodeTitle: "提现详情", //
       transId: "", // 生成二维码id
       depositIcon: require("../../assets/account/withdraw_icon_20200731.png"),
       checkCoin: "", // 选中的币种
@@ -301,34 +301,34 @@ export default {
         {
           id: 1,
           coinAvatat: require("../../assets/person/usdt_icon_20200624.png"),
-          coinName: "USDT"
+          coinName: "USDT",
         },
         {
           id: 2,
           coinAvatat: require("../../assets/person/btc_icon_20200624.png"),
-          coinName: "BTC"
+          coinName: "BTC",
         },
         {
           id: 3,
           coinAvatat: require("../../assets/person/eth_icon_20200624.png"),
-          coinName: "ETH"
-        }
+          coinName: "ETH",
+        },
       ], // 添加地址簿币列表
       chainList: [
         {
           id: 1,
-          chainName: "ERC20"
+          chainName: "ERC20",
         },
         {
           id: 2,
-          chainName: "OMNI"
-        }
+          chainName: "OMNI",
+        },
       ], // chain
       form: {
         withdrawAddress: "", // 提现地址
-        number: 0.0, // 提现数量
+        number: "", // 提现数量
         fees: 0.0, // 手续费
-        comment: "" // 提现备注
+        comment: "", // 提现备注
       },
       feesDecimal: 0, // 手续费保留位数
       price: 1,
@@ -337,7 +337,7 @@ export default {
       addressList: [],
       timer: "",
       statusId: 0, // 状态id
-      qrcodeStatus: -1 // 二维码状态
+      qrcodeStatus: -1, // 二维码状态
     };
   },
   computed: {
@@ -347,8 +347,10 @@ export default {
       return saveDecimal(+this.form.number / +this.reallyPrice, 2);
     },
     total() {
-      return this.getWallet.usdAvail * this.reallyPrice - this.form.fees < 0 ? 0 : this.getWallet.usdAvail * this.reallyPrice - this.form.fees;
-    }
+      return this.getWallet.usdAvail * this.reallyPrice - this.form.fees < 0
+        ? 0
+        : this.getWallet.usdAvail * this.reallyPrice - this.form.fees;
+    },
   },
   mounted() {
     // this.selectCoin(1, "USDT");
@@ -377,7 +379,6 @@ export default {
       this.isShowDepositModal = a;
       this.isHideDepositMask = false;
     },
-
     openAddressModal(isShow) {
       this.isShowAddressModal = isShow;
       this.isHideAddressMask = true;
@@ -398,7 +399,7 @@ export default {
     // 获取数字货币列表
     async getCoinList() {
       const params = {
-        coin: this.coin
+        coin: this.coin,
       };
 
       const res = await axios.coinList(params);
@@ -409,29 +410,22 @@ export default {
         this.$Message.error(res.msg);
       }
     },
-    // 选择联系人
-    getContact(account, name, isShow, imName) {
-      //   this.form.incomeAccount = account;
-      //   this.contactName = name;
-      //   this.comment = imName;
-      this.isShowAddressModal = false;
-    },
     // 选择提现地址
     async selectAddress() {
       const params = {
         rows: 10,
-        page: 1
+        page: 1,
       };
       try {
         const res = await fetchAddressList(params);
         if (res.code === 0) {
-          this.addressList = res.data.map(item => {
+          this.addressList = res.data.map((item) => {
             return {
               id: item.id,
               url: item.icon,
               coin: item.coin,
               address: item.address,
-              comment: item.comment
+              comment: item.comment,
             };
           });
           this.isShowAddressModal = true;
@@ -445,7 +439,7 @@ export default {
     // 选中地址
     getRadio(id, address) {
       this.index = id;
-      this.form.withdrawAddress = address;
+      this.withdrawAddress = address;
 
       this.openAddressModal(false);
     },
@@ -453,11 +447,11 @@ export default {
     async withdraw() {
       const params = {
         coin: this.coin, // 提现币种
-        address: this.form.withdrawAddress, // 提现的地址
+        address: this.withdrawAddress, // 提现的地址
         amount: +this.form.number, // 提现数量
         // usd: +this.form.number, // 币美元价格
         comment: this.form.comment, // comment 备注
-        accountType: 2 // 账户类型
+        accountType: 2, // 账户类型
       };
       try {
         this.qrcodeStatus = -1;
@@ -465,12 +459,6 @@ export default {
 
         if (res.code === 0) {
           this.transId = res.data.transId;
-          const qrcode = document.querySelector("#qrcode");
-          QRCode.toCanvas(qrcode, this.transId, {
-            width: 210,
-            height: 210
-          });
-
           this.openWithdrawModal(true);
           this.qrcodeStatus = 1;
           this.timer = setInterval(this.checkTransferStatus, 5000);
@@ -484,6 +472,10 @@ export default {
     // 金额明细
     getMoney() {
       let money = isNumber(this.form.number) ? this.form.number : 0;
+
+      if (!isNumber(money)) {
+        return (this.form.number = "");
+      }
 
       if (this.form.number > this.total) {
         this.form.number = saveDecimal(this.total, this.feesDecimal);
@@ -500,7 +492,7 @@ export default {
       const params = {
         coin: this.checkCoin,
         type: 2,
-        side: "buy"
+        side: "buy",
       };
       if (this.checkCoin === "ETH") {
         this.feesDecimal = 5;
@@ -532,6 +524,7 @@ export default {
         this.checkChain = "";
         this.checkCoin = name;
         this.toText = name;
+        this.index = -1;
         if (this.coin === "BTC") {
           this.logo = require("../../assets/account/btc_logo_20200727.png");
           this.toIcon = require("../../assets/person/btc_icon_20200624.png");
@@ -554,6 +547,7 @@ export default {
       this.chainIndex = id;
       this.checkChain = name;
       this.coin = this.checkCoin + "-" + name;
+      this.index = -1;
       this.isShowModel(this.coin);
       if (this.coin === "USDT-ERC20") {
         this.logo = require("../../assets/account/usdt_erc20_20200727.png");
@@ -566,7 +560,7 @@ export default {
       this.resetForm();
     },
     isShowModel(name) {
-      if (this.recordCoin.findIndex(item => item === name) > -1) {
+      if (this.recordCoin.findIndex((item) => item === name) > -1) {
         this.getCoinList();
         this.getPrice();
       } else {
@@ -576,11 +570,12 @@ export default {
     },
     // 重置表单
     resetForm() {
+      this.withdrawAddress = "";
       this.form = {
         withdrawAddress: "", // 提现地址
-        number: 0, // 提现数量
+        number: "", // 提现数量
         fees: 0.0, // 手续费
-        comment: "" // 提现备注
+        comment: "", // 提现备注
       };
     },
     // 监测提现状态
@@ -595,9 +590,14 @@ export default {
         const { success } = res.data;
         if (success) {
           this.closeWitdrawModal(true);
-          this.$Message.success("提现成功！");
+          this.$Message.success(this.$t("customError.withdrawSuccess"));
           this.fetchWallet();
-          this.$router.push({ path: "/console/usd" });
+          setTimeout(() => {
+            this.$router.push({
+              path: "/usd",
+              query: { id: 4, type: 2 },
+            });
+          }, 2000);
         }
       } else if (res.code === 1010060) {
         // 二维码过期
@@ -607,13 +607,13 @@ export default {
     // 验证手机验证码
     async vertifyTelCode() {
       if (!this.phoneVertifyCode.trim())
-        return this.$Message.error("请填写手机验证码！");
+        return this.$Message.error(this.$t("customError.telVertifyCodeTips"));
 
       const params = {
         areaCode: this.userInfo.areaCode,
         phoneNumber: this.userInfo.phone,
         smscode: this.phoneVertifyCode,
-        device: 2
+        device: 2,
       };
 
       const res = await axios.vertifyTelCode(params);
@@ -630,17 +630,17 @@ export default {
     },
     // 风控
     async payCheck() {
-      if (!this.form.withdrawAddress) {
-        this.$Message.error("提现地址不能为空");
+      if (!this.withdrawAddress) {
+        this.$Message.error(this.$t("customError.withdrawAddressTips"));
         return;
       } else if (!+this.form.number) {
-        this.$Message.error("转账金额不能为空");
+        this.$Message.error(this.$t("customError.amountTips"));
         return;
       }
       const params = {
         payType: 2, // 2、提现 3、转账
         amount: "" + this.form.number,
-        coin: this.coin
+        coin: this.coin,
       };
       const res = await axios.limitPayCheck(params);
       if (res.code === 0) {
@@ -668,10 +668,10 @@ export default {
         return this.$Message.error(res.msg);
       }
     },
-    beforeDestory() {
+    beforeDestroy() {
       if (this.timer) clearInterval(this.timer);
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -691,25 +691,8 @@ export default {
     margin-left: 12px;
   }
 }
-.modal-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 24px 26px;
-  background: #f6f8ff;
-  width: 480px;
-  .modal-title {
-    font-size: 20px;
-    color: #333;
-  }
-  .modal-close {
-    font-size: 16px;
-    cursor: pointer;
-  }
-}
+
 .modal-body {
-  height: 335px;
-  overflow-y: scroll;
   .address-list {
     margin: 0 0 8px 7px;
     .address-item {
@@ -722,7 +705,7 @@ export default {
       .withdraw-pic {
         width: 29px;
         height: 29px;
-        border-radius: 50%;
+        // border-radius: 50%;
       }
       .withdraw-type {
         color: #333;
@@ -756,10 +739,6 @@ export default {
   background: #fff;
   .title {
     @include title;
-    .rule {
-      font-size: 14px;
-      color: #4eb091;
-    }
   }
   .model-tips {
     font-size: 14px;
@@ -773,6 +752,13 @@ export default {
     color: #333;
     font-size: 12px;
   }
+  .rule {
+    float: right;
+    color: #4eb091;
+    background: #f4faf8;
+    padding: 4px;
+    border-radius: 2px;
+  }
   .content {
     padding: 42px 64px;
 
@@ -782,25 +768,16 @@ export default {
       .key {
         color: #666;
         font-size: 14px;
-        width: 130px;
+        width: 90px;
       }
       .val {
-        .deposit-tips {
-          width: 604px;
-          color: #666;
-          font-size: 14px;
-          font-weight: 400;
-          padding: 70px 0;
-          text-align: center;
-          border: 1px dashed #bbbbbb;
-          background: #f5f6fa;
-          margin-top: 48px;
-        }
         .input-tips {
+          width: 360px;
           font-size: 12px;
           color: #666;
           margin-top: 6px;
-          text-align: right;
+          text-align: left;
+          line-height: 12px;
         }
         .enter-input {
           border: 1px solid #ccc;
@@ -809,7 +786,7 @@ export default {
           border-radius: 2px;
           outline: none;
           &:focus {
-            border: 1px solid #3674D7;
+            border: 1px solid #3674d7;
           }
           &::placeholder {
             color: #ccc;
@@ -837,6 +814,9 @@ export default {
               cursor: pointer;
             }
           }
+          .disabled {
+            background: #f7f7f7;
+          }
         }
         .select-address {
           margin-left: 18px;
@@ -844,6 +824,11 @@ export default {
           .address {
             margin-left: 7px;
             color: #3674d7;
+            vertical-align: middle;
+          }
+          .address-icon {
+            width: 20px;
+            height: 20px;
           }
         }
         .confirm {
@@ -858,73 +843,43 @@ export default {
           border-radius: 4px;
           cursor: pointer;
         }
+        .addr-tips {
+          margin-top: 5px;
+          line-height: 14px;
+        }
       }
     }
     .tips {
-      margin-left: 129px;
+      margin-left: 90px;
       margin-top: 39px;
       color: #999;
       font-size: 12px;
       line-height: 22px;
     }
   }
-  .coin-list {
-    display: flex;
-    justify-content: space-around;
-    .coin-item {
-      display: inline-block;
-      padding: 8px 10px;
-      background: #f9f7fd;
-      border-radius: 2px;
-      text-align: center;
-      cursor: pointer;
-      margin-right: 40px;
-      .coin-avatar {
-        width: 24px;
-        height: 24px;
-      }
-      .coin-name {
-        display: inline-block;
-        color: #333;
-        font-size: 16px;
-        font-weight: bold;
-        vertical-align: middle;
-        margin-left: 8px;
-      }
-      .text-active {
-        color: #3674d7;
-      }
-    }
-    .active {
-      border: 1px solid #3674d7;
-      box-shadow: 0px 0px 6px 0px rgba(13, 30, 82, 0.15);
-      background: url("../../assets/person/check_icon_20200624.png") no-repeat
-        right bottom;
-      background-size: 16px 12px;
-    }
-  }
-  .chain-list {
-    display: flex;
-    align-items: center;
-    .chain-item {
-      display: inline-block;
-      padding: 6px 12px;
-      background: #f7f6fb;
-      color: #222;
-      font-size: 16px;
-      cursor: pointer;
-      margin-right: 40px;
-      margin-left: 0;
-    }
-    .active {
-      border: 1px solid #3674d7;
-      box-shadow: 0px 0px 6px 0px rgba(13, 30, 82, 0.15);
-      background: url("../../assets/person/check_icon_20200624.png") no-repeat
-        right bottom;
-      background-size: 16px 12px;
-      color: #3674d7;
-    }
-  }
+
+  // .chain-list {
+  //   display: flex;
+  //   align-items: center;
+  //   .chain-item {
+  //     display: inline-block;
+  //     padding: 6px 12px;
+  //     background: #f7f6fb;
+  //     color: #222;
+  //     font-size: 16px;
+  //     cursor: pointer;
+  //     margin-right: 40px;
+  //     margin-left: 0;
+  //   }
+  //   .active {
+  //     border: 1px solid #3674d7;
+  //     box-shadow: 0px 0px 6px 0px rgba(13, 30, 82, 0.15);
+  //     background: url("../../assets/person/check_icon_20200624.png") no-repeat
+  //       right bottom;
+  //     background-size: 16px 12px;
+  //     color: #3674d7;
+  //   }
+  // }
   .detail-info {
     .row {
       display: flex;
@@ -933,6 +888,7 @@ export default {
       .key {
         font-size: 14px;
         color: #999;
+        text-align: left;
       }
       .val {
         font-size: 14px;
@@ -946,6 +902,11 @@ export default {
           font-size: 14px;
           color: #333;
         }
+      }
+      .withdraw-address {
+        width: 165px;
+        text-align: left;
+        overflow-wrap: break-word;
       }
     }
   }

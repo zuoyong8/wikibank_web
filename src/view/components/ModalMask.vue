@@ -2,8 +2,12 @@
 <div class="modal-component" :class="isShowModal ? 'show':''" >
     <div class="modal-mask" @click.stop="closeModal" :class="[isShowModal ? 'show':'', isHideMask ? 'hide-mask':'']"></div>
     <div class="modal-widget"  :class="[isShowModal ? 'show':'']">
-        <slot class="modal-body" name="body">
-        </slot>
+      <!-- <span class="close-btn" @click="closeModal"></span> -->
+      <slot>
+        <span class="close-btn" @click="closeModal"></span>
+      </slot>
+      <slot class="modal-body" name="body">
+      </slot>
     </div>
 </div>
 </template>
@@ -24,11 +28,12 @@ export default {
     methods: {
         // 关闭弹框
         closeModal() {
-            this.$emit("closeModal", false);
+          // this.$emit("update:isShowModal", false);
+          this.$emit("closeModal", false);
         },
         // 打开弹框
         openModal() {
-            this.$emit("openModal", true );
+          this.$emit("openModal", true );
         },
     }
 }
@@ -49,6 +54,19 @@ export default {
 }
 .modal-mask.hide-mask {
   background: rgba(255,255, 255, 0)
+}
+.close-btn{
+  position: absolute;
+  top: 24px;
+  right: 26px;
+  display: block;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  user-select: none;
+  background-image: url('../../assets/person/close_20200722.png');
+  background-size: cover;
+  z-index: 9;
 }
 .modal-component {
   visibility: hidden;
@@ -80,5 +98,6 @@ export default {
     border-radius:4px;
     transition: all .2s ease-in-out;
     opacity: 0;
+    // overflow: hidden;
 }
 </style>

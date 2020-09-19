@@ -19,17 +19,17 @@ export default {
       tabList: [
         {
           id: 1,
-          name: "充值",
+          name: "deposit",
           type: 1
         },
         {
           id: 3,
-          name: "兑换",
+          name: "exchange",
           type: 5
         },
         {
           id: 4,
-          name: "提现",
+          name: "withdraw",
           type: 2
         }
       ] // tab list

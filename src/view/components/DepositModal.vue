@@ -5,11 +5,14 @@
     @closeModal="closeDepositModal"
     @openModal="openDepositModal"
   >
+    <template>
+      <div></div>
+    </template>
     <template v-slot:body>
       <div class="deposit-widget">
         <div class="deposit-header">
           <div class="line left-line"></div>
-          <div class="title">{{title}}类型</div>
+          <div class="title">{{$t('home.'+title)}}{{$t('account.type')}}</div>
           <div class="line right-line"></div>
         </div>
         <div class="deposit-body">
@@ -31,12 +34,12 @@
             </div>
           </div>
           <slot name="desc">
-            <div class="tips">您的 USDT-ERC20 将会自动兑换成 USDT 充值到您的账户里</div>
+            <div class="tips">您的 USDT-ERC20 将会自动兑换成 USD 充值到您的账户里</div>
           </slot>
         </div>
-        <div class="deposit-footer">
-          <div class="cancel" v-if="isShowCancel" @click="back(false)">返回查看</div>
-          <div class="confirm" @click="know(false)">我已知晓</div>
+        <div class="deposit-footer" :style="{justifyContent: isShowCancel ? 'space-between':'center'}">
+          <div class="cancel" v-if="isShowCancel" @click="back(false)">{{$t('account.backLook')}}</div>
+          <div class="confirm" @click="know(false)">{{$t('account.konw')}}</div>
         </div>
       </div>
     </template>
@@ -82,14 +85,16 @@ export default {
 
 <style lang="scss" scoped>
 @mixin button {
-  padding: 6px 16px;
+  padding: 6px 40px;
   border-radius: 4px;
   font-size: 14px;
   cursor: pointer;
+  transition: all .2s ease-in;
 }
 @mixin avatar {
   width: 40px;
   height: 40px;
+  border-radius: 2px;
 }
 @mixin text {
   margin-top: 5px;
@@ -106,9 +111,12 @@ export default {
     opacity: 1;
   }
 }
+.close-btn {
+  display: none;
+}
 .deposit-widget {
   width: 416px;
-  padding: 40px 54px;
+  padding: 40px 54px 40px;
   .deposit-header {
     display: flex;
     justify-content: space-between;
@@ -175,18 +183,26 @@ export default {
   }
   .deposit-footer {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     margin-top: 64px;
     .cancel {
       @include button;
       border: 1px solid #d9d9d9;
       color: #999;
+      &:hover {
+        background: #F6F6F6;
+        box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.2);
+      }
     }
     .confirm {
       @include button;
       border: 1px solid #3674d7;
       color: #fff;
       background: #3674d7;
+      &:hover {
+        background: #175491;
+        box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.2);
+      }
     }
   }
 }

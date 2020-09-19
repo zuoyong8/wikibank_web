@@ -1,194 +1,179 @@
 
 <template>
   <div class="layout">
-    <!-- <headers></headers> -->
     <Header></Header>
-    <icon></icon>
-    <div class="content-bottom">
-      <!-- <div class="left"></div>
-      <div class="right"></div>-->
-      <div class="center">
+    <div class="content">
+      <div class="company-info">
         <div class="download">
           <h2>{{$t('login.title')}}</h2>
-          <h3>{{$t('login.subTitle')}}</h3>
-          <downloadVersion></downloadVersion>
+          <h3>{{$t('login.desc')}}</h3>
+          <DownloadVersion></DownloadVersion>
         </div>
-        <div class="login" v-show="!isPwdLogin">
+      </div>
+      <div class="login-box" :style="{height: loginHeight + 'px'}">
+        <div class="login" v-show="!isPwdLogin" ref="scannLogin">
           <div class="login-toper">
             <div class="login-topl">
-              <div class="txt">
-                账号密码登录
-                <span class="triangle-border">
-                  <span class="sequare"></span>
-                </span>
-              </div>
+              {{$t('login.accountLogin')}}
+              <span class="triangle-border">
+                <span class="sequare"></span>
+              </span>
             </div>
             <div class="login-topr" @click="switchto"></div>
-            <div class="l-s">{{$t('login.scanLogin')}}</div>
+            <div class="l-s">{{$t('login.scannLogin')}}</div>
             <div class="l-app">
-              <span class="use">请使用</span>
-              <span class="wiki">WikiPay APP</span>
-              <span class="l-app-l">扫码登录</span>
+              <!-- <span class='use'>{{$t('login.pleaseUse')}}</span> 
+              <span class='wiki'>WikiPay APP</span> 
+              <span class='l-app-l'>{{$t('login.scann')}}</span>-->
+              <span class="use">{{$t("login.loginTips")}}</span>
             </div>
-            <!-- 二维码各种状态 -->
-            <div class="code" v-if="qrcodeStatus==1010044">
-              <div :class="['code-l', isAinmate ? 'enter':'']">
-                <div class="code-le" :style="{backgroundImage:`url(${qrcodeData})`}"></div>
+
+            <div class="status-box">
+              <div class="loading-box">
+                <span class="loading qrcode-loading" v-if="loading"></span>
+                <div
+                  class="scann-status"
+                  v-else-if="qrcodeStatus !== 1010046 && qrcodeStatus !== 1010045"
+                >
+                  <div class="qrcode-img">
+                    <img :src="qrcodeData" alt class="qrcode" />
+                  </div>
+                  <div class="scann-img">
+                    <img :src="scannIcon" alt class="sweep" />
+                  </div>
+                </div>
+                <div class="success-status" v-else-if="qrcodeStatus === 1010046">
+                  <img :src="successIcon" alt class="success-icon" />
+                  <div class="success-tips">{{$t('login.scannSuccess')}}</div>
+                  <div class="scann-tips">{{$t('login.confirmLogin')}}</div>
+                </div>
+                <div class="expire-status" v-else-if="qrcodeStatus === 1010045">
+                  <div class="icon">
+                    <img :src="failIcon" alt class="fail-icon" />
+                  </div>
+                  <div class="expire-tips">{{$t('login.scannExpire')}}</div>
+                  <div class="refresh" @click="renovate">{{$t('login.refreshQrcode')}}</div>
+                </div>
               </div>
-              <div :class="['code-r', isAinmate ? 'leave':'']"></div>
             </div>
-            <div class="qrcodeStatus1 qrcodeStatus" v-else-if="qrcodeStatus==1010046">
-              <!-- <div class="icon"></div> -->
-              <img :src="successIcon" alt="" class="success-icon">
-              <div class="txt-f">扫描成功</div>
-              <div class="txt-s">请在手机端确登录</div>
-            </div>
-            <div class="qrcodeStatus2 qrcodeStatus" v-else-if="qrcodeStatus==1010045">
-              <div class="icon">
-                <!-- <span class="icon-uniE90A"></span> -->
-                <img :src="failIcon" alt="" class="fail-icon">
-              </div>
-              <div class="txt-f">二维码已失效</div>
-              <div class="txt-s" @click="renovate">点击刷新</div>
-            </div>
-            <div class="intro">WikiPay APP - 扫一扫登录</div>
+
+            <div class="intro">{{$t('login.scannTips')}}</div>
           </div>
-          <!-- <div class="login-footer">
-            <span class="lf-l">还没有手机WikiPay ?</span>
-            <span class="lf-r" @click="$router.push('/download')">下载wikipay</span>
-          </div>-->
         </div>
-        <div class="pwd-login" v-if="isPwdLogin">
-          <div class="qrcodeImg" @click="switchto"></div>
+        <div class="pwd-login" v-show="isPwdLogin" ref="accountLogin">
+          <div class="qrcode-box">
+            <div class="qrcodeImg" @click="switchto"></div>
+          </div>
           <div class="sweep-login">
-            扫一扫登录
-            <span class="triangle-border" :style="{left: '91px'}">
+            {{$t('login.scannLogin')}}
+            <span class="triangle-border">
               <span class="sequare"></span>
             </span>
           </div>
-          <div class="pwd-txt">账号密码登录</div>
-          <h4 class="account-txt">账号</h4>
+          <div class="pwd-txt">{{$t('login.accountLogin')}}</div>
+          <h4 class="account-txt">{{$t('login.account')}}</h4>
           <div class="account-choose">
             <div class="num">
               <div class="select-dropdown">
-                <!-- <div class="select-checked" @click="selectCountry">
-                  <img :src="flag" alt class="flag-icon" />
-                  {{flagCode}}
-                  <img :src="downIcon" alt class="down-icon" />
-                </div>
-                <div class="dropdown-list" :class="isShow ? 'active': ''">
-                  <ul>
-                    <li v-for="(item, key) in flagList" :key="key" @click="changeFlagCode(key)">
-                      <img :src="item.flag" alt class="flag-icon" />
-                      {{item.code}}
-                    </li>
-                  </ul>
-                </div> -->
                 <Dropdown
-                  :flagList="flagList"
                   :isShow="isShow"
-                  :areaFlag="areaFlag"
-                  :areaCode="areaCode"
+                  :valWidth="valWidth"
+                  :width="dropdownWidth"
                   @selectCountry="selectCountry"
                   @changeFlagCode="changeFlagCode"
-                  @changeList="changeList"
-              ></Dropdown>
+                ></Dropdown>
               </div>
- 
             </div>
-            <!-- <md-field md-clearable class="tel">
-              <md-input v-model="userName" placeholder="输入邮箱/手机号" class="email"></md-input>
-            </md-field> -->
-            <input type="text" v-model="userName" class="tel" v-on:keyup.enter="login" >
+            <input
+              type="text"
+              :placeholder="$t('customError.accountTips')"
+              v-model="userName"
+              class="tel"
+              v-on:keyup.enter="login"
+            />
           </div>
-          <h4 class="pwd">密码</h4>
-          <md-field class="pass" :md-toggle-password="false">
-            <md-input placeholder="输入登录密码" v-model="pwd" type="password" class="password" v-on:keyup.enter="login"></md-input>
-          </md-field>
-          <h4 class="captcha-txt" v-if="isShowCaptcha">验证码</h4>
+          <h4 class="pwd">{{$t('login.password')}}</h4>
+          <div class="pass">
+            <input
+              type="password"
+              :placeholder="$t('placehode.loginPwd')"
+              v-model="pwd"
+              class="password"
+              v-on:keyup.enter="login"
+            />
+          </div>
+          <h4 class="captcha-txt" v-if="isShowCaptcha">{{$t('login.vertifyCode')}}</h4>
           <div class="captcha" v-if="isShowCaptcha">
-            <input type="text" class="captcha-left" placeholder="输入验证码" v-model="captcha" v-on:keyup.enter="login"/>
-            <div class="captcha-right" @click="refreshQrcode" :style="`backgroundImage:url(${captchaImg})`"></div>
+            <input
+              type="text"
+              class="captcha-left"
+              :placeholder="$t('placehode.vertifyCode')"
+              v-model="captcha"
+              v-on:keyup.enter="login"
+            />
+            <div
+              class="captcha-right"
+              @click="refreshQrcode"
+              :style="`backgroundImage:url(${captchaImg})`"
+            ></div>
           </div>
           <div :class="['login-button', loading ? 'disabled':'']" @click="login">
-            <span class="loading" v-if="loading"></span>登录<span v-if="loading">中...</span>
+            <span class="loading" v-if="loading"></span>
+            <span>{{$t('login.login')}}</span>
+            <span v-if="loading">...</span>
           </div>
           <div class="bottom">
-            <!-- <a class="sign">免费注册</a> -->
-            <router-link :to="{ path: '/sercert'}" class="forget">忘记密码？</router-link>
+            <router-link :to="{ path: '/sercert'}" class="forget">{{$t('login.forgetPassword')}}</router-link>
           </div>
         </div>
       </div>
     </div>
+
     <footers></footers>
   </div>
 </template>
 <script>
 import Dropdown from "./components/Dropdown";
-import headers from "./components/header/headers";
 import Header from "./components/Header";
-import icon from "./components/icon/icon";
-import downloadVersion from "./components/downloadVersion";
+import DownloadVersion from "./components/DownloadVersion";
 import footers from "./components/footers";
 import { fetchCountry } from "../api/request";
 import axios from "../api/request";
-import { mapMutations } from "vuex";
-
+import { mapMutations, mapState } from "vuex";
 export default {
   name: "layout",
   data() {
     return {
+      loginHeight: 388,
+      scannIcon: require("../assets/imgs/sweep.png"),
       isAinmate: false,
-      loading: false,
-      failIcon: require('../assets/login/fail_icon_20200729.svg'),
-      successIcon: require('../assets/login/success_icon_20200729.svg'),
+      loading: true,
+      failIcon: require("../assets/login/fail_icon_20200729.svg"),
+      successIcon: require("../assets/login/success_icon_20200729.svg"),
       logo: require("./components/header/images/logo_icon_20200525.png"),
-      downIcon: require("../assets/imgs/down_icon_20200525.png"),
-      flagIcon: require("../assets/imgs/flag_icon_20200526.png"),
-      defaultLang: "简体中文",
-      languageList: [
-        {
-          id: 1,
-          lang: "简体中文",
-          flag: require("../assets/imgs/flag_icon_20200526.png")
-        },
-        {
-          id: 2,
-          lang: "繁体中文",
-          flag: require("../assets/imgs/flag_icon_20200526.png")
-        },
-        {
-          id: 3,
-          lang: "英语",
-          flag: require("../assets/imgs/flag_icon_20200526.png")
-        }
-      ],
-      isShow: false,
       bg: "",
       isPwdLogin: false,
       isShowCaptcha: false,
       userName: "",
       pwd: "",
-      flagList: [], //国旗列表
-      areaFlag: "https://img.wikifx.com/flag/7d8833382673bab2/CN.png_wiki-template-global", // 国家国旗
-      areaCode: "0086", // 国家区号（默认）
+      //areaCode: "0086", // 国家区号（默认）
       isShow: false, // 是否显示
       lgToken: "",
-      qrcodeData: "", //二维码图形
-      captchaId: "", //验证码序列号
-      captcha: "", //验证码
+      qrcodeData: "", // 二维码图形
+      captchaId: "", // 验证码序列号
+      captcha: "", // 验证码
       captchaImg: "",
       qrcodeStatus: 0,
-      timer: null
+      timer: null,
+      valWidth:88,
+      dropdownWidth: 316
     };
   },
   components: {
-    headers,
     Header,
-    icon,
     footers,
-    downloadVersion,
-    Dropdown
+    DownloadVersion,
+    Dropdown,
   },
   mounted() {
     this.getQrcode();
@@ -200,40 +185,28 @@ export default {
         this.scanQrcode();
       }, 2000);
     }
-    this.getFlags();
   },
-  destroyed() {
+  computed: {
+    ...mapState(["areaCode", "flagList"])
+  },
+  beforeDestroy() {
     clearInterval(this.timer);
   },
   methods: {
-    ...mapMutations(["changeLogin"]),
-    getSelectVal(val) {
-      this.defaultLang = val;
-    },
+    ...mapMutations(["changeLogin", "getFlags", "changeAreaName", "changeNav"]),
+
     // 刷新验证码
     async refreshQrcode() {
+      this.qrcodeStatus = 0;
       const res = await axios.getVertifyId({});
-      if(res.code === 0) {
+      if (res.code === 0) {
         const { captchaId } = res.data;
         this.captchaId = captchaId;
-        this.captchaImg = this.$getCaptcha(captchaId);
+        this.captchaImg = axios.getVertifyImg(captchaId);
       } else {
         this.$Message.error(res.msg);
       }
     },
-    // selectCountry() {
-    //   let show = this.isShow;
-    //   if (show) {
-    //     this.isShow = false;
-    //   } else {
-    //     this.isShow = true;
-    //   }
-    // },
-    // changeFlagCode(key) {
-    //   this.flagCode = this.flagList[key].code;
-    //   this.flag = this.flagList[key].flag;
-    //   this.isShow = false;
-    // },
     // 选择地点
     selectCountry(show) {
       if (show) {
@@ -242,49 +215,65 @@ export default {
         this.isShow = true;
       }
     },
-     // 国家区号代码选择
-    changeFlagCode(code, flag, show) {
-      this.areaFlag = flag;
-      this.areaCode = code;
+    // 国家区号代码选择
+    changeFlagCode(show) {
       this.isShow = !show;
     },
-    changeList(list) {
-      this.flagList = list;
-    },
     switchto() {
+      this.loading = false;
+      this.isPwdLogin = !this.isPwdLogin;
       if (this.isPwdLogin == true) {
+        this.loginHeight = 427;
+        this.isShowCaptcha = false;
+        if (this.timer) {
+          clearInterval(this.timer);
+        }
         if (this.flagList.length == 0) {
           this.getFlags();
         }
+      } else {
+        this.loginHeight = 388;
+        this.renovate();
       }
-      return (this.isPwdLogin = !this.isPwdLogin);
     },
 
     // 检测二维码状态
-    scanQrcode() {
+    async scanQrcode() {
       if (this.lgToken.length > 0) {
-        this.$scanQrcode(this.lgToken, res => {
-          if (res.code == 1010045 || res.code == 0) {
-            clearInterval(this.timer);
-            if (res.code == 0) {
-              this.changeLogin({ Authorization: res.data.token });
-              this.$router.push("/console/asset");
-            }
-          }
+        const params = this.lgToken;
+        const res = await axios.checkQrcode(params);
+        if (res.code == 0) {
+          clearInterval(this.timer);
+          this.changeLogin({ Authorization: res.data.token });
+          this.$router.push("/console/asset");
+        } else if(res.code === 1010045) { // 过期
+          clearInterval(this.timer);
           this.qrcodeStatus = res.code;
-        });
+        } else if(res.code === 1010046) { // 扫描成功
+          this.qrcodeStatus = res.code;
+        } 
+        else if (res.code === 1010083) {
+          clearInterval(this.timer);
+          this.$Message.error(res.msg);
+          this.qrcodeStatus = res.code;
+        } else {
+          this.qrcodeStatus = res.code;
+        }
+        
       }
     },
     // 获取二维码信息
-    getQrcode() {
-      this.$getQrcode("", res => {
-        if (res.code == 0) {
-          this.qrcodeData = res.data.data;
-          this.lgToken = res.data.lgToken;
-        } else {
-          this.$Message.error(res.msg);
-        }
-      });
+    async getQrcode() {
+      this.loading = true;
+      const res = await axios.getQrcode({});
+      this.loading = false;
+      if (res.code == 0) {
+        let { data, lgToken } = res.data;
+        this.qrcodeData = data;
+        this.lgToken = lgToken;
+      } else {
+        this.$Message.error(res.msg);
+      }
     },
     // 点击刷新二维码
     renovate() {
@@ -295,64 +284,49 @@ export default {
       }
       this.timer = setInterval(this.scanQrcode, 2000);
     },
-    //获取国旗
-    async getFlags() {
-      try {
-        let flag = await fetchCountry();
-        this.flagList = flag;
-      } catch (error) {
-        this.$Message.error(error);
-      }
-    },
     // 账号密码登录业务逻辑
-    login() {
+    async login() {
       let newPwd = this.pwd.trim();
       if (this.userName == "") {
-        this.$Message.error("请输入用户名");
+        this.$Message.error(this.$t("customError.accountTips"));
         return;
       }
       if (this.pwd == "") {
-        this.$Message.error("请输入密码");
+        this.$Message.error(this.$t("customError.pwdTips"));
         return;
       }
       if (6 > newPwd.length || newPwd.length > 16) {
-        return this.$Message.error("请输入长度为6-16的密码！");
+        return this.$Message.error(this.$t("customError.pwdLength"));
       }
       let params = {
         areaCode: this.areaCode,
         userName: this.userName,
-        pwd: this.pwd
+        pwd: this.pwd,
       };
       if (this.isShowCaptcha == true && this.captcha.length > 0) {
         params.id = this.captchaId;
         params.digits = this.captcha;
       }
       this.loading = true;
-      this.$phoneLogin(params, res => {
-        this.loading = false;
-        if (res.code == 0) {
-          this.isShowCaptcha = false;
-          this.changeLogin({ Authorization: res.data.token });
-          this.$router.push("/console");
-        } else if (res.code == 1010008 || res.code == 1010049) {
-          this.$Message.error(res.msg);
-          this.isShowCaptcha = true;
-
-          this.$getCaptchaid("", res => {
-            if (res.data.captchaId.length > 0) {
-              let param = {
-                id: res.data.captchaId
-              };
-              this.captchaId = res.data.captchaId;
-              this.captchaImg = this.$getCaptcha(this.captchaId);
-            }
-          });
-        } else {
-          this.$Message.error(res.msg);
+      const res = await axios.login(params);
+      this.loading = false;
+      if (res.code == 0) {
+        this.changeLogin({ Authorization: res.data.token });
+        this.$router.push("/console/asset");
+      } else if (res.code == 1010008 || res.code == 1010049) {
+        this.$Message.error(res.msg);
+        this.isShowCaptcha = true;
+        this.loginHeight = 541;
+        const result = await axios.getVertifyId();
+        if (result.data.captchaId.length > 0) {
+          this.captchaId = result.data.captchaId;
+          this.captchaImg = axios.getVertifyImg(this.captchaId);
         }
-      });
-    }
-  }
+      } else {
+        this.$Message.error(res.msg);
+      }
+    },
+  },
 };
 </script>
 <style scoped lang='scss'>
@@ -360,39 +334,36 @@ export default {
 
 .layout {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background-image: url("../assets/imgs/Group3.png");
   background-size: cover;
   position: relative;
   overflow: hidden;
 }
-.fail-icon, .success-icon {
+.fail-icon,
+.success-icon {
   display: block;
   width: 41px;
   height: 41px;
   margin: 33px auto 16px;
 }
-.content-bottom {
+.content {
+  width: 1200px;
+  height: calc(100vh - 100px);
+  min-width: 1200px;
   margin: 0 auto;
-  .center {
-    width: 1200px;
-    margin: 0 auto;
-
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .company-info {
     .download {
-      width: 512px;
-      margin-top: 48px;
-      float: left;
-
       h2 {
-        height: 64px;
         font-size: 32px;
         font-family: MicrosoftYaHei-Bold, MicrosoftYaHei;
         font-weight: bold;
         color: rgba(255, 255, 255, 1);
-        line-height: 64px;
-        // margin-top: 48px;
+        line-height: 30px;
       }
-
       h3 {
         height: 92px;
         font-size: 14px;
@@ -402,42 +373,45 @@ export default {
         margin-top: 32px;
       }
     }
-
+  }
+  .login-box {
+    position: relative;
+    transition: all 0.2s linear;
+    background: #fff;
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    // overflow: hidden;
     .login {
       position: relative;
-      overflow: hidden;
-      float: right;
       width: 400px;
       height: 388px;
       background: rgba(255, 255, 255, 1);
-      box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
       border-radius: 8px;
-      position: relative;
-      margin-top: 48px;
-
+      overflow: hidden;
       .login-toper {
-        height: 385px;
-
         .login-topl {
-          width: 104px;
-          height: 28px;
+          position: absolute;
+          padding: 3px 16px;
+          display: inline-block;
+          right: 100px;
+          top: 0;
+          width: auto;
           background: rgba(248, 251, 255, 1);
           border: 1px solid rgba(54, 116, 215, 0.3);
           font-size: 12px;
           font-family: MicrosoftYaHei;
           color: rgba(54, 116, 215, 1);
-          line-height: 28px;
           text-align: center;
-          margin: 12px 89px 0 207px;
+          margin: 10px 0 0 0;
 
           .txt {
             .triangle-border {
               display: block;
               width: 0;
               height: 0;
-              left: 102px;
+              right: -11px;
               top: -22px;
-              position: relative;
+              position: absolute;
               border-width: 7px 0 7px 7px;
               border-style: solid;
               border-color: transparent transparent transparent
@@ -446,7 +420,7 @@ export default {
               .sequare {
                 display: block;
                 position: absolute;
-                right: 2px;
+                right: -11px;
                 top: -5px;
                 width: 0;
                 height: 0;
@@ -474,26 +448,26 @@ export default {
         }
 
         .l-s {
-          width: 126px;
           height: 24px;
           font-size: 21px;
           font-family: MicrosoftYaHei-Bold, MicrosoftYaHei;
           font-weight: bold;
           color: rgba(51, 51, 51, 1);
           line-height: 21px;
-          margin: 0 0 22px 48px;
+          margin: 40px 0 22px 42px;
         }
 
         .l-app {
+          margin: 0 42px;
           font-family: MicrosoftYaHei;
           font-size: 16px;
-          height: 21px;
+          line-height: 20px;
+          // height: 21px;
         }
 
         .use {
-          margin-left: 48px;
+          // margin-left: 48px;
           color: rgba(51, 51, 51, 1);
-          margin-right: 3px;
         }
 
         .wiki {
@@ -562,20 +536,17 @@ export default {
           }
 
           .txt-s {
-            width: 64px;
+            padding: 0 16px;
+            // width: 64px;
             height: 15px;
             font-size: 14px;
             font-family: MicrosoftYaHei;
             color: rgba(54, 116, 215, 1);
             line-height: 14px;
-            margin: 0 47px;
+            // margin: 0 47px;
             text-align: center;
             cursor: pointer;
           }
-
-          // .icon {
-          //   background: rgba(255, 104, 89, 1);
-          // }
         }
 
         .code {
@@ -616,13 +587,14 @@ export default {
             width: 142px;
             height: 154px;
             background-image: url("../assets/imgs/sweep.png");
+            background-size: cover;
           }
           .leave {
-             animation: fadeOut 2s linear;
-             animation-fill-mode: forwards;
+            animation: fadeOut 2s linear;
+            animation-fill-mode: forwards;
           }
           @keyframes fadeOut {
-            from{
+            from {
               opacity: 1;
             }
             to {
@@ -637,7 +609,7 @@ export default {
           font-family: MicrosoftYaHei;
           color: rgba(153, 153, 153, 1);
           height: 16px;
-          margin-top: 31px;
+          margin-top: 23px;
           text-align: center;
         }
       }
@@ -667,19 +639,98 @@ export default {
           }
         }
       }
+      .status-box {
+        text-align: center;
+        margin: 40px 0 24px;
+        .qrcode-img {
+          display: inline-block;
+          width: 157px;
+          height: 157px;
+          border: 1px solid #eee;
+          margin-right: 10px;
+          background: rgba(0, 0, 0, 0.3);
+          .qrcode {
+            width: 100%;
+            height: 100%;
+          }
+        }
+
+        .scann-img {
+          display: inline-block;
+          border-bottom-left-radius: 11px;
+          border-bottom-right-radius: 11px;
+          border: 3px solid rgba(54, 116, 215, 0.14);
+          border-top: none;
+          .sweep {
+            width: 142px;
+            height: 154px;
+          }
+        }
+        .loading-box {
+          display: inline-block;
+          width: 315px;
+          height: 157px;
+          .qrcode-loading {
+            width: 35px;
+            height: 35px;
+            margin-right: 0;
+            margin-top: 58px;
+            border-width: 2px;
+            border-left-color: #3674d7;
+          }
+        }
+        .scann-status {
+          display: inline-flex;
+          text-align: center;
+        }
+        .success-status,
+        .expire-status {
+          display: inline-block;
+          border: 1px solid #eee;
+          padding: 0 40px;
+          letter-spacing: 0;
+          animation: moveRight 0.5s ease-out;
+          .success-tips {
+            font-size: 14px;
+            color: #222;
+            margin-bottom: 8px;
+            font-family: Helvetica;
+          }
+          .scann-tips {
+            font-size: 12px;
+            color: #555;
+            margin-bottom: 28px;
+            font-family: Helvetica;
+          }
+          .expire-tips {
+            font-size: 12px;
+            font-family: Helvetica;
+            color: rgba(68, 68, 68, 1);
+            margin-bottom: 4px;
+          }
+          .refresh {
+            color: #3674d7;
+            font-size: 14px;
+            font-family: Helvetica;
+            cursor: pointer;
+            margin: 0 14px 30px;
+          }
+        }
+      }
     }
 
     .pwd-login {
-      position: relative;
-      float: right;
       width: 400px;
       padding-bottom: 25px;
       background: rgba(255, 255, 255, 1);
-      box-shadow: 0px 0px 67px 0px rgba(0, 0, 0, 0.2);
-      position: relative;
       border-radius: 8px;
-      margin-top: 48px;
-      overflow: hidden;
+      .qrcode-box {
+        position: relative;
+        height: 111px;
+        right: 0;
+        overflow: hidden;
+        border-radius: 8px;
+      }
       .qrcodeImg {
         width: 103px;
         height: 111px;
@@ -696,32 +747,26 @@ export default {
       }
 
       .sweep-login {
-        width: 93px;
-        height: 28px;
-        line-height: 28px;
-        text-align: center;
+        display: inline-block;
+        padding: 2px 16px;
+        width: auto;
         background: rgba(248, 251, 255, 1);
         border: 1px solid rgba(54, 116, 215, 0.3);
         top: 12px;
         right: 95px;
         position: absolute;
         font-size: 12px;
-        font-family: MicrosoftYaHei;
         color: rgba(54, 116, 215, 1);
-
-        :after {
-        }
       }
 
       .pwd-txt {
-        width: 126px;
         height: 21px;
         font-size: 20px;
         font-family: MicrosoftYaHei-Bold, MicrosoftYaHei;
         font-weight: bold;
         color: rgba(51, 51, 51, 1);
         line-height: 21px;
-        margin: 40px 0 0 48px;
+        margin: -71px 85px 0 42px;
       }
 
       .account-txt {
@@ -731,95 +776,20 @@ export default {
         font-family: MicrosoftYaHei;
         color: rgba(51, 51, 51, 1);
         line-height: 15px;
-        margin: 45px 0 0 177px;
+        margin: 45px 0 0 147px;
       }
 
       .account-choose {
-        margin-left: 47px;
+        margin-left: 42px;
         position: relative;
 
         .num {
           display: inline-block;
           height: 16px;
           margin-top: 11px;
-          margin-right: 5px;
 
           .select-dropdown {
             position: relative;
-            
-            .flag-icon {
-              width: 30px;
-              height: 20px;
-            }
-
-            .down-icon {
-              width: 8px;
-              height: 4px;
-            }
-
-            .select-checked {
-              width: 120px;
-              font-size: 14px;
-              color: #333;
-              border-radius: 4px;
-              padding: 8px 0;
-              cursor: pointer;
-              text-align: center;
-            }
-
-            .dropdown-list {
-              width: 100%;
-              height: 212px;
-              position: absolute;
-              top: 42px;
-              left: 0;
-              background: #fff;
-              box-shadow: 0px 5px 10px 0px rgba(162, 177, 202, 0.5);
-              border: solid 1px #ebedf0;
-              border-radius: 5px;
-              transform-origin: center top;
-              transform: translateY(0);
-              transition: all 0.3s ease-out;
-              visibility: hidden;
-              opacity: 0;
-              z-index: 1;
-              overflow: auto;
-
-              ul {
-                list-style: none;
-
-                li {
-                  padding: 10px 0;
-                  cursor: pointer;
-                  text-align: left;
-                  padding-left: 19px;
-                  transition: all 0.2s ease-out;
-
-                  &:hover {
-                    background: #fafafa;
-                    color: #3674d7;
-                  }
-
-                  &:first-child {
-                    border-radius: 5px;
-                  }
-
-                  &:last-child {
-                    border-radius: 5px;
-                  }
-                }
-
-                .active {
-                  background: #fafafa;
-                }
-              }
-            }
-
-            .active {
-              visibility: visible;
-              transform: translateY(10px);
-              opacity: 1;
-            }
           }
 
           .num-left {
@@ -879,35 +849,19 @@ export default {
         }
 
         .tel {
-          // position: absolute;
-          // left: 118px;
-          // top: -6px;
-          // display: inline-block;
-          // width: 205px;
-          // font-size: 16px;
-          // font-family: MicrosoftYaHei;
-          // color: rgba(204, 204, 204, 1);
-          // margin-left: 11px;
-
-          // .email {
-          //   width: 177px;
-          //   padding: 17px 0;
-          //   border-bottom: 1px solid rgba(204, 204, 204, 0.3);
-          //   transition: all 0.2s linear;
-
-          //   &:focus {
-          //     border-bottom: 1px solid #3674d7;
-          //   }
-          // }
-          transition: all .2s ease;
-          margin-left: 12px;
-          width: 190px;
+          transition: all 0.2s ease;
+          margin-left: 16px;
+          width: 211px;
           padding: 8px 10px 8px 0;
-          border:none;
+          font-size: 16px;
+          border: none;
           border-bottom: 1px solid rgba(204, 204, 204, 0.3);
           &:focus {
             border: none;
             border-bottom: 1px solid rgba(54, 116, 215, 1);
+          }
+          &::placeholder {
+            color: #ccc;
           }
         }
       }
@@ -917,26 +871,31 @@ export default {
         font-size: 14px;
         font-family: MicrosoftYaHei;
         color: rgba(51, 51, 51, 1);
-        padding-left: 48px;
+        padding-left: 42px;
       }
 
       .pass {
-        width: 304px;
+        width: 316px;
         height: 28px;
         border: none;
         font-size: 16px;
         font-family: MicrosoftYaHei;
         color: rgba(204, 204, 204, 1);
         line-height: 21px;
-        margin-left: 48px;
-
+        margin-left: 42px;
+        margin-top: 11px;
         .password {
-          padding: 17px 0;
+          width: 100%;
+          padding: 8px 10px 8px 0;
+          font-size: 16px;
+          border: none;
           border-bottom: 1px solid rgba(204, 204, 204, 0.3);
           transition: all 0.2s linear;
-
           &:focus {
             border-bottom: 1px solid #3674d7;
+          }
+          &::placeholder {
+            color: #ccc;
           }
         }
       }
@@ -945,20 +904,20 @@ export default {
         font-size: 14px;
         font-family: MicrosoftYaHei;
         color: rgba(51, 51, 51, 1);
-        margin-left: 48px;
+        margin-left: 42px;
         margin-top: 45px;
       }
 
       .captcha {
         height: 33px;
         margin-top: 16px;
-        margin-left: 48px;
+        margin-left: 42px;
 
         .captcha-left {
           outline: none;
           margin-top: 5px;
           float: left;
-          width: 203px;
+          width: 216px;
           height: 28px;
           font-size: 16px;
           font-family: MicrosoftYaHei;
@@ -974,12 +933,15 @@ export default {
             border: none;
             border-bottom: 1px solid #3674d7;
           }
+          &::placeholder {
+            color: #ccc;
+          }
         }
 
         .captcha-right {
           cursor: pointer;
           float: right;
-          margin-right: 49px;
+          margin-right: 45px;
           margin-top: 5px;
           width: 83px;
           height: 33px;
@@ -989,7 +951,7 @@ export default {
       }
 
       .login-button {
-        width: 304px;
+        width: 316px;
         color: #fff;
         font-size: 16px;
         padding: 14px 0;
@@ -1023,7 +985,7 @@ export default {
 
       .bottom {
         width: 100%;
-        padding: 10px 50px;
+        padding: 10px 36px;
         text-align: right;
 
         .sign,
@@ -1035,6 +997,22 @@ export default {
         }
       }
     }
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes moveRight {
+  from {
+    transform: translateX(-50px);
+  }
+  to {
+    transform: translateX(0px);
   }
 }
 </style>

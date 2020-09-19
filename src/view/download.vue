@@ -1,7 +1,6 @@
 <template>
     <div class="layout" >
         <headers></headers>
-        <icon></icon>
         <div class="content">
           <div class="left"></div>
           <div class="center">
@@ -14,7 +13,7 @@
             <div class="download">
               <h2>WikiPay 一站式全球电子钱包</h2>
               <h5>安全，0汇损，极速到账，坐享收益</h5>
-              <downloadVersion></downloadVersion>
+              <DownloadVersion></DownloadVersion>
             </div>
           </div>
           <div class="right"></div>
@@ -113,9 +112,8 @@
 </style>
 <script>
 import headers from './components/header/headers'
-import icon from './components/icon/icon'
 import footers from './components/footers'
-import downloadVersion from './components/downloadVersion'
+import DownloadVersion from './components/DownloadVersion'
   export default {
         data () {
             return {
@@ -124,9 +122,8 @@ import downloadVersion from './components/downloadVersion'
         },
         components:{
           headers,
-          icon,
           footers,
-          downloadVersion
+          DownloadVersion
         } 
     }
 </script>

@@ -1,73 +1,82 @@
 <template>
   <div class="mine">
     <PersonalData></PersonalData>
-    <div class="person-title">
-      <img :src="identifyIcon" alt class="icon" />
-      <span class="text">身份验证</span>
-    </div>
-    <div class="person-list">
-      <div class="person-item">
-        <div class="list-title">
-          手机号码
-          <span class="tips">用于登录、提币、找回密码、修改安全设置</span>
-        </div>
-        <div class="list-info">
-          {{userInfo.areaCode}} {{getTel}}
-        </div>
+    <div class="person-section">
+      <div class="person-title">
+        <img :src="identifyIcon" alt class="icon" />
+        <span class="text">{{$t('personCenter.identityVertify')}}</span>
       </div>
-      <div class="person-item">
-        <div class="list-title">
-          邮箱账号
-          <span class="tips">用于登录、提币、找回密码、修改安全设置</span>
+      <div class="person-list">
+        <div class="person-item">
+          <div class="list-title">
+            {{$t('personCenter.phone')}}
+            <span class="tips">{{$t('personCenter.phoneTips')}}</span>
+          </div>
+          <div class="list-info">
+            {{userInfo.areaCode}} {{getTel}}
+          </div>
         </div>
-        <div class="list-info">
-          <span class="email">{{getEmail}}</span>
-          <span :style="{marginLeft:'10px'}" class="operate" @click="openAuthModal(true)" v-if="!userInfo.emailAuthStatus">去认证</span>
-        </div>
-      </div>
-    </div>
-    <div class="person-title">
-      <img :src="safeIcon" alt class="icon" />
-      <span class="text">安全密码管理</span>
-    </div>
-    <div class="person-list">
-      <div class="person-item">
-        <div class="list-title">
-          登录密码
-          <span class="tips">用于保护账户安全</span>
-        </div>
-        <div class="list-info">
-          <div @click="openPwdModal(true)" class="operate">修改</div>
-        </div>
-      </div>
-      <div class="person-item">
-        <div class="list-title">
-          支付密码
-          <span class="tips">用于保护资金安全</span>
-        </div>
-        <div class="list-info">
-          <span @click="openPayModal(true)" class="operate">修改</span>
-          <span class="divide"></span>
-          <span @click="findPayHandle" class="operate">找回</span>
+        <div class="person-item">
+          <div class="list-title">
+            {{$t('personCenter.email')}}
+            <span class="tips">{{$t('personCenter.emailTips')}}</span>
+          </div>
+          <div class="list-info">
+            <span class="email">{{getEmail}}</span>
+            <span :style="{marginLeft:'10px'}" class="operate" @click="openAuthModal(true)" v-if="!userInfo.emailAuthStatus">{{$t('personCenter.authen')}}</span>
+            <img :src="authIcon" alt="" class="auth-icon" v-if="userInfo.emailAuthStatus">
+          </div>
         </div>
       </div>
     </div>
-    <div class="person-title">
-      <img :src="personIcon" alt class="icon" />
-      <span class="text">个人设置</span>
-    </div>
-    <div class="person-list">
-      <div class="person-item">
-        <div class="list-title">
-          <span class="address-title">地址簿</span>
-          <span class="tips">添加后，可以在提币时选择已添加的提现地址。</span>
+    <div class="person-section">
+      <div class="person-title">
+        <img :src="safeIcon" alt class="icon" />
+        <span class="text">{{$t('personCenter.passwordManage')}}</span>
+      </div>
+      <div class="person-list">
+        <div class="person-item">
+          <div class="list-title">
+            {{$t('personCenter.loginPassword')}}
+            <span class="tips">{{$t('personCenter.passwordTips')}}</span>
+          </div>
+          <div class="list-info">
+            <div @click="openPwdModal(true)" class="operate">{{$t('personCenter.update')}}</div>
+          </div>
         </div>
-        <div class="list-info">
-          <div @click="openAddressModal(true)" class="operate">添加</div>
+        <div class="person-item">
+          <div class="list-title">
+            {{$t('personCenter.payPassword')}}
+            <span class="tips">{{$t('personCenter.payTips')}}</span>
+          </div>
+          <div class="list-info">
+            <span @click="openPayModal(true)" class="operate">{{$t('personCenter.update')}}</span>
+            <span class="divide"></span>
+            <span @click="findPayHandle" class="operate">{{$t('personCenter.find')}}</span>
+          </div>
         </div>
       </div>
     </div>
-    <!-- 修改邮箱弹出层 -->
+    <div class="person-section">
+      <div class="person-title">
+        <img :src="personIcon" alt class="icon" />
+        <span class="text">{{$t('personCenter.personSet')}}</span>
+      </div>
+      <div class="person-list">
+        <div class="person-item">
+          <div class="list-title">
+            <span class="address-title">{{$t('personCenter.addressBook')}}</span>
+            <span class="tips">{{$t('personCenter.addressTips')}}</span>
+          </div>
+          <div class="list-info">
+            <span @click="openAddressModal(true)" class="operate">{{$t('personCenter.add')}}</span>
+            <span class="divide"></span>
+            <span @click="address" class="operate">{{$t('home.detail')}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 邮箱认证出层 -->
     <ModalMask
       :isShowModal="isShowAuthModal"
       :isHideMask="isHideAuthMask"
@@ -77,36 +86,33 @@
       <template v-slot:body>
         <form class="email-mask">
           <div class="close">
-            <span class="txt">邮箱认证</span>
-            <span class="icon--copy4" @click="closeAuthModal(false)"></span>
+            <span class="txt">{{$t('personCenter.emailAuth')}}</span>
+            <span class="close-btn" @click="closeAuthModal(false)"></span>
           </div>
           <div class="tip-email">
-            <span class="icon--1-2">
-              <span class="path1"></span>
-              <span class="path2"></span>
-              <span class="path3"></span>
-            </span>
-            <span class="tip-txt">邮箱认证后不可更换，请谨慎绑定邮箱</span>
+            <img :src="tipsIcon" alt="" class="tips-icon">
+            <span class="tip-txt">{{$t('personCenter.emailAuthTips')}}</span>
           </div>
-          <p>邮箱</p>
+          <p>{{$t('personCenter.emailAccount')}}</p>
           <div class="update-box">
-            <input v-model="newEmail" class="enter-input" placeholder="请输入邮箱号" />
+            <input v-model="newEmail" class="enter-input" :placeholder="$t('personCenter.enterEmail')" />
             <!-- <div class="update-email" @click="updateEmail" v-if="newEmail !== userInfo.email">修改</div> :placeholder="userInfo.email" -->
           </div>
-          <p>邮箱验证码</p>
+          <p>{{$t('personCenter.emailVertifyCode')}}</p>
           <div class="code">
             <VertifyCode
+            class="email-vertify"
               :type="'2'"
               :vertifyContent="newEmail"
-              :vertifyText="authPlacehode"
+              :vertifyText="$t('personCenter.enterEmailCode')"
               :isVertifyExsit="isVertifyExsit"
               :value="code"
               v-model="code"
               :isClear="isClear"
             ></VertifyCode>
           </div>
-          <div class="tips">验证邮件可能会被误判为垃圾邮件，请注意查收</div>
-          <div class="confirm" @click="verify">确定</div>
+          <div class="tips">{{$t('personCenter.emailReceiveTips')}}</div>
+          <div class="confirm" @click="verify">{{$t('personCenter.confirm')}}</div>
         </form>
       </template>
     </ModalMask>
@@ -138,34 +144,72 @@
       </li>
     </ul>
     <!-- 地址簿 -->
-    <div class="title" v-if="isAddressList">
-      <div class="icon"></div>
-      <div class="title-txt">地址簿</div>
-    </div>
-    <div class="tip" v-if="isAddressList">
-      <span class="icon--1-2" style="margin-right:8px;margin-left:16px">
-        <span class="path1"></span>
-        <span class="path2"></span>
-        <span class="path3"></span>
-      </span>
-      <span class="tip-txt">添加后，可以在提币时选择已添加的提现地址。</span>
-    </div>
-    <ul class="contact-list" v-if="isAddressList">
-      <li class="contact-item" v-for="(item,index) in addressList" :key="index">
-        <div class="avatar">
-          <img :src="item.avatar" alt width="40px" height="40px" />
+    <ModalMask
+      :isShowModal="isAddressList"
+      :isHideMask="isHideAddrListMask"
+      @closeModal="closeAddrListModal"
+      @openModal="openAddrListModal"
+    >
+      <template v-slot:body>
+      <div class="modal-content-1">
+        <div class="modal-head">
+          <span class="modal-title">{{$t('personCenter.addressBook')}}</span>
+          <span class="close-btn" @click="closeAddrListModal(false)"></span>
         </div>
-        <div class="contact">
-          <div class="name">{{item.comment}}({{item.coinType}})</div>
-          <div class="transfer" @click="transfer(item.id)">提现</div>
-          <div class="delete" @click="deleteAddr(item.id)">删除</div>
-          <div class="phone">账户：{{item.account}}</div>
+        <div class="modal-body transfer-body">
+          <div class="transfer-list" v-if="addressList.length">
+            <div
+              class="transfer-item"
+              v-for="item in addressList"
+              :key="item.id"
+            >
+            <div class="withdraw-pic">
+              <img :src="item.url" alt class="" />
+            </div>
+            <div class="withdraw-right">
+              <div class="detail">
+                <span class="withdraw-type">{{item.comment}} ({{item.coinType}})</span>
+                <span class="withdraw-code">{{$t("personCenter.address")}}:{{item.address}}</span>
+              </div>
+              <div class="handle">
+                <icon @click="showDeleteModal(item.id)" name="del" class="del-btn" />
+              </div>
+              
+            </div>
+            </div>
+          </div>
+          <div class="data" v-else>
+            {{$t('login.withoutData')}}
+          </div>
         </div>
-      </li>
-    </ul>
-    <div class="spin-container" v-if="loading">
-      <Spin fix></Spin>
-    </div>
+      </div>
+      </template>
+    </ModalMask>
+
+    <ModalMask
+      :isShowModal="isDeleteAddr"
+      :isHideMask="isHideDeleteMask"
+      @closeModal="closeAddrModal"
+      @openModal="openAddrModal"
+    >
+      <template>
+        <div></div>
+      </template>
+      <template v-slot:body>
+      <div class="modal-content" :style="{padding: '40px', width:'461px'}">
+        <div class="modal-body">
+          <div class="delete-tips">
+            <icon name="warn" class="warn-icon" />
+            <span class="warn-text">{{$t("personCenter.confirm")}}{{$t('home.delete')}} ?</span> 
+          </div>
+          <div class="button-box">
+            <span class="confirm" @click="closeAddrModal">{{$t("account.cancel")}}</span>
+            <span class="cancel" @click="deleteAddr(addressId)">{{$t("account.confirm")}}</span>
+          </div>
+        </div>
+      </div>
+      </template>
+    </ModalMask>
 
     <!-- 修改密码弹出层 -->
     <ModalMask
@@ -177,24 +221,20 @@
       <template v-slot:body>
         <form class="pwd-mask">
           <div class="close">
-            <span class="txt">密码修改</span>
-            <span class="icon--copy4" @click="closePwdModal(false)"></span>
+            <span class="txt">{{$t('personCenter.updatePwd')}}</span>
+            <span class="close-btn" @click="closePwdModal(false)"></span>
           </div>
           <div class="pwd-tip">
-            <span class="icon--1-2">
-              <span class="path1"></span>
-              <span class="path2"></span>
-              <span class="path3"></span>
-            </span>
-            <span class="tip-txt">为了您的资产安全，修改登录密码后24小时内禁止提币、转账、支付</span>
+            <img :src="tipsIcon" alt="" class="tips-icon">
+            <span class="tip-txt">{{$t('personCenter.updatePwdTips')}}</span>
           </div>
-          <p>原登录密码</p>
-          <input type="password" placeholder="请输入原登录密码" v-model="oldPwd" />
-          <p>新登录密码</p>
-          <input type="password" placeholder="请输入新登录密码" v-model="newPwd" />
-          <p>新登录密码</p>
-          <input type="password" placeholder="请再次输入新登录密码" v-model="newPwdd" />
-          <div class="confirm" @click="confirmLoginPassword">确定</div>
+          <p>{{$t('personCenter.loginPwd')}}</p>
+          <input type="password" :placeholder="$t('customError.loginPwd')" v-model="oldPwd" />
+          <p>{{$t('personCenter.newLoginPwd')}}</p>
+          <input type="password" :placeholder="$t('customError.newLoginPwd')" v-model="newPwd" />
+          <p>{{$t('personCenter.confirmNewPwd')}}</p>
+          <input type="password" :placeholder="$t('customError.againNewLoginPwd')" v-model="newPwdd" />
+          <div class="confirm" @click="confirmLoginPassword">{{$t('personCenter.confirm')}}</div>
         </form>
       </template>
     </ModalMask>
@@ -208,49 +248,45 @@
       <template v-slot:body>
         <form class="pay-mask">
           <div class="close">
-            <span class="txt">支付密码修改</span>
-            <span class="icon--copy4" @click="openPayModal(false)"></span>
+            <span class="txt">{{$t('personCenter.updatePayPwd')}}</span>
+            <span class="close-btn" @click="openPayModal(false)"></span>
           </div>
           <div class="center" v-show="!yes">
             <div class="center-tip">
-              <span class="icon--1-2">
-                <span class="path1"></span>
-                <span class="path2"></span>
-                <span class="path3"></span>
-              </span>
-              <span class="tip-txt">为了您的资产安全，修改支付密码后24小时内不允许提币，转账，支付</span>
+              <img :src="tipsIcon" alt="" class="tips-icon">
+              <span class="tip-txt">{{$t('personCenter.payPwdTips')}}</span>
             </div>
-            <p>原支付密码</p>
-            <input type="password" placeholder="请输入原支付密码" v-model="oldPay" class="enter-input" />
-            <p>新支付密码</p>
-            <input type="password" placeholder="请输入新支付密码" v-model="newPay" class="enter-input" />
-            <p>新支付密码</p>
-            <input type="password" placeholder="请再次输入新支付密码" v-model="newPayy" class="enter-input" />
+            <p>{{$t('personCenter.payPwd')}}</p>
+            <input type="password" :placeholder="$t('customError.oldPayPwd')" v-model="oldPay" class="enter-input" />
+            <p>{{$t('personCenter.newPayPwd')}}</p>
+            <input type="password" :placeholder="$t('customError.newPayPwd')" v-model="newPay" class="enter-input" />
+            <p>{{$t('personCenter.confirmPayPwd')}}</p>
+            <input type="password" :placeholder="$t('customError.againNewPayPwd')" v-model="newPayy" class="enter-input" />
             <div class="email-code" v-show="vertifyType === '1'">
-              <p>邮箱验证码</p>
+              <p>{{$t('personCenter.emailVertifyCode')}}</p>
               <VertifyCode
                 :type="'2'"
                 :vertifyContent="userInfo.email"
-                :vertifyText="placehode"
+                :vertifyText="$t('customError.'+placehode)"
                 :value="emailCode"
                 v-model="emailCode"
                 :isClear="isClear"
               ></VertifyCode>
             </div>
             <div class="tel-code" v-show="vertifyType === '2'">
-              <p>手机验证码</p>
+              <p>{{$t('personCenter.telVertifyCode')}}</p>
               <VertifyCode
                 :type="'1'"
                 :vertifyContent="userInfo.phone"
                 :areaCode="areaCode"
-                :vertifyText="placehode"
+                :vertifyText="$t('customError.'+placehode)"
                 :value="telCode"
                 v-model="telCode"
                 :isClear="isClear"
               ></VertifyCode>
             </div>
-            <div class="switch-vertify" @click="switchVertify">{{vertifyTypeText}}</div>
-            <div class="confirm" @click="confirmPay">确定</div>
+            <div class="switch-vertify" @click="switchVertify">{{$t('customError.'+vertifyTypeText)}}</div>
+            <div class="confirm" @click="confirmPay">{{$t('personCenter.confirm')}}</div>
           </div>
           <div class="yes" v-show="yes">
             <div class="icon">
@@ -270,100 +306,99 @@
       <template v-slot:body>
         <div class="modal-content">
           <div class="modal-title">
-            找回支付密码
-            <span class="icon--copy4 close-btn" @click="closeFindPayModal(false)"></span>
+            {{$t('personCenter.findPayPwd')}}
+            <span class="close-btn" @click="closeFindPayModal(false)"></span>
           </div>
           <div class="safe-tips">
-            <span class="icon--1-2">
-              <span class="path1"></span>
-              <span class="path2"></span>
-              <span class="path3"></span>
-            </span>
-            <span class="safe-text">为了您的资产安全，修改支付密码后24小时内禁止提币、转账、支付</span>
+            <img :src="tipsIcon" alt="" class="tips-icon">
+            <span class="safe-text">{{$t('personCenter.findPayPwdTips')}}</span>
           </div>
           <div class="find-pay-step" v-show="stepNum === 1">
-            <div class="modal-phone">手机号</div>
+            <div class="modal-phone">{{$t('personCenter.tel')}}</div>
             <div class="select-phone disabled">
-              <Dropdown
+              <!-- <Dropdown
                 :flagList="flagList"
                 :isShow="isShowCountryList"
                 :areaFlag="userInfo.areaFlag"
                 :areaCode="userInfo.areaCode"
                 @selectCountry="selectCountry"
                 @changeFlagCode="changeFlagCode"
-              ></Dropdown>
+              ></Dropdown> -->
+              <img :src="userInfo.areaFlag" alt="" class="area-flag">
+              <span class="area-code">{{userInfo.areaCode}}</span>
               <input
                 type="text"
-                placeholder="请输入手机号"
+                :placeholder="$t('customError.telTips')"
                 v-model="userInfo.phone"
                 class="tel-input disabled"
+                :style="{marginLeft: '6px'}"
               />
             </div>
 
-            <div class="vertify-code">手机验证码</div>
+            <div class="vertify-code">{{$t('personCenter.telVertifyCode')}}</div>
             <VertifyCode
               :type="'1'"
               :vertifyContent="userInfo.phone"
               :areaCode="userInfo.areaCode"
-              :vertifyText="findPayTelPlacehode"
+              :vertifyText="$t('customError.'+findPayTelPlacehode)"
               :value="findPayTelCode"
               v-model="findPayTelCode"
               :isClear="isClear"
             ></VertifyCode>
-            <a href="javascript:;" class="confirm-button" @click="vertifyTelCode">确定</a>
+            <a href="javascript:;" class="confirm-button" @click="vertifyTelCode">{{$t('personCenter.confirm')}}</a>
           </div>
 
           <div class="find-pay-step" v-show="stepNum === 2">
-            <div class="vertify-code">邮箱</div>
+            <div class="vertify-code">{{$t('personCenter.emailAccount')}}</div>
             <div class>
               <input
                 type="text"
-                placeholder="请输入邮箱号"
+                :placeholder="$t('customError.emailTips')"
                 v-model="userInfo.email"
                 :class="['tel-input', 'disabled']"
                 :style="{width : '100%'}"
               />
             </div>
 
-            <div class="vertify-code">邮箱验证码</div>
+            <div class="vertify-code">{{$t('personCenter.emailVertifyCode')}}</div>
             <VertifyCode
               :type="'2'"
               :vertifyContent="userInfo.email"
-              :vertifyText="findPayEmailPlacehode"
+              :vertifyText="$t('customError.'+findPayEmailPlacehode)"
               :value="findPayEmailCode"
               v-model="findPayEmailCode"
             ></VertifyCode>
-            <a href="javascript:;" class="confirm-button" @click="vertifyEmailCode">确定</a>
+            <a href="javascript:;" class="confirm-button" @click="vertifyEmailCode">{{$t('personCenter.confirm')}}</a>
           </div>
 
           <div class="find-pay-step" v-show="stepNum === 3">
-            <div class="vertify-code">新支付密码</div>
+            <div class="vertify-code">{{$t('personCenter.newPayPwd')}}</div>
             <div class>
               <input
                 type="password"
-                placeholder="请输入新支付密码"
+                :placeholder="$t('customError.newPayPwd')"
                 v-model="newPayPassword"
                 class="tel-input"
                 :style="{width : '100%'}"
               />
             </div>
 
-            <div class="vertify-code">确认新支付密码</div>
+            <div class="vertify-code">{{$t('personCenter.confirmPayPwd')}}</div>
             <div class>
               <input
                 type="password"
-                placeholder="请再次输入新支付密码"
+                :placeholder="$t('customError.againNewPayPwd')"
                 v-model="confirmPayPassword"
                 class="tel-input"
                 :style="{width : '100%'}"
               />
             </div>
-            <a href="javascript:;" class="confirm-button" @click="findPayPassword">确定</a>
+            <a href="javascript:;" class="confirm-button" @click="findPayPassword">{{$t('personCenter.confirm')}}</a>
           </div>
         </div>
       </template>
     </ModalMask>
-
+    <!-- 添加地址簿 -->
     <ModalMask
       :isShowModal="isShowAddressModal"
       :isHideMask="isHideAddressMask"
@@ -373,11 +408,11 @@
       <template v-slot:body>
         <div class="modal-content">
           <div class="modal-title">
-            <div>添加地址簿</div>
-            <span class="icon--copy4 close-btn" @click="closeAddressModal(false)"></span>
+            <div>{{$t('personCenter.addAddress')}}</div>
+            <span class="close-btn" @click="closeAddressModal(false)"></span>
           </div>
 
-          <div class="modal-label">账户</div>
+          <div class="modal-label">{{$t('personCenter.coin')}}</div>
           <div class="coin-list">
             <div
               class="coin-item"
@@ -395,7 +430,7 @@
           </div>
 
           <div v-show="isShowChain">
-            <div class="modal-label">链名称</div>
+            <div class="modal-label">{{$t('personCenter.chain')}}</div>
             <div class="chain-list">
               <div
                 class="chain-item"
@@ -407,16 +442,17 @@
             </div>
           </div>
 
-          <div class="modal-label">提币地址</div>
+          <div class="modal-label">{{$t('personCenter.coinAddress')}}({{$t('personCenter.required')}})</div>
           <div class>
-            <input type="text" placeholder="请输入提币地址（必填）" class="input-style" v-model="coinAddress" />
+            <input type="text" :placeholder="$t('personCenter.enterCoinAddress')" class="input-style" v-model.trim="withdrawAddress" @blur="vertifyAddr" />
+            <div class="addr-tips">{{addressTips}}</div>
           </div>
 
-          <div class="modal-label">备注</div>
+          <div class="modal-label">{{$t('personCenter.mark')}}({{$t('personCenter.required')}})</div>
           <div>
-            <input type="text" placeholder="请输入备注（必填）" class="input-style" v-model="remarks" />
+            <input type="text" :placeholder="$t('personCenter.enterMark')" class="input-style" v-model.trim="remarks" />
           </div>
-          <div class="modal-confirm" @click="addAddress">确定</div>
+          <div class="modal-confirm" @click="addAddress">{{$t('personCenter.confirm')}}</div>
         </div>
       </template>
     </ModalMask>
@@ -425,6 +461,9 @@
 
 <script>
 import PersonalData from "../components/PersonalData";
+import '@/icons/del';
+import '@/icons/warn';
+import '@/icons/auth'
 import {
   fetchAddressList,
   fetchContactList,
@@ -438,9 +477,13 @@ import Dropdown from "../components/Dropdown";
 import VertifyCode from "../components/VertifyCode";
 import { formatEmail }from "../../filters.js"
 import { mapGetters, mapState, mapActions } from "vuex";
+import { vertify } from "@/mixins/vertifyAddr.js"
 export default {
+  mixins: [vertify],
   data() {
     return {
+      authIcon: require("@/assets/person/auth_icon_20200901.png"),
+      tipsIcon: require("../../assets/login/tips_icon_20200730.png"),
       isVertifyExsit: true,
       identifyIcon: require("../../assets/person/identify_icon_20200710.png"),
       safeIcon: require("../../assets/person/safe_icon_20200710.png"),
@@ -449,11 +492,13 @@ export default {
       isHideFindPayMask: true,
       checkCoin: "USDT", // 选中的币种
       checkChain: "ERC20", // 选中的链名称
-      coinAddress: "", // 提币地址
+      coin: "USDT-ERC20", // 币种名称(checkCoin+checkChain)
+      withdrawAddress: "", // 提币地址
       remarks: "", // 备注
       isShowChain: true, // 显示链名称
       coinIndex: 1,
       chainIndex: 1,
+      addressTips:　"", // 验证地址提示
       coinList: [
         {
           id: 1,
@@ -497,6 +542,7 @@ export default {
       areaCode: "",
       addressList: [], //地址簿
       isAddressList: false,
+      isHideAddrListMask: false,
       activeDisplay: "block",
       loading: false,
 
@@ -514,29 +560,32 @@ export default {
       yes: false,
       tel: "",
       count: 0,
-      countText: "发送验证码",
+      countText: "sendVertifyCode",
       isCalc: false, // 正在倒计时
       flagList: [], // 国家国旗
       areaCode: "0086", //国家区号
       telVertifyCode: "", // 验证码
       isShowCountryList: false,
-      authPlacehode: "请输入邮箱验证码", // 验证邮箱验证码提示
+      authPlacehode: "enterEmailCode", // 验证邮箱验证码提示
       emailCode: "", // 修改支付邮箱验证码
       telCode: "", // 修改支付手机验证码
       vertifyType: "2", // 验证方式 1、邮箱 2、短信
-      vertifyTypeText: "邮箱验证方式",
+      vertifyTypeText: "emailVertifyWay",
       findPayTel: "", // 找回支付密码手机
-      findPayTelPlacehode: "请输入手机验证码", // 找回支付手机提示
+      findPayTelPlacehode: "telVertifyCodeTips", // 找回支付手机提示
       findPayTelCode: "", // 找回支付手机验证码
       isClear: false,
       findPayEmail: "", // 找回支付密码邮箱
-      findPayEmailPlacehode: "请输入邮箱验证码", // 找回支付邮箱提示
+      findPayEmailPlacehode: "emailVertifyCodeTips", // 找回支付邮箱提示
       findPayEmailCode: "", // 找回支付邮箱验证码
       newPayPassword: "", // 支付新密码
       confirmPayPassword: "", // 确认支付新密码
       token: "", // 找回密码token
       stepNum: 1, // 找回支付流程
-      placehode: "请输入手机验证码"
+      placehode: "telVertifyCodeTips",
+      isShowAddressList: false,
+      isHideDeleteMask: false,
+      isDeleteAddr: false,
     };
   },
   components: {
@@ -561,21 +610,28 @@ export default {
     },
     switchVertify() {
       if (this.vertifyType === "1") {
-        this.placehode = "请输入手机验证码";
-        this.vertifyTypeText = "邮箱验证方式";
+        this.placehode = 'telVertifyCodeTips';
+        this.vertifyTypeText = 'emailVertifyWay';
         this.vertifyType = "2";
       } else {
         if (!this.userInfo.emailAuthStatus) {
-          return this.$Message.error("请先完成邮箱认证！");
+          return this.$Message.error(this.$t('customError.completeEmailAuth'));
         }
-        this.placehode = "请输入邮箱验证码";
-        this.vertifyTypeText = "手机短信验证方式";
+        this.placehode = 'emailVertifyCodeTips';
+        this.vertifyTypeText = 'telVertifyWay';
         this.vertifyType = "1";
       }
     },
+
+    // 删除地址弹框
+    showDeleteModal(id) {
+      this.addressId = id;
+      this.isDeleteAddr = true;
+      this.isHideDeleteMask = false;
+    },
     // 找回支付密码
     findPayHandle() {
-      if(!this.userInfo.emailAuthStatus) return this.$Message.error('请先完成邮箱认证！');
+      if(!this.userInfo.emailAuthStatus) return this.$Message.error(this.$t('customError.completeEmailAuth'));
       this.openFindPayModal(true);
     },
     // 选择 coin
@@ -584,26 +640,37 @@ export default {
       this.checkCoin = name;
       if (id > 1) {
         this.isShowChain = false;
+        this.coin = name;
       } else {
         this.isShowChain = true;
+        this.chainName = 'USDT-ECR20';
+        this.chainIndex = id;
+        this.coin = `${name}-ECR20`;
       }
     },
     // 选择 chain
     selectChain(id, name) {
+      let { checkCoin } = this;
       this.chainIndex = id;
       this.checkChain = name;
+      this.coin = `${checkCoin}-${name}`;
     },
     closeAddressModal(a) {
       this.isShowAddressModal = a;
       this.isHideAddressMask = true;
+      
+      this.checkCoin = 'USDT';
+      this.checkChain = 'ECR20';
+      this.addressTips = "";
     },
     openAddressModal(a) {
+      let { checkCoin, checkChain } = this;
       this.isShowAddressModal = a;
       this.isHideAddressMask = false;
       this.isShowChain = true;
       this.coinIndex = 1;
       this.chainIndex = 1;
-      this.coinAddress = "";
+      this.withdrawAddress = "";
       this.remarks = "";
     },
 
@@ -618,11 +685,15 @@ export default {
       this.newEmail = "";
       this.isClear = true;
     },
+    //展示地址列表
+    showAddressList(){
+      this.isShowAddressList = true;
+    },
 
     // 校验邮箱是否存在
     async reviseEmail() {
       if (!this.newEmail.trim()) {
-        return this.$Message.error("邮箱地址不能为空");
+        return this.$Message.error(this.$t('customError.emailTips'));
       }
       const params = {
         email: this.newEmail
@@ -632,7 +703,7 @@ export default {
 
       if (res.code === 0) {
         if (!res.data.success) {
-          this.$Message.error("邮箱不存在");
+          this.$Message.error(this.$t('customError.notExistEmail'));
         }
       } else {
         this.$Message.error(res.msg);
@@ -641,7 +712,7 @@ export default {
 
     // 修改邮箱
     async updateEmail() {
-      if (!this.newEmail.trim()) return this.$Message.error("请输入邮箱！");
+      if (!this.newEmail.trim()) return this.$Message.error(this.$t('customError.emailTips'));
 
       const params = {
         email: this.newEmail
@@ -652,9 +723,9 @@ export default {
       if (res.code === 0) {
         const { success } = res.data;
         if (success) {
-          this.$Message.info("修改成功！");
+          this.$Message.success(this.$t('customError.updateSuccess'));
         } else {
-          this.$Message.error("修改失败！");
+          this.$Message.error(this.$t('customError.updateFail'));
         }
       } else {
         this.$Message.error(res.msg);
@@ -663,11 +734,11 @@ export default {
     // 验证邮箱
     async verify() {
       if (!this.newEmail.trim()) {
-        this.$Message.error("邮箱地址不能为空");
+        this.$Message.error(this.$t('customError.emailTips'));
         return;
       }
       if (!this.code.trim()) {
-        this.$Message.error("请输入短信验证码");
+        this.$Message.error(this.$t('customError.telVertifyCodeTips'));
         return;
       }
       const params = {
@@ -680,12 +751,12 @@ export default {
       if (res.code === 0) {
         const { success } = res.data;
         if (success) {
-          this.$Message.info("验证成功！");
+          this.$Message.info(this.$t('customError.authSuccess'));
           this.openAuthModal(false);
           const params = {};
           this.getUserInfo();
         } else {
-          this.$Message.error("验证失败！");
+          this.$Message.error(this.$t('customError.authFail'));
         }
       } else {
         this.$Message.error(res.msg);
@@ -719,20 +790,20 @@ export default {
     },
     //删除联系人
     deleteContact(id, name) {
-      this.$Modal.confirm({
-        title: "提示",
-        content: `确定要删除${name}吗？`,
-        onOk: async () => {
+      this.$confirm({
+        content: this.$t("home.delete")+name+'？',
+        yesBtnText: this.$t("personCenter.confirm"),
+        cancelBtnText: this.$t("personCenter.cancel")
+      }).then(async () => {
           const params = { id };
           const res = await deleteContact(params);
 
           if (res.code === 0) {
-            this.$Message.info("删除成功！");
+            this.$Message.success( this.$t("home.delete") + '' + this.$t("home.success") );
           } else {
             this.$Message.error(res.msg);
           }
-        }
-      });
+        });
     },
     //地址簿
     async address() {
@@ -751,8 +822,8 @@ export default {
         this.addressList = res.data.map(item => {
           return {
             id: item.id,
-            avatar: item.icon,
-            account: item.address,
+            url: item.icon,
+            address: item.address,
             coinType: item.coin,
             comment: item.comment // 备注
           };
@@ -762,23 +833,16 @@ export default {
       }
     },
     // 删除地址
-    deleteAddr(id) {
-      this.$Modal.confirm({
-        title: "提示",
-        content: "确定要删除吗？",
-        onOk: async () => {
-          let params = {
-            id
-          };
-          const res = await deleteAddress(params);
+    async deleteAddr(id) {
+      let params = { id };
+      const res = await deleteAddress(params);
 
-          if (res.code === 0) {
-            this.$Message.info("删除成功！");
-          } else {
-            this.$Message.error(res.msg);
-          }
-        }
-      });
+      if (res.code === 0) {
+        this.closeAddrModal();
+        this.address();
+      } else {
+        this.$Message.error(res.msg);
+      }
     },
     // 转账
     toTransfer() {
@@ -833,46 +897,48 @@ export default {
       this.telCode = "";
       this.isClear = true;
     },
+    // 修改登录密码
     async confirmLoginPassword() {
       if (!this.oldPwd) {
-        this.$Message.error("请输入原登录密码");
+        this.$Message.error(this.$t('customError.loginPwd'));
         return;
       }
       else if (!this.newPwd) {
-        this.$Message.error("请输入新登录密码");
+        this.$Message.error(this.$t('customError.newLoginPwd'));
         return;
       }
       else if (!this.newPwdd) {
-        this.$Message.error("请输入确认登录密码");
+        this.$Message.error(this.$t('customError.againNewLoginPwd'));
         return;
       }
       else if( 6 > this.oldPwd.length || this.oldPwd.length > 16) {
-        return this.$Message.error("请输入6-16长度密码！");
+        return this.$Message.error(this.$t('customError.pwdLength'));
       }
       else if( 6 > this.newPwd.length || this.newPwd.length > 16) {
-        return this.$Message.error("请输入6-16长度密码！");
+        return this.$Message.error(this.$t('customError.pwdLength'));
       }
       else if( 6 > this.newPwdd.length || this.newPwdd.length > 16) {
-        return this.$Message.error("请输入6-16长度密码！");
+        return this.$Message.error(this.$t('customError.pwdLength'));
       }
       else if (this.newPwd !== this.newPwdd) {
-        this.$Message.error("输入的两次密码不一致");
+        this.$Message.error(this.$t('customError.pwdDiff'));
         return;
       }
       const params = {
         oldPwd: this.oldPwd,
         newPwd: this.newPwdd
       };
-
+      
       const res = await axios.updateLoginPassword(params);
 
       if (res.code === 0) {
         let { success } = res.data;
         if (success) {
-          this.$Message.info("修改成功！");
+          this.$Message.success(this.$t('customError.updateSuccess'));
           this.openPwdModal(false);
+          this.$router.push('/');
         } else {
-          this.$Message.error("修改失败");
+          this.$Message.error(this.$t('customError.updateFail'));
         }
       } else {
         this.$Message.error(res.msg);
@@ -882,11 +948,11 @@ export default {
     // 找回支付密码
     async findPayPassword() {
       if (!this.newPayPassword.trim())
-        return this.$Message.error("请输入支付密码！");
+        return this.$Message.error(this.$t('customError.payPwd'));
       if (!this.confirmPayPassword.trim())
-        return this.$Message.error("请输入确认支付密码！");
+        return this.$Message.error(this.$t('customError.againPayPwd'));
       if (this.newPayPassword !== this.confirmPayPassword)
-        return this.$Message.error("两次支付密码不一致！");
+        return this.$Message.error(this.$t('customError.pwdDiff'));
 
       const params = {
         token: this.token,
@@ -900,9 +966,9 @@ export default {
         if (success) {
           this.openFindPayModal(false);
 
-          this.$Message.info("支付密码找回成功！");
+          this.$Message.success(this.$t('customError.findPayPwdSuccess'));
         } else {
-          this.$Message.error("支付密码找回失败！");
+          this.$Message.error(this.$t('customError.findPayPwdFail'));
         }
       } else {
         this.$Message.error(res.msg);
@@ -911,19 +977,19 @@ export default {
     // 修改支付密码
     async confirmPay() {
       if (this.oldPay == "") {
-        this.$Message.error("请输入原支付密码");
+        this.$Message.error(this.$t('customError.oldPayPwd'));
         return;
       }
       if (this.newPay == "") {
-        this.$Message.error("请输入新支付密码");
+        this.$Message.error(this.$t('customError.newPayPwd'));
         return;
       }
       if (this.newPayy == "") {
-        this.$Message.error("请输入确认支付密码");
+        this.$Message.error(this.$t('customError.againNewPayPwd'));
         return;
       }
       if (this.newPay !== this.newPayy) {
-        this.$Message.error("输入支付密码不一致！");
+        this.$Message.error(this.$t('customError.payPwdDiff'));
         return;
       }
       let code = "";
@@ -946,10 +1012,10 @@ export default {
       if (res.code === 0) {
         let { success } = res.data;
         if (success) {
-          this.$Message.info("修改成功！");
+          this.$Message.success(this.$t('customError.updateSuccess'));
           this.openPayModal(false);
         } else {
-          this.$Message.error("修改失败！");
+          this.$Message.error(this.$t('customError.updateFail'));
         }
       } else {
         this.$Message.error(res.msg);
@@ -970,11 +1036,11 @@ export default {
     // 发送验证码
     async sendVertifyCode() {
       if (!this.tel) {
-        return this.$Message.error("请输入手机号！");
+        return this.$Message.error(this.$t('customError.telTips'));
       }
-      if (!/^1[\d]{10}$/.test(this.tel)) {
-        return this.$Message.error("请输入正确的手机号");
-      }
+      // if (!/^1[\d]{10}$/.test(this.tel)) {
+      //   return this.$Message.error(this.$t('customError.telRuleTips'));
+      // }
 
       if (this.isCalc) return;
       this.isCalc = true;
@@ -994,10 +1060,10 @@ export default {
       if (res.code === 0) {
         const { success } = res.data;
         if (success) {
-          this.$Message.info("发送成功！");
+          this.$Message.success(this.$t('customError.sendSuccess'));
           let timer = setInterval(() => {
             if (this.count <= 0) {
-              this.countText = "重新发送";
+              this.countText = this.$t('customError.againSend');
               this.isCalc = false;
               clearInterval(timer);
               return;
@@ -1006,7 +1072,7 @@ export default {
             this.count--;
           }, 1000);
         } else {
-          this.$Message.error("发送失败！");
+          this.$Message.error(this.$t('customError.sendFail'));
         }
       } else {
         this.$Message.error(res.msg);
@@ -1015,11 +1081,11 @@ export default {
     // 发送支付手机验证码
     sendTelCode(tel) {
       if (!tel) {
-        return this.$Message.error("请输入手机号！");
+        return this.$Message.error(this.$t('customError.telTips'));
       }
-      if (!/^1[\d]{10}$/.test(tel)) {
-        return this.$Message.error("请输入正确的手机号");
-      }
+      // if (!/^1[\d]{10}$/.test(tel)) {
+      //   return this.$Message.error(this.$t('customError.telRuleTips'));
+      // }
 
       if (this.isCalc) return;
       this.isCalc = true;
@@ -1039,10 +1105,10 @@ export default {
       if (res.code === 0) {
         const { success } = res.data;
         if (success) {
-          this.$Message.info("发送成功！");
+          this.$Message.success(this.$t('customError.sendSuccess'));
           let timer = setInterval(() => {
             if (this.count <= 0) {
-              this.countText = "重新发送";
+              this.countText = this.$t('customError.againSend');
               this.isCalc = false;
               clearInterval(timer);
               return;
@@ -1051,7 +1117,7 @@ export default {
             this.count--;
           }, 1000);
         } else {
-          this.$Message.error("发送失败！");
+          this.$Message.error(this.$t('customError.sendFail'));
         }
       } else {
         this.$Message.error(res.msg);
@@ -1060,9 +1126,9 @@ export default {
     // 验证手机验证码
     async vertifyTelCode() {
       if (!this.userInfo.phone.trim())
-        return this.$Message.error("请填写手机号！");
+        return this.$Message.error(this.$t('customError.telTips'));
       if (!this.findPayTelCode.trim())
-        return this.$Message.error("请填写手机验证码！");
+        return this.$Message.error(this.$t('customError.telVertifyCodeTips'));
 
       const params = {
         areaCode: this.userInfo.areaCode,
@@ -1082,9 +1148,9 @@ export default {
     },
     // 验证邮箱验证码
     async vertifyEmailCode() {
-      if (!this.userInfo.email.trim()) return this.$Message.error("请填写邮箱！");
+      if (!this.userInfo.email.trim()) return this.$Message.error(this.$t('customError.emailTips'));
       if (!this.findPayEmailCode.trim())
-        return this.$Message.error("请填写邮箱验证码！");
+        return this.$Message.error(this.$t('customError.emailVertifyCodeTips'));
 
       const params = {
         code: this.findPayEmailCode,
@@ -1104,11 +1170,11 @@ export default {
     },
     // 添加钱包地址
     async addAddress() {
-      const { checkCoin, checkChain, coinAddress, remarks } = this;
+      const { checkCoin, checkChain, withdrawAddress, remarks } = this;
       let coin = "";
 
-      if (!coinAddress.trim()) return this.$Message.error("请填写提币地址！");
-      if (!remarks.trim()) return this.$Message.error("请填写备注！");
+      if (!withdrawAddress) return this.$Message.error(this.$t('customError.coinAddressTips'));
+      if (!remarks) return this.$Message.error(this.$t('customError.remarksTips'));
       if (checkCoin === "USDT") {
         coin = checkCoin + "-" + checkChain;
       } else {
@@ -1117,7 +1183,7 @@ export default {
 
       const params = {
         coin: coin,
-        address: coinAddress,
+        address: withdrawAddress,
         comment: remarks
       };
 
@@ -1128,11 +1194,28 @@ export default {
         if (success) {
           this.openAddressModal(false);
           this.getUserInfo();
-          this.$Message.info("添加成功");
+          this.$Message.success(this.$t('customError.addSuccess'));
         }
       } else {
         this.$Message.error(res.msg);
       }
+    },
+    closeAddrModal() {
+      this.isDeleteAddr = false;
+      this.isHideDeleteMask = true;
+    },
+    openAddrModal() {
+      this.isDeleteAddr = false;
+      this.isHideDeleteMask = false;
+    },
+   
+    closeAddrListModal(a) {
+      this.isAddressList = a;
+      this.isHideAddrListMask = true;
+    },
+    openAddrListModal() {
+      this.isAddressList = false;
+      this.isHideAddrListMask = false;
     }
   },
   mounted() {
@@ -1142,11 +1225,69 @@ export default {
 };
 </script>
 <style scoped lang='scss'>
-.mine {
-  min-height: 100vh;
-  padding-top: 20px;
-  width: 1330px;
-  margin: 0 auto;
+.tips-icon {
+  width: 16px;
+  height: 16px;
+  margin-right: 10px;
+  margin-top: 3px;
+}
+.tip-email, .pwd-tip, .center-tip, .safe-tips {
+  display: flex;
+}
+.delete-tips {
+  position: relative;
+  font-size: 17px;
+  color: #000;
+  font-weight: 500;
+  margin-top: 10px;
+  .warn-icon {
+    position: absolute;
+    top: -2px;
+    left: 0;
+    width: 24px;
+    height: 24px;
+    fill: #FFBF00;
+  }
+  .warn-text {
+    margin-left: 30px;
+  }
+}
+.button-box {
+  text-align: right;
+  margin-top: 44px;
+  .confirm {
+    border: 1px solid #D9D9D9;
+    color: #000;
+    font-size: 14px;
+    transition: all .2s ease-in;
+    &:hover {
+      background: #F6F6F6;
+      box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.2);
+    }
+  }
+  .cancel {
+    border: 1px solid #3674d7;
+    background: #3674d7;
+    color: #fff;
+    transition: all .2s ease-in;
+    &:hover {
+      background: #175491;
+      box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.2);
+    }
+  }
+  .confirm, .cancel {
+    display: inline-block;
+    padding: 6px 15px;
+    border-radius: 4px;
+    margin-left: 8px;
+    cursor: pointer;
+  }
+}
+// .mine {
+//   min-height: 100vh;
+//   padding-top: 20px;
+//   width: 1330px;
+//   margin: 0 auto;
   .tip {
     height: 40px;
     background: rgba(254, 252, 235, 1);
@@ -1155,11 +1296,6 @@ export default {
     font-size: 12px;
     font-family: MicrosoftYaHei;
     color: rgba(104, 114, 146, 1);
-  }
-  .spin-container {
-    position: relative;
-    text-align: center;
-    padding: 100px 0;
   }
   .contact-list {
     border: 1px solid rgba(240, 240, 240, 1);
@@ -1243,7 +1379,7 @@ export default {
   }
 
   .email-mask {
-    width: 480px;
+    width: 515px;
     background: rgba(255, 255, 255, 1);
     box-shadow: 0px 0px 12px 0px rgba(13, 30, 82, 0.15);
     border-radius: 4px;
@@ -1251,7 +1387,7 @@ export default {
     padding: 24px 26px 32px 24px;
 
     .confirm {
-      width: 428px;
+      width: 100%;
       height: 48px;
       background: rgba(54, 116, 215, 1);
       border-radius: 4px;
@@ -1272,7 +1408,7 @@ export default {
       color: rgba(102, 102, 102, 1);
       line-height: 16px;
       margin-top: 25px;
-      margin-bottom: 7px;
+      margin-bottom: 8px;
     }
     .tips {
       margin-top: 8px;
@@ -1282,15 +1418,18 @@ export default {
     }
 
     .enter-input {
-      width: 428px;
-      height: 36px;
+      width: 100%;
+      padding: 7px 10px;
       background: rgba(255, 255, 255, 1);
       border-radius: 2px;
       border: 1px solid rgba(223, 226, 231, 1);
-      line-height: 36px;
       padding-left: 11px;
       &:focus {
         border: 1px solid #3674d7;
+      }
+      &::placeholder {
+        font-size: 14px;
+        color: rgba(204, 204, 204, 1);
       }
     }
 
@@ -1316,31 +1455,21 @@ export default {
       }
     }
 
-    input::input-placeholder {
-      font-size: 14px;
-      font-family: MicrosoftYaHei;
-      color: rgba(204, 204, 204, 1);
-    }
-
     .close {
       font-size: 20px;
       font-family: MicrosoftYaHei;
       color: rgba(51, 51, 51, 1);
 
-      .txt {
-        margin-right: 328px;
-      }
-
       .icon--copy4 {
+        display: none;
         cursor: pointer;
       }
     }
 
     .tip-email {
-      line-height: 40px;
-      margin-top: 15px;
-      width: 428px;
-      height: 40px;
+      padding: 12px 18px;
+      margin-top: 24px;
+      width: 100%;
       background: rgba(254, 252, 235, 1);
       border: 1px solid rgba(245, 219, 179, 1);
 
@@ -1367,13 +1496,17 @@ export default {
       }
     }
   }
-
+  .person-section {
+    border-radius: 4px;
+    margin: 0 30px 16px 30px;
+  }
   .person-title {
-    margin: 0 30px;
     padding: 17px 64px;
     font-size: 18px;
     color: #62697f;
     background: #fff;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
     .icon {
       width: 18px;
       height: 18px;
@@ -1386,8 +1519,9 @@ export default {
   }
   .person-list {
     background: #fff;
-    margin: 0 30px 16px 30px;
     border-top: 1px solid #f0f0f0;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
     .person-item {
       display: flex;
       justify-content: space-between;
@@ -1415,7 +1549,13 @@ export default {
         font-size: 14px;
         color: #777;
         font-weight: 400;
-      
+        .auth-icon {
+          width: 15px;
+          height: 15px;
+          margin-left: 5px;
+          fill:#3674D7;
+          vertical-align: middle;
+        }
         .operate {
           color: #3674D7;
           font-size: 14px;
@@ -1430,6 +1570,9 @@ export default {
           opacity: 0.3;
           margin: 0 14px;
         }
+        .email {
+          vertical-align: middle;
+        }
       }
     }
   }
@@ -1441,7 +1584,7 @@ export default {
     font-size: 14px;
     font-family: MicrosoftYaHei;
   }
-}
+// }
 .title-icon {
   margin: 22px 10px 23px 55px;
   float: left;
@@ -1454,7 +1597,7 @@ export default {
 }
 
 .modal-content {
-  width: 480px;
+  width: 515px;
   padding: 23px 26px 32px;
 }
 .modal-title {
@@ -1472,78 +1615,89 @@ export default {
   font-size: 12px;
   color: #666;
 }
+.addr-tips {
+  margin-top: 5px;
+}
 .coin-list {
-  display: flex;
-  // justify-content: space-between;
-  margin-top: 15px;
-  .coin-item {
-    display: inline-block;
-    padding: 8px 10px;
-    background: #f9f7fd;
-    border-radius: 2px;
-    text-align: center;
-    cursor: pointer;
-    margin-right: 70px;
-    &:last-child {
-      margin-right: 0;
-    }
-    .coin-avatar {
-      width: 24px;
-      height: 24px;
-    }
-    .coin-name {
-      display: inline-block;
-      vertical-align: middle;
-      color: #333;
-      font-size: 16px;
-      font-weight: bold;
-      margin-left: 8px;
-    }
-    .text-active {
-      color: #3674d7;
-    }
-  }
-  .active {
-    border: 1px solid #3674d7;
-    box-shadow: 0px 0px 6px 0px rgba(13, 30, 82, 0.15);
-    background: url("../../assets/person/check_icon_20200624.png") no-repeat
-      right bottom;
-    background-size: 16px 12px;
-  }
+  justify-content: flex-start;
 }
-.chain-list {
-  display: flex;
-  margin-top: 15px;
-  .chain-item {
-    display: inline-block;
-    padding: 6px 12px;
-    background: #f7f6fb;
-    color: #222;
-    font-size: 16px;
-    cursor: pointer;
-    margin-right: 48px;
-  }
-  .active {
-    border: 1px solid #3674d7;
-    box-shadow: 0px 0px 6px 0px rgba(13, 30, 82, 0.15);
-    background: url("../../assets/person/check_icon_20200624.png") no-repeat
-      right bottom;
-    background-size: 16px 12px;
-  }
+.coin-list .coin-item, .chain-list .chain-item {
+  margin-top: 7px;
+  border-radius: 4px;
 }
+// .coin-list {
+//   display: flex;
+//   // justify-content: space-between;
+//   margin-top: 15px;
+//   .coin-item {
+//     display: inline-block;
+//     padding: 8px 10px;
+//     background: #f9f7fd;
+//     border-radius: 2px;
+//     text-align: center;
+//     cursor: pointer;
+//     margin-right: 70px;
+//     &:last-child {
+//       margin-right: 0;
+//     }
+//     .coin-avatar {
+//       width: 24px;
+//       height: 24px;
+//     }
+//     .coin-name {
+//       display: inline-block;
+//       vertical-align: middle;
+//       color: #333;
+//       font-size: 16px;
+//       font-weight: bold;
+//       margin-left: 8px;
+//     }
+//     .text-active {
+//       color: #3674d7;
+//     }
+//   }
+//   .active {
+//     border: 1px solid #3674d7;
+//     box-shadow: 0px 0px 6px 0px rgba(13, 30, 82, 0.15);
+//     background: url("../../assets/person/check_icon_20200624.png") no-repeat
+//       right bottom;
+//     background-size: 16px 12px;
+//   }
+// }
+// .chain-list {
+//   display: flex;
+//   margin-top: 15px;
+//   .chain-item {
+//     display: inline-block;
+//     padding: 6px 12px;
+//     background: #f7f6fb;
+//     color: #222;
+//     font-size: 16px;
+//     cursor: pointer;
+//     margin-right: 48px;
+//   }
+//   .active {
+//     border: 1px solid #3674d7;
+//     box-shadow: 0px 0px 6px 0px rgba(13, 30, 82, 0.15);
+//     background: url("../../assets/person/check_icon_20200624.png") no-repeat
+//       right bottom;
+//     background-size: 16px 12px;
+//   }
+// }
 .input-style {
   transition: all 0.2s ease;
   width: 100%;
   margin-top: 7px;
   border: 1px solid #dfe2e7;
-  padding: 10px;
+  padding: 7px 10px;
   font-size: 14px;
   color: #333;
   &:focus {
     border: 1px solid #3674D7;
   }
   &::placeholder {
-    color: #ccc;
+    font-size: 14px;
+    color: rgba(204, 204, 204, 1);
   }
 }
 .modal-confirm {
@@ -1559,6 +1713,7 @@ export default {
 }
 
 .safe-tips {
+  width: 100%;
   margin-top: 26px;
   padding: 12px 18px;
   background: #fefceb;
@@ -1566,18 +1721,27 @@ export default {
   color: #687292;
   font-size: 12px;
   text-align: left;
-  .safe-text {
-    margin-left: 7px;
-  }
 }
 .modal-phone {
   color: #666;
   font-size: 12px;
-  margin-left: 104px;
+  margin-left: 72px;
   margin-top: 25px;
   margin-bottom: 7px;
 }
 .select-phone {
+  display: flex;
+  align-items: center;
+  .area-flag {
+    width: 20px;
+    height: 13px;
+  }
+  .area-code {
+    vertical-align: middle;
+    font-size: 16px;
+    color: #666;
+    margin-left: 6px;
+  }
 }
 .vertify-code {
   margin-top: 25px;
@@ -1588,7 +1752,7 @@ export default {
 .vertify-code-input,
 .tel-input {
   outline: none;
-  width: 306px;
+  flex: 1;
   border: 1px solid #dfe2e7;
   border-radius: 2px;
   font-size: 14px;
@@ -1597,10 +1761,12 @@ export default {
   &:focus {
     border: 1px solid #3674d7;
   }
+  &::placeholder {
+    font-size: 14px;
+    color: rgba(204, 204, 204, 1);
+  }
 }
-.tel-input {
-  width: 324px;
-}
+
 .send-code {
   width: 100px;
   display: inline-block;
@@ -1639,7 +1805,7 @@ export default {
 
 .mine {
   .pay-mask {
-    width: 480px;
+    width: 515px;
     background: rgba(255, 255, 255, 1);
     box-shadow: 0px 0px 12px 0px rgba(13, 30, 82, 0.15);
     border-radius: 4px;
@@ -1651,10 +1817,12 @@ export default {
       color: #3674d7;
       font-size: 12px;
       cursor: pointer;
+      line-height: 12px;
+      margin-top: 8px;
     }
 
     .confirm {
-      width: 428px;
+      width: 100%;
       height: 48px;
       background: rgba(54, 116, 215, 1);
       border-radius: 4px;
@@ -1675,55 +1843,37 @@ export default {
       color: rgba(102, 102, 102, 1);
       line-height: 16px;
       margin-top: 25px;
-      margin-bottom: 7px;
+      margin-bottom: 8px;
     }
 
     .enter-input {
-      width: 428px;
-      height: 36px;
+      width:100%;
+      padding: 7px 10px;
       background: rgba(255, 255, 255, 1);
       border-radius: 2px;
       border: 1px solid rgba(223, 226, 231, 1);
-      line-height: 36px;
       padding-left: 11px;
       &:focus {
         border: 1px solid #3674d7;
       }
-    }
-
-    input::input-placeholder {
-      font-size: 14px;
-      font-family: MicrosoftYaHei;
-      color: rgba(204, 204, 204, 1);
+      &::placeholder {
+        font-size: 14px;
+        color: rgba(204, 204, 204, 1);
+      }
     }
 
     .close {
       font-size: 20px;
       font-family: MicrosoftYaHei;
       color: rgba(51, 51, 51, 1);
-
-      .txt {
-        margin-right: 287px;
-      }
-
-      .icon--copy4 {
-        cursor: pointer;
-      }
     }
 
     .center-tip {
-      line-height: 40px;
-      margin-top: 15px;
-      width: 428px;
-      height: 40px;
+      padding: 12px 18px;
+      margin-top: 24px;
+      width: 100%;
       background: rgba(254, 252, 235, 1);
       border: 1px solid rgba(245, 219, 179, 1);
-
-      .icon--1-2 {
-        margin-left: 18px;
-        margin-right: 7px;
-        vertical-align: middle;
-      }
 
       .tip-txt {
         font-size: 12px;
@@ -1734,7 +1884,7 @@ export default {
   }
 
   .pwd-mask {
-    width: 480px;
+    width: 515px;
     background: rgba(255, 255, 255, 1);
     box-shadow: 0px 0px 12px 0px rgba(13, 30, 82, 0.15);
     border-radius: 4px;
@@ -1751,7 +1901,7 @@ export default {
     }
 
     .confirm {
-      width: 428px;
+      width: 100%;
       height: 48px;
       background: rgba(54, 116, 215, 1);
       border-radius: 4px;
@@ -1776,22 +1926,19 @@ export default {
     }
 
     input {
-      width: 428px;
-      height: 36px;
+      width: 100%;
+      padding: 7px 10px;
       background: rgba(255, 255, 255, 1);
       border-radius: 2px;
       border: 1px solid rgba(223, 226, 231, 1);
-      line-height: 36px;
       padding-left: 11px;
       &:focus {
         border: 1px solid #3674d7;
       }
-    }
-
-    input::input-placeholder {
-      font-size: 14px;
-      font-family: MicrosoftYaHei;
-      color: rgba(204, 204, 204, 1);
+      &::placeholder {
+        font-size: 14px;
+        color: rgba(204, 204, 204, 1);
+      }
     }
 
     .close {
@@ -1799,20 +1946,16 @@ export default {
       font-family: MicrosoftYaHei;
       color: rgba(51, 51, 51, 1);
 
-      .txt {
-        margin-right: 329px;
-      }
-
+    
       .icon--copy4 {
         cursor: pointer;
       }
     }
 
     .pwd-tip {
-      line-height: 40px;
-      margin-top: 15px;
-      width: 428px;
-      height: 40px;
+      padding: 12px 18px;
+      margin-top: 24px;
+      width: 100%;
       background: rgba(254, 252, 235, 1);
       border: 1px solid rgba(245, 219, 179, 1);
 

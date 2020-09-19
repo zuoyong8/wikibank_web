@@ -1,0 +1,292 @@
+html, body{
+    margin: 0;
+    padding: 0;
+}
+// 删除 Mac 上出现的小钥匙
+input::-webkit-credentials-auto-fill-button {
+    display: none !important;
+    visibility: hidden;
+    pointer-events: none;
+    position: absolute; 
+    right: 0;
+}
+//每一页上半部分UI
+.all-assets {
+    display: flex;
+    justify-content: space-between;
+    margin: 40px 64px 0;
+    .wallet {
+        margin: 10px 30px 0 0;
+        font-size: 40px;
+        line-height: 40px;
+        color: #1c2f62;
+        font-weight: bold;
+        white-space: nowrap;
+    }
+    .coin-marks {
+        font-size: 24px;
+        color: #2c354c;
+        font-weight: bold;
+    }
+    .button-list {
+        display: flex;
+        flex-wrap: wrap;
+        .feature {
+            display: block;
+            margin: 10px 24px 10px 0;
+            padding: 8px 14px;
+            border-radius: 4px;
+            color: #3674d7;
+            font-size: 16px;
+            line-height: 20px;
+            box-sizing: border-box;
+            border: 1px solid rgba(54, 116, 215, 0.49);
+            text-decoration: none;
+            transition: all 0.2s ease-out;
+            &:last-child {
+                margin-right: 0;
+            }
+            &:hover {
+                border: 1px solid rgba(54, 116, 215, 1);
+                background: rgba(54, 116, 215, 0.08);
+            }
+            .icon {
+                width: 20px;
+                height: 15px;
+            }
+            .text {
+                font-size: 16px;
+                margin-left: 10px;
+                vertical-align: middle;
+            }
+        }
+    }
+}
+
+//提示框
+.notification .message {
+    position: fixed!important;
+    padding: 15px!important;
+    box-shadow: 0 0 4px rgba(208, 208, 208, 0.8)!important;
+}
+
+//币种列表
+.coin-list {
+    display: flex;
+    justify-content: space-around;
+    .coin-item {
+        display: inline-block;
+        padding: 8px 10px;
+        background: #f9f7fd;
+        border-radius: 2px;
+        text-align: center;
+        cursor: pointer;
+        margin-right: 24px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        .coin-avatar {
+            width: 24px;
+            height: 24px;
+            border-radius: 2px;
+        }
+        .coin-name {
+            display: inline-block;
+            color: #333;
+            font-size: 16px;
+            vertical-align: middle;
+            margin-left: 8px;
+            border-radius: 4px;
+        }
+        .text-active {
+            color: #3674d7;
+            font-weight: bold;
+        }
+    }
+    .active {
+        border: 1px solid #3674d7;
+        box-shadow: 0px 0px 6px 0px rgba(13, 30, 82, 0.15);
+        background: url("../assets/person/check_icon_20200624.png") no-repeat right bottom;
+        background-size: 16px 12px;
+    }
+}
+
+.chain-list {
+    display: flex;
+    align-items: center;
+    .chain-item {
+        display: inline-block;
+        padding: 6px 12px;
+        background: #f7f6fb;
+        color: #222;
+        font-size: 16px;
+        cursor: pointer;
+        margin-right: 24px;
+        margin-left: 0;
+        border-radius: 4px;
+    }
+    .active {
+        border: 1px solid #3674d7;
+        box-shadow: 0px 0px 6px 0px rgba(13, 30, 82, 0.15);
+        background: url("../assets/person/check_icon_20200624.png") no-repeat right bottom;
+        background-size: 16px 12px;
+        color: #3674d7;
+    }
+}
+.deposit-tips {
+    width: 440px;
+    color: #666;
+    font-size: 14px;
+    font-weight: 400;
+    padding: 70px 0;
+    text-align: center;
+    border: 1px dashed #bbbbbb;
+    background: #f5f6fa;
+    margin-top: 24px;
+}
+
+//官网展示登录按钮
+.home {
+    .login-btn {
+        display: inline-block !important;
+    }
+    .login-divide {
+        display: inline-block !important;
+        margin-left: 24px;
+    }
+}
+
+//邮箱验证发送验证码
+
+.email-vertify {
+    display: flex;
+    width: 100%;
+    input {
+        flex: 1;
+        width: auto !important;
+    }
+    .send-code {
+        width: auto !important;
+    }
+}
+
+//弹窗样式 1
+.modal-content-1 {
+    .modal-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 24px 26px;
+        background: #f6f8ff;
+        min-width: 480px;
+        .modal-title {
+            font-size: 18px;
+            color: #333;
+        }
+        .modal-close {
+            font-size: 16px;
+            cursor: pointer;
+        }
+    }
+    .modal-body {
+        height: 370px;
+        overflow-y: auto;
+    }
+}
+.transfer-body {
+    width: 560px;
+    .transfer-list {
+        margin: 0 0 8px 7px;
+    }
+    .transfer-item {
+        display: flex;
+        position: relative;
+        padding: 14px 25px 14px 25px;
+        border-bottom: 1px solid #f0f0f0;
+        color: #333;
+        font-size: 14px;
+        cursor: pointer;
+    }
+    .withdraw-pic {
+        margin: 5px 0;
+        width: 30px;
+        height: 30px;
+        img {
+            display: block;
+            width: 30px;
+            height: 30px;
+            border-radius: 3px;
+        }
+    }
+    .withdraw-right {
+        width: calc(100% - 30px);
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .detail {
+        padding: 0 15px 0 15px;
+        width: calc(100% - 30px);
+        flex: 1;
+        box-sizing: border-box;
+    }
+    .handle {
+        display: flex;
+        align-items: center;
+    }
+    .del-btn {
+        width: 20px;
+        fill: #666;
+        cursor: pointer;
+        &:hover {
+            fill: #3674d7;
+        }
+    }
+    .withdraw-type {
+        display: block;
+        width: 100%;
+        line-height: 20px;
+        color: #333;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    .withdraw-code {
+        display: block;
+        line-height: 20px;
+        color: #666;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    .radio {
+        margin: 12px 0;
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        background: #fff;
+        border: 2px solid #999;
+        border-radius: 50%;
+        box-sizing: border-box;
+    }
+    .active {
+        position: relative;
+        border: 2px solid #3674d7;
+        &::before {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            content: "";
+            width: 4px;
+            height: 4px;
+            background: #3674d7;
+            border-radius: 50%;
+        }
+    }
+    .data {
+        text-align: center;
+        margin-top: 40px;
+    }
+}
+
+.usd-list .account {
+    border-radius: 4px;
+}

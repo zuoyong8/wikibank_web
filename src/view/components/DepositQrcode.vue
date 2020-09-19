@@ -2,23 +2,27 @@
   <div class="qrcode">
     <div :style="{textAlign: 'right'}">
       <div class="refresh" @click="delayTime">
-        <span class="icon--2-copy-6 rotate" :style="rotate"></span> 延时
+        <icon name="refresh" class="rotate" :style="rotate"/> {{$t('account.delay')}}
       </div>
     </div>
-    <div class="countdown-text">地址有效时间倒计时</div>
+    <div class="countdown-text">{{$t('account.countDown')}}</div>
     <div class="count-down">{{hour}}:{{min}}:{{second}}</div>
-    <div>
-      <!-- <canvas id="qrcode"></canvas> -->
-      <vue-qr :logoSrc="logo" :size="185" text="address" :logoScale="0.3" :margin="0"></vue-qr>
+    
+    <div class="qrcode-loading">
+      <span class="loading" v-if="loading"></span>
+      <vue-qr :logoSrc="logo" :size="185" :text="address" :logoScale="0.2" :logoMargin="2" :margin="0" v-else></vue-qr>
     </div>
-    <div class="addr-code">
-      {{address}}
-      <div
-        class="copy copy_address"
-        @click="copyAddress"
-        data-clipboard-action="copy"
-        :data-clipboard-text="address"
-      ></div>
+    
+    <div>
+      <div class="addr-code">
+        {{address}}
+        <img :src="copyIcon"
+          class="copy copy_address"
+          @click="copyAddress"
+          data-clipboard-action="copy"
+          :data-clipboard-text="address"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -27,11 +31,13 @@
 import axios from "../../api/request";
 import VueQr from 'vue-qr';
 import QRCode from "qrcode";
+import '@/icons/refresh';
 export default {
   name: "",
   components: { QRCode, VueQr },
   data() {
     return {
+      copyIcon: require("@/assets/imgs/copy.svg"),
       rotate: {
         transitionDuration: "0",
         transform: "rotate(0)"
@@ -47,6 +53,7 @@ export default {
     accountType: Number,
     address: String,
     logo: String,
+    loading: Boolean
   },
   
   methods: {
@@ -65,6 +72,7 @@ export default {
           transform: "rotate(0deg)"
         };
       }, 1000);
+      this.$emit("showQrcode");
     },
     // 复制
     copyAddress() {
@@ -76,14 +84,14 @@ export default {
       let clipboard = new this.clipboard(".copy_address");
 
       clipboard.on("success", function() {
-        self.$Message.success("复制成功！");
+        self.$Message.success(self.$t("home.copySuccess"));
         if (clipboard) {
           clipboard.destroy();
         }
       });
 
       clipboard.on("error", function() {
-        self.$Message.error("复制失败！");
+        self.$Message.error(self.$t("home.copyFail"));
       });
     },
     getEndTime() {
@@ -138,7 +146,7 @@ export default {
 
 <style lang="scss" scoped>
 .qrcode {
-  width: 720px;
+  width: 440px;
   background: #f5f6fa;
   border: 1px dashed #bbbbbb;
   text-align: center;
@@ -150,9 +158,17 @@ export default {
     text-align: right;
     color: #3674d7;
     cursor: pointer;
+    background: #FAFCFF;
+    border-radius:0px 0px 0px 12px;
+    font-size: 14px;
     .rotate {
       display: inline-block;
+      width: 20px;
+      height: 15px;
+      vertical-align: middle;
+      margin-top: -2px;
       transform: rotate(360deg);
+      fill: #3674D7;
     }
   }
   .countdown-text {
@@ -161,29 +177,55 @@ export default {
     margin-top: 7px;
   }
   .count-down {
-    margin: 10px 0 6px;
+    margin: 5px 0 24px;
     font-weight: bold;
     color: #ff733a;
     font-size: 18px;
   }
+  .qrcode-loading {
+    display: inline-block;
+    width: 185px;
+    height: 185px;
+    .loading {
+        display: inline-block;
+        width: 35px;
+        height: 35px;
+        border: 2px solid #f5f6fa;
+        border-top-color: #3674d7;
+        border-bottom-color: #3674d7;
+        border-left-color: #3674d7;
+        border-radius: 50%;
+        animation: move 1s linear infinite;
+        vertical-align: middle;
+        margin-top: 70px;
+      }
+      @keyframes move {
+        form {
+          transform: rotate(0);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+    }
+  }
   .addr-code {
     display: inline-block;
-    margin: 40px 0 33px;
+    margin: 32px 0 33px;
     padding: 10px 17px;
     background: #f8faff;
-    border: 1px solid #98bfff;
+    border: 1px solid #f8faff;
     border-radius: 4px;
     cursor: pointer;
+    transition: all .2s ease;
+    &:hover {
+      border: 1px solid #98bfff;
+    }
     .copy {
       display: inline-block;
       margin-top: -4px;
-      mask-image: url("../../assets/imgs/deposit2.svg");
       width: 18px;
       height: 18px;
-      mask-position: 100%;
-      mask-repeat: no-repeat;
-      background: #3674d7;
-      margin-left: 30px;
+      margin-left: 8px;
       vertical-align: middle;
       cursor: pointer;
       opacity: 0.5;

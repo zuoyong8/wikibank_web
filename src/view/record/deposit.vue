@@ -102,7 +102,7 @@
 
 <script>
 import "../../icons/mine3";
-import PersonalData from "../components/PersonalData";
+import PersonalData from "../components/personalData";
 import {
   formatDate,
   getStatus,

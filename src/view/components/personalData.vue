@@ -9,8 +9,8 @@
         <!-- <span class="login-data">上次登录时间： {{ date }}</span> -->
       </div>
       <div class="tel">
-        <span class="icon--2" style="margin-right:8px"></span>
-            手机账户: {{ tel }}
+        <!-- <span class="icon--2" style="margin-right:8px"></span> -->
+            UID: {{userInfo.userId}}
       </div>
     </div>
      <!-- <div class="personal-account-r">({{userInfo.firstName}}{{userInfo.lastName}})
@@ -56,6 +56,7 @@ export default {
   padding: 30px 64px;
   background: #fff;
   margin: 45px 30px 16px 30px;
+  border-radius: 4px;
   .avatar {
     width: 72px;
     height: 72px;
@@ -63,10 +64,12 @@ export default {
   }
   .person {
     padding-left: 24px;
+    padding-top: 8px;
     .greet {
       font-size: 18px;
       color: #333;
       font-weight: bold;
+      margin-top: 5px;
     }
     .login-data {
       margin-left: 10px;
@@ -76,9 +79,9 @@ export default {
     .tel {
       display: inline-block;
       margin-top: 15px;
-      padding: 7px 16px;
+      padding: 3px 14px;
       background: #F0F4FF;
-      border-radius: 4px;
+      border-radius: 3px;
       font-size: 14px;
       color: #3674D7;
     }

@@ -2,19 +2,19 @@
   <div class="account">
     <div class="title">
       <img :src="depositIcon" alt class="icon" />
-      <span class="text">兑换</span>
+      <span class="text">{{$t('home.exchange')}}</span>
     </div>
     <div class="content">
       <div v-if="stepNum === 1">
         <div class="row">
-          <div class="key">从</div>
+          <div class="key">{{$t('account.from')}}</div>
           <div class="val">
             <div class="from">
               <input
                 type="text"
                 class="enter-input disabled"
-                v-model="formCoin"
-                placeholder="手机号或邮箱"
+                :value="formCoin + ' ' + $t('home.account')" 
+                :placeholder="$t('login.accountPlace')"
                 :style="{paddingLeft: '42px'}"
               />
               <img :src="fromCoinAvatar" alt="" class="from-img">
@@ -24,11 +24,11 @@
         <div class="row" :style="{marginTop: '0'}">
           <div class="key"></div>
           <div class="val">
-            <div class="input-tips">可兑换 {{getAvail}} {{formCoin}}</div>
+            <div class="input-tips">{{$t('home.availAsset')}} {{getAvail}} {{formCoin}}</div>
           </div>
         </div>
         <div class="row">
-          <div class="key">到</div>
+          <div class="key">{{$t('account.to')}}</div>
           <div class="val">
             <div class="select-type disabled">
               <SelectDown :isShow="isShowFromSelect" :list="moneyList" @selectList="checkFromCoin">
@@ -36,7 +36,7 @@
                   <div class="coin-title" @click="selectFromCoin">
                     <div>
                       <img :src="toCoinAvatar" alt class="coin-avatar" />
-                      <input type="text" v-model="toCoin" placeholder="0.0000" class="coin-input" />
+                      <input type="text" :value="$t('leftMenu.usdAccount')" placeholder="0.0000" class="coin-input" />
                     </div>
                     <!-- <img :src="bottomArrow" alt class="arrow" /> -->
                   </div>
@@ -45,8 +45,8 @@
             </div>
           </div>
         </div>
-        <div class="row" :style="{marginTop: '40px'}">
-          <div class="key">数量</div>
+        <div class="row" :style="{marginTop: '24px'}">
+          <div class="key">{{$t('account.amount')}}</div>
           <div class="val">
             <div>
               <div class="transfer-box">
@@ -62,7 +62,7 @@
                 <div class="all-money">
                   {{formCoin}}
                   <span class="split"></span>
-                  <span class="total" @click="transferAll">全部</span>
+                  <span class="total" @click="transferAll">{{$t('home.all')}}</span>
                 </div>
               </div>
             </div>
@@ -72,40 +72,40 @@
           <div class="key"></div>
           <div class="val">
             <div class="tips-box">
-              <div class="input-tips">{{calcCoin}} {{toCoin}}</div>
-              <div class="coin-rate">(1 {{formCoin}} = {{price}} {{toCoin}})</div>
+              <div class="input-tips">${{calcCoin}} ({{toCoin}})</div>
+              <div class="coin-rate">1 {{formCoin}} = ${{price}} ({{toCoin}})</div>
             </div>
           </div>
         </div>
         <div class="row" :style="{marginTop: '0'}">
           <div class="key"></div>
           <div class="val">
-            <div class="confirm" @click="next">确认</div>
+            <div class="confirm" @click="next">{{$t('account.confirm')}}</div>
           </div>
         </div>
       </div>
 
       <div v-if="stepNum === 2">
         <div class="row">
-          <div class="key">支付密码</div>
+          <div class="key">{{$t('account.payPwd')}}</div>
           <div class="val">
             <div>
-              <input type="password" class="enter-input" v-model="password" placeholder="请输入支付密码" />
+              <input maxlength="6" type="password" class="enter-input" v-model="password" :placeholder="$t('customError.payPwd')" />
             </div>
           </div>
         </div>
         <div class="row" :style="{marginTop: '0'}">
           <div class="key"></div>
           <div class="val">
-            <div class="confirm" @click="exchange">确认</div>
+            <div class="confirm" @click="exchange">{{$t('account.confirm')}}</div>
           </div>
         </div>
       </div>
       <div class="tips">
-        <p>温馨提示</p>
-        <p>• 目前仅支持（USDT/USD、BTC/USD、ETH/USD）相互兑换。</p>
-        <p>• 兑换后的资产将自动转入相对应的账户里。</p>
-        <p>• 请务必确认电脑及浏览器安全，防止信息被篡改或泄露。</p>
+        <p>{{$t("warmPrompt.warmTips")}}</p>
+        <p>• {{$t("warmPrompt.supportExchange")}}</p>
+        <p>• {{$t("warmPrompt.enterAccount")}}</p>
+        <p>• {{$t("warmPrompt.confirmSafe")}}</p>
       </div>
     </div>
   </div>
@@ -127,7 +127,7 @@ export default {
       mediumNumber: this.number,
       password: this.payPassword,
       isShowFromSelect: false,
-      toCoinAvatar: require("../../assets/person/usd_20200628.png"),
+      toCoinAvatar: require("../../assets/login/usd_icon_20200821.png"),
       bottomArrow: require("../../assets/person/bottom_icon_20200628.png"),
       depositIcon: require("../../assets/account/exchange_icon_20200731.png")
     };
@@ -137,7 +137,7 @@ export default {
     formCoin: String,
     toCoin: String,
     number: String,
-    price: Number,
+    price: String,
     stepNum: Number,
     payPassword: String, // 支付密码
     moneyList: Array,
@@ -178,6 +178,10 @@ export default {
     ...mapActions(['fetchWallet']),
     getMoney() {
       let money = isNumber(this.mediumNumber) ? +this.mediumNumber: 0;
+
+      if (!isNumber(money)) {
+        return (this.mediumNumber = "");
+      }
 
       const { formCoin } = this;
 
@@ -241,7 +245,7 @@ export default {
 
       if (res.code === 0) {
         const { usd } = res.data;
-        this.$emit("getPrice", usd, this.decimal);
+        this.$emit("getPrice", usd, 4);
       } else {
         this.$Message.error(res.msg);
       }
@@ -262,13 +266,13 @@ export default {
     },
     
     next() {
-      if (!+this.mediumNumber.trim()) return this.$Message.error("请输入数量！");
+      if (!+this.mediumNumber.trim()) return this.$Message.error(this.$t('customError.amountTips'));
       this.$emit("next");
     },
     async exchange() {
       const paw = this.password;
-      if (!paw.trim()) return this.$Message.error("请输入支付密码！");
-      if (!/^\d{6}$/.test(paw)) return this.$Message.error("密码格式不正确！");
+      if (!paw.trim()) return this.$Message.error(this.$t('customError.payPwd'));
+      if (!/^\d{6}$/.test(paw)) return this.$Message.error(this.$t('customError.pwdRuleTips'));
 
       const params = {
         bidCoin: this.formCoin,
@@ -281,11 +285,16 @@ export default {
         const { success } = res.data;
         const p = this.formCoin.toLowerCase();
         if (success) {
-          this.$Message.success("兑换成功！");
+          this.$Message.success(this.$t('customError.exchangeSuccess'));
           this.fetchWallet();
-          this.$router.push({path: `/console/${p}`})
+          setTimeout( () => {
+            this.$router.push({
+              path: `/${p}`,
+              query: { id: 3, type: 5 }
+            })
+          },2000)
         } else {
-          this.$Message.error("兑换失败！");
+          this.$Message.error(this.$t('customError.exchangeFail'));
         }
       } else {
         this.$Message.error(res.msg);
@@ -338,6 +347,7 @@ export default {
   .coin-avatar {
     width: 20px;
     height: 20px;
+    border-radius: 2px;
   }
   .enter-input {
     vertical-align: middle;
@@ -392,7 +402,7 @@ export default {
       .key {
         color: #666;
         font-size: 14px;
-        width: 130px;
+        width: 90px;
       }
       .val {
         width: 360px;
@@ -418,13 +428,17 @@ export default {
         .coin-rate {
           margin-top: 6px;
           color: #4eb091;
-          font-size: 14px;
+          font-size: 12px;
+          background: #f4faf8;
+          padding: 0 4px;
+          border-radius: 2px;
         }
         .input-tips {
           font-size: 12px;
           color: #666;
           margin-top: 6px;
           text-align: right;
+          line-height: 12px;
         }
 
         .transfer-box {
@@ -435,6 +449,7 @@ export default {
             left: 13px;
             width: 20px;
             height: 20px;
+            border-radius: 2px;
           }
           .all-money {
             position: absolute;
@@ -461,10 +476,11 @@ export default {
           position: relative;
           .from-img {
             position: absolute;
-            top: 10px;
+            top: 11px;
             left: 13px;
             width: 20px;
             height: 20px;
+            border-radius: 2px;
           }
         } 
         .confirm {
@@ -498,7 +514,7 @@ export default {
       }
     }
     .tips {
-      margin-left: 129px;
+      margin-left: 90px;
       margin-top: 39px;
       color: #999;
       font-size: 12px;

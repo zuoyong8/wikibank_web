@@ -25,7 +25,7 @@ export default {
   data() {
     return {
       withdrawAddress: "", // 提现地址
-      number: 0, // 提现数量
+      number: "", // 提现数量
       fees: 0, // 手续费
       comment: "", // 提现备注
       isShowWithdrawType: false, // 是否显示充值方式
@@ -42,7 +42,7 @@ export default {
     },
     enterNumber(val) {
       if(val > this.getWallet.usdtAvail) {
-        this.number = this.getWallet.usdtAvail;
+        this.number = ""+this.getWallet.usdtAvail;
       }
       this.number = val;
     },

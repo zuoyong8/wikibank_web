@@ -1,51 +1,50 @@
 <template>
-  <div class="usd-list">
+  <!-- <div class="usd-list"> -->
     <div class="assets-info">
       <div class="title">
         <img :src="assetsIcon" alt class="icon" />
-        <span class="text">USD 账户资产</span>
+        <span class="text">USD {{$t("account.assets")}}</span>
       </div>
       <div class="all-assets">
         <div class="wallet">
-          {{getWallet.usdThousandTotal}}
-          <span class="coin-marks">USD</span>
+          ${{getWallet.usdThousandTotal}}
+          <span class="coin-marks">(USD)</span>
         </div>
         <div class="button-list">
           <router-link
-            :to="{name: `${item.path}`}"
+            :to="{path: `${item.path}`}"
             v-for="(item, key) in featureList"
             :key="key"
             class="feature"
           >
             <img :src="item.icon" alt class="icon" />
-            <span class="text">{{item.name}}</span>
+            <span class="text">{{$t('home.'+item.name)}}</span>
           </router-link>
         </div>
       </div>
       <div class="account-list">
         <div class="available">
-          可用 (USD)
-          <div class="number">{{getWallet.usdAvail}}</div>
+          {{$t("home.availAsset")}} 
+          <div class="number">${{getWallet.usdAvail}} (USD)</div>
         </div>
         <div class="withdraw">
-          提现中（USD）
-          <div class="number">{{getWallet.usdFrozen}}</div>
+          {{$t("home.withdrawAsset")}}
+          <div class="number">${{getWallet.usdFrozen}} (USD)</div>
         </div>
         <div class="valuation">
-          美元预估收益（USD）
-          <div class="number">{{getProfit.usdeEvaluate}}</div>
+          {{$t("home.valuaAsset")}}
+          <div class="number">${{getProfit.usdeEvaluate}} (USD)</div>
         </div>
         <div class="available">
-          美元年化收益
+          {{$t("home.profit")}}
           <div class="number">{{getProfit.annual}}%</div>
         </div>
       </div>
     </div>
-    <router-view></router-view>
-  </div>
+  <!-- </div> -->
 </template>
 <script>
-import { mapState, mapGetters } from "vuex";
+import { mapState, mapGetters, mapActions } from "vuex";
 
 export default {
   name: "usd_list",
@@ -57,26 +56,26 @@ export default {
         {
           id: 0,
           icon: require("../../assets/account/deposit_20200710.png"),
-          path: "deposit",
-          name: "充值"
+          path: "/usd/deposit",
+          name: "deposit"
         },
         {
           id: 1,
           icon: require("../../assets/account/transfer_20200710.png"),
-          path: "transfer",
-          name: "转账"
+          path: "/usd/transfer",
+          name: "transfer"
         },
         {
           id: 2,
           icon: require("../../assets/account/exchange_20200710.png"),
-          path: "exchange",
-          name: "兑换"
+          path: "/usd/exchange",
+          name: "exchange"
         },
         {
           id: 3,
           icon: require("../../assets/account/withdraw_20200710.png"),
-          path: "withdraw",
-          name: "提现"
+          path: "/usd/withdraw",
+          name: "withdraw"
         }
       ]
     };
@@ -86,8 +85,12 @@ export default {
 
     ...mapGetters(["getProfit", "getWallet"])
   },
-
-  methods: {}
+  methods: {
+    ...mapActions(['fetchWallet'])
+  },
+  mounted() {
+    this.fetchWallet();
+  }
 };
 </script>
 
@@ -107,74 +110,24 @@ export default {
     margin-left: 12px;
   }
 }
-.usd-list {
-  min-height: 100vh;
-  padding-top: 20px;
-  width: 1330px;
-  margin: 0 auto;
-  .assets-info {
-    margin: 44px 30px 16px 30px;
-    background: #fff;
-    .title {
-      @include title;
-    }
-    .all-assets {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin: 40px 64px 0;
-      .wallet {
-        font-size: 40px;
-        color: #1c2f62;
-        font-weight: bold;
-      }
-      .coin-marks {
-        font-size: 24px;
-        color: #2c354c;
-        font-weight: bold;
-      }
-      .button-list {
-        .feature {
-          display: inline-block;
-          padding: 10px 14px;
-          border-radius: 4px;
-          color: #3674d7;
-          font-size: 16px;
-          border: 1px solid rgba(54, 116, 215, 0.49);
-          margin-right: 24px;
-          text-decoration: none;
-          transition: all 0.2s ease-out;
-          &:last-child {
-            margin-right: 0;
-          }
-          &:hover {
-            border: 1px solid rgba(54, 116, 215, 1);
-            background: rgba(54, 116, 215, 0.08);
-          }
-          .icon {
-            width: 20px;
-            height: 15px;
-          }
-          .text {
-            font-size: 16px;
-            margin-left: 10px;
-            vertical-align: middle;
-          }
-        }
-      }
-    }
-    .account-list {
-      padding: 40px 64px;
-      display: flex;
-      justify-content: space-between;
+.assets-info {
+  margin: 44px 30px 16px 30px;
+  background: #fff;
+  border-radius: 4px;
+  .title {
+    @include title;
+  }
+  .account-list {
+    padding: 40px 64px;
+    display: flex;
+    justify-content: space-between;
+    color: #1c2f62;
+    font-size: 14px;
+    .number {
+      font-weight: bold;
+      font-size: 18px;
       color: #1c2f62;
-      font-size: 14px;
-      .number {
-        font-weight: bold;
-        font-size: 18px;
-        color: #1c2f62;
-        margin-top: 14px;
-      }
+      margin-top: 14px;
     }
   }
 }
